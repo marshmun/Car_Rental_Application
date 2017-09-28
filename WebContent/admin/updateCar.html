@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/adminCss/adminNav.css">
+    <link rel="stylesheet" href="../css/carCss/car.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul class="nav">
+        <li>
+            <a href="./adminHome.html">Home</a>
+        </li>
+
+        <li>
+            <a href="#">Car</a>
+            <ul>
+                <li>
+                    <a href="./addCar.html">Add New Car</a>
+                </li>
+                <li>
+                    <a href="./carRentalAdmin.html">View Exisiting Cars</a>
+                </li>
+                <li>
+                    <a href="./updateCar.html">Update Existing Car</a>
+                </li>
+                <li>
+                    <a href="./deleteCar.html">Delete Exisiting Car</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Customer</a>
+
+            <ul>
+                <li>
+                    <a href="./addCustomer.html">Add New Customer</a>
+                </li>
+                <li>
+                    <a href="./updateCustomer.html">Update Exisiting Customer Profile</a>
+                </li>
+
+                <li>
+                    <a href="./deleteCustomer.html">Delete Exisiting Customer</a>
+                </li>
+            </ul>
+
+        </li>
+        <li>
+            <a href="#">Admin</a>
+            <ul>
+                <li>
+                    <a href="./addAdmin.html">Add New Admin</a>
+                </li>
+
+                <li>
+                    <a href="./updateAdmin.html">Update Exisiting Amdin Profile</a>
+                </li>
+                <li>
+                    <a href="./deleteAdmin.html">Delete Exisiting Admin</a>
+                </li>
+            </ul>
+        </li>
+        <li id="right">
+            <a href="#">Rentals</a>
+
+            <ul>
+                <li>
+                    <a href="./rentCar.html">Customer Rental</a>
+                </li>
+                <li>
+                    <a href="./returnCar.html">Return a Car</a>
+                </li>
+
+            </ul>
+        </li>
+    </ul>
+    <hr>
+    <h1>Update Exisiting Vehicle</h1>
+    <h2> Please enter the Details of the Vehicle</h2>
+    <div class="form">
+        <form action="/updatecar" method="POST">
+            <input class="hiddenAfter" type="text" name="ID" placeholder="Search for car by ID" required>
+            <input class="hidden" type="text" name="Year" placeholder="Year">
+            <input class="hidden" type="text" name="Make" placeholder="Make">
+            <input class="hidden" type="text" name="Model" placeholder="Model">
+            <input class="hidden" type="text" name="Color" placeholder="Color">
+            <input id="submit" type="submit">
+        </form>
+        <div class="results"></div>
+    </div>
+
+</body>
+
+</html>

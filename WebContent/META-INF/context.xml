@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/car_rental_system">
+	<Valve className="org.apache.catalina.valves.FastCommonAccessLogValve"
+    	   directory="c:/logs/car"
+    	   prefix="car."
+       	   suffix=".txt"
+           pattern="common"
+           resolveHosts="false"
+           fileDateFormat="yyyy-MM-dd"	/>
+</Context>

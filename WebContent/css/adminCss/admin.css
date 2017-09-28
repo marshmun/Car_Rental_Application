@@ -1,0 +1,55 @@
+body{
+    text-align: center;
+}
+
+a{
+    margin-top:6rem;
+    float:right;
+    margin-right: 5%;
+    text-decoration: none;
+    color:black;
+    font-weight: bold;
+    flex-wrap: wrap;
+}
+
+a:hover{
+    color:grey;
+}
+
+img{
+    height:70%;
+    float:left;
+    padding-top:4%;
+    padding-left:10%;
+}
+
+.options{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.options div{
+    border: 1px solid black;
+    border-radius: 6px;
+    flex: 1 1 35%;
+    height:11rem;
+    margin:3%;
+}
+
+.car{
+    height:60%;
+    padding-left:1%;
+    padding-top:10%;
+}
+
+#admin{
+    height:60%;
+    margin-top:3%;
+}
+
+footer{
+    display:flex;
+    justify-content: space-around;
+    padding-bottom:5rem;
+}

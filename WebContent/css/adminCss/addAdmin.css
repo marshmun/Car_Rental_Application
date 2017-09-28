@@ -1,0 +1,33 @@
+body{
+    text-align: center;
+}
+
+form{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding:3rem;
+}
+
+form input{
+    width:13rem;
+    padding:1rem;
+}
+
+.form{
+    border:solid 1px black;
+    border-radius: 2rem;
+    width:50rem;
+    margin:auto;
+}
+.hidden{
+    visibility: hidden;
+}
+.carData{
+    display:flex;
+    justify-content: space-around;
+    font-weight: bold;
+}
+#submit{
+    width:15rem;
+}
