@@ -3,6 +3,8 @@ package com.rental.servlet;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -49,12 +51,16 @@ public class RegistrationServlet extends HttpServlet {
 		String email = req.getParameter("Email_Address");
 		String password =req.getParameter("Password");
 		
+		ResultSet rs =null;
+		Connection conn = null;
+		Statement st= null;
+
 		try {
 		//Setup the Database datasource
 		Context    ctx = new InitialContext();
 	    Context env = ( Context )ctx.lookup( "java:comp/env" );
 	    DataSource ds = ( DataSource )env.lookup( "jdbc/carRentalSystem");
-		Connection conn = ds.getConnection();
+		conn = ds.getConnection();
 		
 		//Prepare the SQL statmenet to insert the values
 		PreparedStatement stmt = conn.prepareStatement("INSERT INTO userdetails(First_Name, Last_Name, Email_Address, Password, User_Name)  VALUES (?,?,?,?,?)");
@@ -76,6 +82,9 @@ public class RegistrationServlet extends HttpServlet {
 			System.out.println(e);
 		}
 		finally {
+			 try{ if(st != null ) st.close(); } catch(java.sql.SQLException e){}
+	            try{ if(conn != null ) conn.close(); } catch(java.sql.SQLException e){}
+	            try{ if(rs != null) rs.close(); } catch(java.sql.SQLException e){}
 			}
 		}
 

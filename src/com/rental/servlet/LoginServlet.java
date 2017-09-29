@@ -50,36 +50,51 @@ public class LoginServlet extends HttpServlet {
 		String userName = req.getParameter("User_Name");
 		String password = req.getParameter("password");
 		String type ="";
+		
 		//Make connection with the DB to authenticate against it
+		ResultSet rs =null;
+		Connection conn = null;
+		Statement st= null;
+
 		try {
 		Context    ctx = new InitialContext();
 	    Context env = ( Context )ctx.lookup( "java:comp/env" );
 	    DataSource ds = ( DataSource )env.lookup( "jdbc/carRentalSystem");
-		Connection conn = ds.getConnection();
-		Statement st= conn.createStatement();
-		ResultSet rs;
+		conn = ds.getConnection();
+		st= conn.createStatement();
+		
 		
 		rs= st.executeQuery("SELECT * FROM userdetails where User_Name='"+ userName+ "' and password='" + password + "'" );
 				if(rs.next()) {
-				HttpSession session = req.getSession();
-				session.setAttribute("User_Name", userName);
-				type = rs.getString("User_Type");
-				session.setAttribute("User_Type", type);
-				if(type.equals("Admin")) {
-				res.sendRedirect("admin/adminHome.html");
-				}
-				else {
-					res.sendRedirect("user/userhome.html");
-					return;
-				}
+					HttpSession session = req.getSession();
+					session.setAttribute("User_Name", userName);
+					type = rs.getString("User_Type");
+					session.setAttribute("User_Type", type);
+				
+					if(type.equals("Admin")) {
+						res.sendRedirect("admin/adminHome.html");
+						conn.close();
+					}
+					else {
+						res.sendRedirect("user/userhome.html");
+						conn.close();
+						return;
+					}
 		}
 				else {
 					System.out.println("Invalid password, please try again");
 					res.sendRedirect("login.html");
 				}
-	} catch(Exception e) 
-		{System.out.println(e);}
-		finally {}
+	} 
+		catch(Exception e) {
+			System.out.println(e);
+			}
+		finally {
+            try{ if(st != null ) st.close(); } catch(java.sql.SQLException e){}
+            try{ if(conn != null ) conn.close(); } catch(java.sql.SQLException e){}
+            try{ if(rs != null) rs.close(); } catch(java.sql.SQLException e){}
+
+		}
 	}
 
 }

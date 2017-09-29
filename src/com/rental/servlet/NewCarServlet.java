@@ -3,6 +3,9 @@ package com.rental.servlet;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.servlet.RequestDispatcher;
@@ -50,12 +53,16 @@ public class NewCarServlet extends HttpServlet {
 		String color = req.getParameter("Color");
 		
 		
+		ResultSet rs =null;
+		Connection conn = null;
+		Statement st= null;
+		
 		try {
 				//Setup the Database datasource
 				Context    ctx = new InitialContext();
 				Context env = ( Context )ctx.lookup( "java:comp/env" );
 				DataSource ds = ( DataSource )env.lookup( "jdbc/carRentalSystem");
-				Connection conn = ds.getConnection();
+				conn = ds.getConnection();
 		
 				//Prepare the SQL statmenet to insert the values
 				PreparedStatement stmt = conn.prepareStatement("INSERT INTO cardetails(Year, Make, Model, Color)  VALUES (?,?,?,?)");
@@ -79,6 +86,9 @@ public class NewCarServlet extends HttpServlet {
 			System.out.println(e);
 		}
 		finally{
+			 try{ if(st != null ) st.close(); } catch(java.sql.SQLException e){}
+	            try{ if(conn != null ) conn.close(); } catch(java.sql.SQLException e){}
+	            try{ if(rs != null) rs.close(); } catch(java.sql.SQLException e){}
 			
 		}
 	}
