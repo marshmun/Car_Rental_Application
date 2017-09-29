@@ -49,8 +49,7 @@ public class LoginServlet extends HttpServlet {
 	//Get the users information
 		String userName = req.getParameter("User_Name");
 		String password = req.getParameter("password");
-		String type = req.getParameter("Type");
-		
+		String type ="";
 		//Make connection with the DB to authenticate against it
 		try {
 		Context    ctx = new InitialContext();
@@ -64,7 +63,15 @@ public class LoginServlet extends HttpServlet {
 				if(rs.next()) {
 				HttpSession session = req.getSession();
 				session.setAttribute("User_Name", userName);
-				res.sendRedirect("userhome.html");
+				type = rs.getString("User_Type");
+				session.setAttribute("User_Type", type);
+				if(type.equals("Admin")) {
+				res.sendRedirect("admin/adminHome.html");
+				}
+				else {
+					res.sendRedirect("user/userhome.html");
+					return;
+				}
 		}
 				else {
 					System.out.println("Invalid password, please try again");
