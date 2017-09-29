@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/adminCss/adminNav.css">
     <link rel="stylesheet" href="../css/carCss/car.css">
+   
+	
     <title>Document</title>
 </head>
 
@@ -81,6 +83,9 @@
         <p>|</p>
         <p>Availability:</p>
     </div>
+   
+		
+
     <hr>
     <footer>
         <a href="adminHome.html">Home</a>

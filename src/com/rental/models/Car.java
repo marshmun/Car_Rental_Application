@@ -2,11 +2,12 @@ package com.rental.models;
 
 public class Car {
 
+	private String Id;
 	private String Year;
 	private String Make;
 	private String Model;
 	private String Color;
-	private boolean Available;
+	private String Available;
 	
 	public Car() {
 		super();
@@ -44,14 +45,23 @@ public class Car {
 		Color = color;
 	}
 
-	public boolean isAvailable() {
+
+	public String getId() {
+		return Id;
+	}
+
+	public void setId(String id) {
+		Id = id;
+	}
+
+	public String getAvailable() {
 		return Available;
 	}
 
-	public void setAvailable(boolean available) {
+	public void setAvailable(String available) {
 		Available = available;
 	}
-	
+
 	
 	
 }
