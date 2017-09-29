@@ -25,4 +25,13 @@
     <servlet-name>NewCarServlet</servlet-name>
     <url-pattern>/newcar</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <display-name>LoginServlet</display-name>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.rental.servlet.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
 </web-app>
