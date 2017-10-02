@@ -23,7 +23,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>NewCarServlet</servlet-name>
-    <url-pattern>/newcar</url-pattern>
+    <url-pattern>/admin/newcar</url-pattern>
   </servlet-mapping>
   <servlet>
     <display-name>LoginServlet</display-name>
