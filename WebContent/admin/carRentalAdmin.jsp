@@ -7,7 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/adminCss/adminNav.css">
     <link rel="stylesheet" href="../css/carCss/car.css">
-   
+    <%@ page import="java.sql.ResultSet" %>
+	<%@ page import="java.sql.Statement" %>
+	<%@ page import="java.sql.Connection" %>
+	<%@ page import="java.sql.DriverManager" %>
 	
     <title>Document</title>
 </head>
@@ -70,20 +73,67 @@
     <hr>
     <h1>See All Cars</h1>
     
-    <div class="carData">
-        <p>ID:</p>
-        <p>|</p>
-        <p>Year:</p>
-        <p>|</p>
-        <p>Make:</p>
-        <p>|</p>
-        <p>Model:</p>
-        <p>|</p>
-        <p>Color:</p>
-        <p>|</p>
-        <p>Availability:</p>
+    <a class="addcar" href="carRentalAdmin.jsp#form">Add a new car</a>
+
+   <form method="post">
+
+<table border="2">
+   <tr>
+        <td>user ID</td>
+        <td>Year</td>
+        <td>Make</td>
+        <td>Model</td>
+        <td>Color</td>
+        <td>Availability</td>
+        
+   </tr>
+   <%
+   try
+   {
+       Class.forName("com.mysql.jdbc.Driver");
+       String url="jdbc:mysql://localhost:3306/carrentalsystem";
+       String username="root";
+       String password="javatest";
+       String query="select * from cardetails";
+       Connection conn=DriverManager.getConnection(url, username, password);
+       Statement stmt=conn.createStatement();
+       ResultSet rs=stmt.executeQuery(query);
+       while(rs.next())
+       {
+   %>
+           <tr>
+           <td><%=rs.getInt("id") %></td>
+           <td><%=rs.getString("Year") %></td>
+           <td><%=rs.getString("Make") %></td>
+           <td><%=rs.getString("Model") %></td>
+           <td><%=rs.getString("Color") %></td>
+           <td><%=rs.getString("Availability") %></td>
+           </tr>
+   <%
+       }
+   %>
+   </table>
+   <%
+        rs.close();
+        stmt.close();
+        conn.close();
+   }
+   catch(Exception e)
+   {
+        e.printStackTrace();
+   }
+   %>
+</form>
+ <div class="form">
+        <form action="newcar" method="POST">
+            <input type="text" name="Year" placeholder="Year" required>
+            <input type="text" name="Make" placeholder="Make" required>
+            <input type="text" name="Model" placeholder="Model" required>
+            <input type="text" name="Color" placeholder="Color" required>
+            <input id="submit" type="submit">
+        </form>
+        <div class="results"></div>
     </div>
-   
 		
 
     <hr>

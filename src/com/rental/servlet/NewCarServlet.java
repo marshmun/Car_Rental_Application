@@ -78,7 +78,7 @@ public class NewCarServlet extends HttpServlet {
 				
 				
 				//Dispatch into success page
-				RequestDispatcher requestDispatcher = req.getRequestDispatcher("addCar.html");
+				RequestDispatcher requestDispatcher = req.getRequestDispatcher("carRentalAdmin.jsp");
 				requestDispatcher.forward(req, res);
 	
 		}

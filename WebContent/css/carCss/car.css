@@ -14,6 +14,10 @@ form input{
     padding:1rem;
 }
 
+table{
+	width:100%;
+}
+
 .form{
     border:solid 1px black;
     border-radius: 2rem;

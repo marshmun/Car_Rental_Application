@@ -65,9 +65,17 @@ public class GetCarListServlet extends HttpServlet {
 					car.setColor("Color");
 					car.setAvailable("Availability");
 					cars.add(car);
+					return cars;
 				}
-				finally {}
+		} catch(Exception e) {
+			System.out.println(e);
+			}
+				finally {
+					   try{ if(st != null ) st.close(); } catch(java.sql.SQLException e){}
+			            try{ if(conn != null ) conn.close(); } catch(java.sql.SQLException e){}
+			            try{ if(rs != null) rs.close(); } catch(java.sql.SQLException e){}
 				}
+				
 				
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
