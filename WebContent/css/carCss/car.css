@@ -32,6 +32,10 @@ table{
     justify-content: space-around;
     font-weight: bold;
 }
+
+.edit{
+	display:flex;
+}
 #submit{
     width:15rem;
 }
