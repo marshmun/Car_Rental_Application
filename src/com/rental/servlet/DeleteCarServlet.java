@@ -48,31 +48,33 @@ public class DeleteCarServlet extends HttpServlet {
 		String carid = req.getParameter("id");
 		
 		
-		ResultSet rs =null;
+		int rs;
 		Connection conn = null;
-		Statement st= null;
+		java.sql.PreparedStatement st= null;
+		String nativeSQL = "";
 
 		try {
 			Context    ctx = new InitialContext();
 		    Context env = ( Context )ctx.lookup( "java:comp/env" );
 		    DataSource ds = ( DataSource )env.lookup( "jdbc/carRentalSystem");
 			conn = ds.getConnection();
-			st= conn.createStatement();
-			
-			
-			 st.executeUpdate("delete * FROM carrdetails where id='"+ carid+ "'");
-					if(((ResultSet) st).next()) {
-						RequestDispatcher requestDispatcher = req.getRequestDispatcher("carRentalAdmin.jsp");
-						requestDispatcher.forward(req, res);
+
+			st = conn.prepareStatement("delete FROM cardetails where id='"+ carid+ "'");
+			st.clearParameters();
+			rs= st.executeUpdate();
+					if(rs != 0) {
+						res.sendRedirect("carrentaladmin.jsp");
+						return;
+					}else {
+						
 					}
 			}
 			catch(Exception e) {
-				System.out.println(e);
+				e.printStackTrace();
 				}
 			finally {
 	            try{ if(st != null ) st.close(); } catch(java.sql.SQLException e){}
 	            try{ if(conn != null ) conn.close(); } catch(java.sql.SQLException e){}
-	            try{ if(rs != null) rs.close(); } catch(java.sql.SQLException e){}
 
 			}
 		}
