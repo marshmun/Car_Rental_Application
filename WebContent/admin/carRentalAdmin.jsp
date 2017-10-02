@@ -78,8 +78,8 @@
    <form method="post">
 
 <table border="2">
-   <tr>
-        <td>user ID</td>
+   <tr class="tblHeader">
+        <td>Car ID</td>
         <td>Year</td>
         <td>Make</td>
         <td>Model</td>
@@ -110,12 +110,12 @@
            <td><%=rs.getString("Model") %></td>
            <td><%=rs.getString("Color") %></td>
            <td><%=rs.getString("Availability") %></td>
-           <td>	<form action="update-post" method="POST">
-           			<button type="submit" name="update" value={{id}}>Update This car!</button>
-           		</form></td>
-          	<td>	 <form action="delete-post" method="POST">
-                	<button type="submit" name="delete" value={{id}}> delete this car!</button>
-            	 </form></td>
+           <td> <form action="updatecar" method="POST">
+           		<button type="submit" name="update">Update</button>
+           	</form></td>
+          	<td><form action="deletecar?id=<%=rs.getInt("id") %>" method="POST">
+                <button type="submit" name="delete">Delete</button>
+            </form></td>
             
              </tr>
    <%
