@@ -1,7 +1,7 @@
 <%  
 	String type = (String) session.getAttribute("User_Type");
 	if (!"User".equalsIgnoreCase(type)){
-		response.sendRedirect("../login.jsp");
+		response.sendRedirect("../noccsess.jsp");
 	}
 	
 %>

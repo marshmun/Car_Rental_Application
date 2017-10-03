@@ -11,6 +11,7 @@
 
 <body>
     <h1>Welcome to the new Car Rental application</h1>
+    <h2 id="red"> It appears you attempted to accsess a page that you are not authorized to use</h2>
     <hr>
     <h2>Please register as a new customer or log in</h2>
     <div class="links">
