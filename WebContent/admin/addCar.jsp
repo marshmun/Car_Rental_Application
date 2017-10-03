@@ -1,6 +1,10 @@
+<%@ page import="com.rental.models.User" %>
 <%  
-	String type = (String) session.getAttribute("User_Type");
-	if (!"Admin".equalsIgnoreCase(type)){
+	User user = (User) session.getAttribute("user");
+	if (user==null){
+		user=new User();
+	}
+	if (!"Admin".equalsIgnoreCase(user.getType())){
 		response.sendRedirect("../noccsess.jsp");
 	}
 	

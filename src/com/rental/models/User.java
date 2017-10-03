@@ -7,6 +7,7 @@ public class User {
 	private String User_Name;
 	private String Email_address;
 	private String Type;
+	private String Password;
 	
 	public User() {
 		super();
@@ -50,6 +51,14 @@ public class User {
 
 	public void setType(String type) {
 		Type = type;
+	}
+
+	public String getPassword() {
+		return Password;
+	}
+
+	public void setPassword(String password) {
+		Password = password;
 	}
 	
 	

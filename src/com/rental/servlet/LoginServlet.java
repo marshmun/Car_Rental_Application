@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
+
+import com.rental.models.User;
+
 import java.sql.Statement;
 
 /**
@@ -44,9 +47,9 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
 	//Get the users information
-		String userName = req.getParameter("User_Name");
-		String password = req.getParameter("password");
-		String type ="";
+		User user = new User();
+		user.setUser_Name(req.getParameter("User_Name"));
+		user.setPassword(req.getParameter("password"));
 		
 		//Make connection with the DB to authenticate against it
 		ResultSet rs =null;
@@ -61,14 +64,16 @@ public class LoginServlet extends HttpServlet {
 		st= conn.createStatement();
 		
 		
-		rs= st.executeQuery("SELECT * FROM userdetails where User_Name='"+ userName+ "' and password='" + password + "'" );
+		rs= st.executeQuery("SELECT * FROM userdetails where User_Name='"+ user.getUser_Name()+ "' and password='" + user.getPassword() + "'" );
 				if(rs.next()) {
 					HttpSession session = req.getSession();
-					session.setAttribute("User_Name", userName);
-					type = rs.getString("User_Type");
-					session.setAttribute("User_Type", type);
+					user.setFirst_name(rs.getString("First_Name"));
+					user.setLast_Name(rs.getString("Last_Name"));
+					user.setEmail_address(rs.getString("Email_Address"));
+					user.setType(rs.getString("User_Type"));
+					session.setAttribute("user", user);
 				
-					if(type.equals("Admin")) {
+					if("Admin".equalsIgnoreCase(user.getType())) {
 						res.sendRedirect("admin/adminHome.jsp");
 						conn.close();
 					}
