@@ -43,4 +43,31 @@
     <servlet-name>DeleteCarServlet</servlet-name>
     <url-pattern>/admin/deletecar</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <display-name>AdminGrabCarInfoServlet</display-name>
+    <servlet-name>AdminGrabCarInfoServlet</servlet-name>
+    <servlet-class>com.rental.servlet.AdminGrabCarInfoServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminGrabCarInfoServlet</servlet-name>
+    <url-pattern>/admin/updatecar</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>UserCarRentalServlet</display-name>
+    <servlet-name>UserCarRentalServlet</servlet-name>
+    <servlet-class>com.rental.servlet.UserCarRentalServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserCarRentalServlet</servlet-name>
+    <url-pattern>/user/rentoutuser</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <display-name>AdminReturnCarServlet</display-name>
+    <servlet-name>AdminReturnCarServlet</servlet-name>
+    <servlet-class>com.rental.servlet.AdminReturnCarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminReturnCarServlet</servlet-name>
+    <url-pattern>/admin/returnACar</url-pattern>
+  </servlet-mapping>
 </web-app>

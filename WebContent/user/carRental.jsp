@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../css/userCss/userNav.css">
+    <link rel="stylesheet" href="../css/carCss/car.css">
+    <%@ page import="java.sql.ResultSet" %>
+	<%@ page import="java.sql.Statement" %>
+	<%@ page import="java.sql.Connection" %>
+	<%@ page import="java.sql.DriverManager" %>
+    <title>Rent a car</title>
+</head>
+
+<body>
+    <ul class="nav">
+        <li>
+            <a href="./userHome.html">Home</a>
+        </li>
+        <li>
+            <a href="./update.html">Update Profile</a>
+        </li>
+        <li>
+            <a href="./carRental.html">See Cars Available For Rental</a>
+        </li>
+        <li id="right">
+            <a href="./rental.html">Rent A Car</a>
+    </ul>
+    <hr>
+
+   <table border="2">
+   <tr class="tblHeader">
+   		<td>Rent This car</td>
+        <td>Car ID</td>
+        <td>Year</td>
+        <td>Make</td>
+        <td>Model</td>
+        <td>Color</td>
+        <td>Availability</td>
+   
+        
+   </tr>
+   <%
+   try
+   {
+       Class.forName("com.mysql.jdbc.Driver");
+       String url="jdbc:mysql://localhost:3306/carrentalsystem";
+       String username="root";
+       String password="javatest";
+       String query="select * from cardetails";
+       Connection conn=DriverManager.getConnection(url, username, password);
+       Statement stmt=conn.createStatement();
+       ResultSet rs=stmt.executeQuery(query);
+       while(rs.next())
+       {
+   %>
+           <tr>
+           <td><form action="rentoutuser?id=<%=rs.getInt("id") %>" method="POST">
+           		<button type="submit" name="rent">Rent</button>
+           </form></td>
+           <td><%=rs.getInt("id") %></td>
+           <td><%=rs.getString("Year") %></td>
+           <td><%=rs.getString("Make") %></td>
+           <td><%=rs.getString("Model") %></td>
+           <td><%=rs.getString("Color") %></td>
+           <td><%=rs.getString("Availability") %></td>
+             </tr>
+   <%
+       }
+   %>
+   </table>
+   <%
+        rs.close();
+        stmt.close();
+        conn.close();
+   }
+   catch(Exception e)
+   {
+        e.printStackTrace();
+   }
+   %>
+</form>
+    <hr>
+    <footer>
+        <a href="userhome.html">Home</a>
+        <a href="FAQ.html">FAQ</a>
+        <a href="logout.html">Log Out</a>
+    </footer>
+</body>
+
+</html>

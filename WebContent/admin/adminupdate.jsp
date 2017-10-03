@@ -77,19 +77,7 @@
 
    <form method="post">
 
-<table border="2">
-   <tr class="tblHeader">
-   		<td>Rent This car</td>
-        <td>Car ID</td>
-        <td>Year</td>
-        <td>Make</td>
-        <td>Model</td>
-        <td>Color</td>
-        <td>Availability</td>
-        <td>Update</td>
-        <td>Delete</td>
-        
-   </tr>
+
    <%
    try
    {
@@ -104,28 +92,20 @@
        while(rs.next())
        {
    %>
-           <tr>
-           <td><form action="rentout">
-           		<button type="submit" name="rent">Rent to customer</button>
-           </form></td>
-           <td><%=rs.getInt("id") %></td>
-           <td><%=rs.getString("Year") %></td>
-           <td><%=rs.getString("Make") %></td>
-           <td><%=rs.getString("Model") %></td>
-           <td><%=rs.getString("Color") %></td>
-           <td><%=rs.getString("Availability") %></td>
-           <td> <form action="updatecar?id=<%=rs.getInt("id") %>" method="POST">
-           		<button type="submit" name="update">Update</button>
-           	</form></td>
-          	<td><form action="deletecar?id=<%=rs.getInt("id") %>" method="POST">
-                <button type="submit" name="delete">Delete</button>
-            </form></td>
-            
-             </tr>
+        <div class="form">
+        <form action="newcar" method="POST">
+            <input type="text" name="Year" placeholder=<%=rs.getString("Year") %>>
+            <input type="text" name="Make" placeholder=<%=rs.getString("Make") %>>
+            <input type="text" name="Model" placeholder=<%=rs.getString("Model") %>>
+            <input type="text" name="Color" placeholder=<%=rs.getString("Color") %>>
+            <input id="submit" type="submit">
+        </form>
+        <div class="results"></div>
+    </div>
    <%
        }
    %>
-   </table>
+  
    <%
         rs.close();
         stmt.close();
@@ -137,16 +117,7 @@
    }
    %>
 </form>
- <div class="form">
-        <form action="newcar" method="POST">
-            <input type="text" name="Year" placeholder="Year" required>
-            <input type="text" name="Make" placeholder="Make" required>
-            <input type="text" name="Model" placeholder="Model" required>
-            <input type="text" name="Color" placeholder="Color" required>
-            <input id="submit" type="submit">
-        </form>
-        <div class="results"></div>
-    </div>
+
 		
 
     <hr>
