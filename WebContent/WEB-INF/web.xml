@@ -88,4 +88,13 @@
     <servlet-name>AdminRentOutServlet</servlet-name>
     <url-pattern>/admin/rentoutadmin</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <display-name>AdminAddUserServlet</display-name>
+    <servlet-name>AdminAddUserServlet</servlet-name>
+    <servlet-class>com.rental.servlet.AdminAddUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminAddUserServlet</servlet-name>
+    <url-pattern>/admin/adminadduser</url-pattern>
+  </servlet-mapping>
 </web-app>

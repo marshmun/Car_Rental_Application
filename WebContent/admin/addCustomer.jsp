@@ -80,7 +80,7 @@
     <h1>Add New User</h1>
     <h2> Please enter The following information</h2>
     <div class="form">
-        <form action="/addCustomer" method="POST">
+        <form action="adminadduser" method="POST">
             <input type="text" name="User_Name" placeholder="User Name" required>
             <input type="text" name="First_Name" placeholder="First Name" required>
             <input type="text" name="Last_Name" placeholder="Last Name" required>
