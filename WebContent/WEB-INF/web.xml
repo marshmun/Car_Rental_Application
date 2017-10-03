@@ -97,4 +97,13 @@
     <servlet-name>AdminAddUserServlet</servlet-name>
     <url-pattern>/admin/adminadduser</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <display-name>DeleteUserServlet</display-name>
+    <servlet-name>DeleteUserServlet</servlet-name>
+    <servlet-class>com.rental.servlet.DeleteUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteUserServlet</servlet-name>
+    <url-pattern>/admin/admindeletecustomer</url-pattern>
+  </servlet-mapping>
 </web-app>

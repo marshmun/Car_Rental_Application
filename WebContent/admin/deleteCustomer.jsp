@@ -80,9 +80,8 @@
     <h1>Delete Current User</h1>
     <h2>Look for user by Email Address</h2>
     <div class="form">
-        <form action="/addCustomer" method="POST">
+        <form action="admindeletecustomer" method="POST">
             <input type="text" name="User_Name" placeholder="User Name to Delete" required>
-            <input type="text" name="Password" placeholder="Admin Password" required>
             <input id="submit" type="submit">
         </form>
         <div class="results"></div>
