@@ -34,7 +34,7 @@
         </li>
 
         <li>
-            <a href="./carRentalAdmin.jsp">Car</a>
+            <a href="./carrentaladmin.jsp">Car</a>
         </li>
         <li>
             <a href="#">Customer</a>

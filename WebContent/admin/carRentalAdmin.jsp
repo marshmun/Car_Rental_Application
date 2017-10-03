@@ -33,7 +33,7 @@
         </li>
 
         <li>
-            <a href="./carRentalAdmin.jsp">Car</a>
+            <a href="./carrentaladmin.jsp">Car</a>
         </li>
         <li>
             <a href="#">Customer</a>
@@ -116,7 +116,7 @@
        {
    %>
            <tr>
-           <td><form action="rentout">
+           <td><form action="rentoutadmin?id=<%=rs.getInt("id") %>" method="POST">
            		<button type="submit" name="rent">Rent to customer</button>
            </form></td>
            <td><%=rs.getInt("id") %></td>

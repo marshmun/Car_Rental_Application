@@ -28,7 +28,7 @@
         </li>
 
         <li>
-            <a href="#">Car</a>
+           <a href="./carrentaladmin.jsp">Car</a>
 
         </li>
         <li>

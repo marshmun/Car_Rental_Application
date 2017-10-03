@@ -26,7 +26,7 @@
     <div class="options">
         <div>
             <img src="../pictures/carlogo.png" alt="Plus">
-            <a href="./carRentalAdmin.jsp">Add/ Delete/ update Cars</a>
+            <a href="./carrentaladmin.jsp">Add/ Delete/ update Cars</a>
         </div>
         <div>
             <img src="../pictures/plusLogo.png" alt="Add Admin">
