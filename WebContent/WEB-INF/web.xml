@@ -70,4 +70,13 @@
     <servlet-name>AdminReturnCarServlet</servlet-name>
     <url-pattern>/admin/returnACar</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <display-name>AdminAddAdminServlet</display-name>
+    <servlet-name>AdminAddAdminServlet</servlet-name>
+    <servlet-class>com.rental.servlet.AdminAddAdminServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminAddAdminServlet</servlet-name>
+    <url-pattern>/admin/addAdmin</url-pattern>
+  </servlet-mapping>
 </web-app>
