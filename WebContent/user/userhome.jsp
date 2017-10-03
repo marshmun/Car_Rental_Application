@@ -1,3 +1,10 @@
+<%  
+	String type = (String) session.getAttribute("User_Type");
+	if (!"User".equalsIgnoreCase(type)){
+		response.sendRedirect("../login.html");
+	}
+	
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,16 +20,13 @@
     <h1>Welcome home </h1>
     <div class="container">
         <img src="../pictures/profile.jpg" alt="Profile">
-        <a href="./update.html">Update Profile</a>
+        <a href="./update.jsp">Update Profile</a>
     </div>
     <div class="container">
         <img src="../pictures/carlogo.png" alt="Car">
-        <a href="./carRental.html">See Cars available for rental</a>
+        <a href="./carRental.jsp">See Cars available for rental</a>
     </div>
-    <div class="container">
-        <img src="../pictures/rentacar.jpg" alt="Rent a car">
-        <a href="./rental.html">Rent a Car</a>
-    </div>
+    
     <div>
         <div class="container">
             <img src="../pictures/logout.jpg" alt="Log Out">
@@ -33,9 +37,9 @@
     </div>
     <hr>
     <footer>
-        <a href="userhome.html">Home</a>
-        <a href="FAQ.html">FAQ</a>
-        <a href="logout.html">Log Out</a>
+        <a href="userhome.jsp">Home</a>
+        <a href="FAQ.jsp">FAQ</a>
+        <a href="logout.jsp">Log Out</a>
     </footer>
 
 

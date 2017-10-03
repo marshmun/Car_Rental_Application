@@ -1,3 +1,10 @@
+<%  
+	String type = (String) session.getAttribute("User_Type");
+	if (!"Admin".equalsIgnoreCase(type)){
+		response.sendRedirect("../login.jsp");
+	}
+	
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,32 +22,32 @@
     <div class="options">
         <div>
             <img src="../pictures/carlogo.png" alt="Plus">
-            <a href="./carRentalAdmin.html">Add/ Delete/ update Cars</a>
+            <a href="./carRentalAdmin.jsp">Add/ Delete/ update Cars</a>
         </div>
         <div>
             <img src="../pictures/plusLogo.png" alt="Add Admin">
-            <a href="./addAdmin.html">Add New Admin</a>
+            <a href="./addAdmin.jsp">Add New Admin</a>
         </div>
         <div>
             <img id="admin" src="../pictures/Admin-logo.png" alt="Update Admin">
-            <a href="./updateAdmin.html">Update Exisiting Admin Profile</a>
+            <a href="./updateAdmin.jsp">Update Exisiting Admin Profile</a>
         </div>
         <div>
             <img src="../pictures/deleteButton.png" alt="Delete Exisiting Admin">
-            <a href="./deleteAdmin.html">Delete Exisiting Admin</a>
+            <a href="./deleteAdmin.jsp">Delete Exisiting Admin</a>
         </div>
         <div>
             <img class="car" src="../pictures/carlogo.png" alt="Rent a Car">
-            <a href="./rentCar.html">Rent a Car for Exisiting Customer</a>
+            <a href="./rentCar.jsp">Rent a Car for Exisiting Customer</a>
         </div>
         <div>
             <img class="car" src="../pictures/carlogo.png" alt="Return a Car">
-            <a href="./returnCar.html">Return a Car for Exisiting Customer</a>
+            <a href="./returnCar.jsp">Return a Car for Exisiting Customer</a>
         </div>
     </div>
     <hr>
     <footer>
-        <a href="adminHome.html">Home</a>
+        <a href="adminHome.jsp">Home</a>
         <a href="">Log out</a>
     </footer>
 </body>

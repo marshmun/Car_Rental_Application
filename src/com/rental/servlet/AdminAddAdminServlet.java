@@ -58,7 +58,7 @@ public class AdminAddAdminServlet extends HttpServlet {
 			st.clearParameters();
 			rs= st.executeUpdate();
 					if(rs != 0) {
-						res.sendRedirect("addAdmin.html");
+						res.sendRedirect("addAdmin.jsp");
 						return;
 					}else {
 						

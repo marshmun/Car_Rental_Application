@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import java.sql.Statement;
-import com.rental.models.User;
 
 /**
  * Servlet implementation class LoginServlet
@@ -36,9 +35,7 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
-		User user = new User();
-		HttpSession session = req.getSession();
-		session.setAttribute("user", user);
+		
 	}
 
 	/**
@@ -72,18 +69,18 @@ public class LoginServlet extends HttpServlet {
 					session.setAttribute("User_Type", type);
 				
 					if(type.equals("Admin")) {
-						res.sendRedirect("admin/adminHome.html");
+						res.sendRedirect("admin/adminHome.jsp");
 						conn.close();
 					}
 					else {
-						res.sendRedirect("user/userhome.html");
+						res.sendRedirect("user/userhome.jsp");
 						conn.close();
 						return;
 					}
 		}
 				else {
 					System.out.println("Invalid password, please try again");
-					res.sendRedirect("login.html");
+					res.sendRedirect("login.jsp");
 				}
 	} 
 		catch(Exception e) {

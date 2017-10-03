@@ -75,7 +75,7 @@ public class RegistrationServlet extends HttpServlet {
 		conn.close();
 		
 		//Dispatch into success page
-		RequestDispatcher requestDispatcher = req.getRequestDispatcher("login.html");
+		RequestDispatcher requestDispatcher = req.getRequestDispatcher("login.jsp");
 		requestDispatcher.forward(req, res);
 	}
 		catch(Exception e){

@@ -1,3 +1,10 @@
+<%  
+	String type = (String) session.getAttribute("User_Type");
+	if (!"Admin".equalsIgnoreCase(type)){
+		response.sendRedirect("../login.jsp");
+	}
+	
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,25 +20,25 @@
 <body>
     <ul class="nav">
         <li>
-            <a href="./adminHome.html">Home</a>
+            <a href="./adminHome.jsp">Home</a>
         </li>
 
         <li>
-            <a href="./carRentalAdmin.html">Car</a>
+            <a href="#./carRentalAdmin.jsp">Car</a>
         </li>
         <li>
             <a href="#">Customer</a>
 
             <ul>
                 <li>
-                    <a href="./addCustomer.html">Add New Customer</a>
+                    <a href="./addCustomer.jsp">Add New Customer</a>
                 </li>
                 <li>
-                    <a href="./updateCustomer.html">Update Exisiting Customer Profile</a>
+                    <a href="./updateCustomer.jsp">Update Exisiting Customer Profile</a>
                 </li>
 
                 <li>
-                    <a href="./deleteCustomer.html">Delete Exisiting Customer</a>
+                    <a href="./deleteCustomer.jsp">Delete Exisiting Customer</a>
                 </li>
             </ul>
 
@@ -40,14 +47,14 @@
             <a href="#">Admin</a>
             <ul>
                 <li>
-                    <a href="./addAdmin.html">Add New Admin</a>
+                    <a href="./addAdmin.jsp">Add New Admin</a>
                 </li>
 
                 <li>
-                    <a href="./updateAdmin.html">Update Exisiting Amdin Profile</a>
+                    <a href="./updateAdmin.jsp">Update Exisiting Amdin Profile</a>
                 </li>
                 <li>
-                    <a href="./deleteAdmin.html">Delete Exisiting Admin</a>
+                    <a href="./deleteAdmin.jsp">Delete Exisiting Admin</a>
                 </li>
             </ul>
         </li>
@@ -56,32 +63,29 @@
 
             <ul>
                 <li>
-                    <a href="./rentCar.html">Customer Rental</a>
+                    <a href="./rentCar.jsp">Customer Rental</a>
                 </li>
                 <li>
-                    <a href="./returnCar.html">Return a Car</a>
+                    <a href="./returnCar.jsp">Return a Car</a>
                 </li>
 
             </ul>
         </li>
     </ul>
     <hr>
-    <h1>Update Current User</h1>
-    <h2>Look for user by User Name</h2>
+    <h1>Delete Current User</h1>
+    <h2>Look for user by Email Address</h2>
     <div class="form">
         <form action="/addCustomer" method="POST">
-            <input type="text" name="User_Name" placeholder="User Name" required>
-            <input class="hidden" type="text" name="First_Name" placeholder="First Name">
-            <input class="hidden" type="text" name="Last_Name" placeholder="Last Name">
-            <input class="hidden" type="text" name="Email_Address" placeholder="Email Address">
-            <input class="hidden" type="text" name="User_Type" placeholder="User Type">
+            <input type="text" name="User_Name" placeholder="User Name to Delete" required>
+            <input type="text" name="Password" placeholder="Admin Password" required>
             <input id="submit" type="submit">
         </form>
         <div class="results"></div>
     </div>
     <hr>
     <footer>
-        <a href="adminHome.html">Home</a>
+        <a href="adminHome.jsp">Home</a>
         <a href="">Log out</a>
     </footer>
 </body>
