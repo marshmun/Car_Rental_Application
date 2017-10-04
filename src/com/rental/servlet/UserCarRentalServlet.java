@@ -12,7 +12,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
+
+import com.rental.models.User;
 
 import javafx.scene.control.Alert;
 
@@ -43,7 +46,9 @@ public class UserCarRentalServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		//get information of the car to be deleted and admins password
+		HttpSession session = req.getSession(true);
+		User user = (User) session.getAttribute("user");
+		
 				String carid = req.getParameter("id");
 				
 				
@@ -58,6 +63,10 @@ public class UserCarRentalServlet extends HttpServlet {
 				    Context env = ( Context )ctx.lookup( "java:comp/env" );
 				    DataSource ds = ( DataSource )env.lookup( "jdbc/carRentalSystem");
 					conn = ds.getConnection();
+					
+					st = conn.prepareCall("update userdetails SET Car_Rental = '"+ carid+"' where User_Name='"+ user.getUser_Name()+ "'");
+					st.clearParameters();
+					
 
 					st = conn.prepareStatement("update cardetails SET Availability = 'Unavailable' where id='"+ carid+ "'");
 					st.clearParameters();

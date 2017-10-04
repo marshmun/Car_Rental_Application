@@ -28,7 +28,7 @@
 <body>
     <ul class="nav">
         <li>
-            <a href="./userHome.jsp">Home</a>
+            <a href="./userhome.jsp">Home</a>
         </li>
         <li>
             <a href="./update.jsp">Update Profile</a>
