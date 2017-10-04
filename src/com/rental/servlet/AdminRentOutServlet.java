@@ -2,6 +2,7 @@ package com.rental.servlet;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.ResultSet;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -47,12 +48,14 @@ public class AdminRentOutServlet extends HttpServlet {
 		java.sql.PreparedStatement st= null;
 		String nativeSQL = "";
 		
+		
 
 		try {
 			Context    ctx = new InitialContext();
 		    Context env = ( Context )ctx.lookup( "java:comp/env" );
 		    DataSource ds = ( DataSource )env.lookup( "jdbc/carRentalSystem");
 			conn = ds.getConnection();
+			
 
 			st = conn.prepareCall("update userdetails SET Car_Rental = '"+ carid+"' where Email_Address='"+ email+ "'");
 			st.clearParameters();

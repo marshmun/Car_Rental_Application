@@ -83,12 +83,13 @@
     </ul>
     <hr>
     <h1>Rent a Car to a customer</h1>
-    <h2> Please enter the id of the vehicle, and customer information</h2>
+    <h2> Please enter the user Email Address and select a vehicle from below.</h2>
     <div class="form">
         <form action="/rentACar" method="POST">
             <input type="text" name="Email_Address" placeholder="Customer Email Address" required>
-            <input id="submit" type="submit">
         </form>
+  
+   
        
     </div>
     <form method="post">
@@ -145,16 +146,9 @@
         e.printStackTrace();
    }
    %>
+   
 </form>
 
-    <hr>
-    <footer>
-        <a href="adminHome.jsp">Home</a>
-        <a href="">Log out</a>
-    </footer>
-</body>
-
-</html>
     <hr>
     <footer>
         <a href="adminHome.jsp">Home</a>

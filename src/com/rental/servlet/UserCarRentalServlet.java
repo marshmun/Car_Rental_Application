@@ -45,6 +45,7 @@ public class UserCarRentalServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@SuppressWarnings("resource")
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		HttpSession session = req.getSession(true);
 		User user = (User) session.getAttribute("user");
