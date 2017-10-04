@@ -116,9 +116,9 @@
        {
    %>
            <tr>
-           <td><form action="rentoutadmin?id=<%=rs.getInt("id") %>" method="POST">
-           		<button type="submit" name="rent">Rent to customer</button>
-           </form></td>
+           <td>
+           		<a href="./rentCar.jsp"><button type="submit" name="rent">Rent to customer</button></a>
+           </td>
            <td><%=rs.getInt("id") %></td>
            <td><%=rs.getString("Year") %></td>
            <td><%=rs.getString("Make") %></td>

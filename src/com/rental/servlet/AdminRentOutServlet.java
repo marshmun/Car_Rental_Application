@@ -40,7 +40,7 @@ public class AdminRentOutServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String carid = req.getParameter("id");
-		
+		String email = req.getParameter("Email_Address" );
 		
 		int rs;
 		Connection conn = null;
@@ -54,6 +54,10 @@ public class AdminRentOutServlet extends HttpServlet {
 		    DataSource ds = ( DataSource )env.lookup( "jdbc/carRentalSystem");
 			conn = ds.getConnection();
 
+			st = conn.prepareCall("update userdetails SET Car_Rental = '"+ carid+"' where Email_Address='"+ email+ "'");
+			st.clearParameters();
+			rs= st.executeUpdate();
+			
 			st = conn.prepareStatement("update cardetails SET Availability = 'Unavailable' where id='"+ carid+ "'");
 			st.clearParameters();
 			rs= st.executeUpdate();
