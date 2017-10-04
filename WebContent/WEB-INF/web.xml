@@ -88,7 +88,7 @@
     <servlet-name>AdminRentOutServlet</servlet-name>
     <url-pattern>/admin/rentoutadmin</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <display-name>AdminaddUserServlet</display-name>
     <servlet-name>AdminaddUserServlet</servlet-name>
     <servlet-class>com.rental.servlet.AdminaddUserServlet</servlet-class>
@@ -105,5 +105,14 @@
   <servlet-mapping>
     <servlet-name>DeleteUserServlet</servlet-name>
     <url-pattern>/admin/admindeletecustomer</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <display-name>UserProfileUpdate</display-name>
+    <servlet-name>UserProfileUpdate</servlet-name>
+    <servlet-class>com.rental.servlet.UserProfileUpdate</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserProfileUpdate</servlet-name>
+    <url-pattern>/user/update</url-pattern>
   </servlet-mapping>
 </web-app>
