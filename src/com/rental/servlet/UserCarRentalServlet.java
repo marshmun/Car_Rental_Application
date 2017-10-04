@@ -66,6 +66,7 @@ public class UserCarRentalServlet extends HttpServlet {
 					
 					st = conn.prepareCall("update userdetails SET Car_Rental = '"+ carid+"' where User_Name='"+ user.getUser_Name()+ "'");
 					st.clearParameters();
+					rs= st.executeUpdate();
 					
 
 					st = conn.prepareStatement("update cardetails SET Availability = 'Unavailable' where id='"+ carid+ "'");

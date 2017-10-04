@@ -84,7 +84,7 @@
     <hr>
     <h1>See All Cars</h1>
     
-    <a class="addcar" href="carRentalAdmin.jsp#form">Add a new car</a>
+    <a class="addcar" href="carrentaladmin.jsp#form">Add a new car</a>
 
    <form method="post">
 
