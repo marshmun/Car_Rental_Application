@@ -20,13 +20,13 @@ import javax.sql.DataSource;
  * Servlet implementation class AdminaddUserServlet
  */
 @WebServlet("/AdminaddUserServlet")
-public class AdminAddUserServlet extends HttpServlet {
+public class AdminaddUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminAddUserServlet() {
+    public AdminaddUserServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
