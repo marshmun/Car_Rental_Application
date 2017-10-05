@@ -61,11 +61,11 @@ public class AdminUpdateProfile extends HttpServlet {
 		    DataSource ds = ( DataSource )env.lookup( "jdbc/carRentalSystem");
 			conn = ds.getConnection();
 
-			st = conn.prepareStatement("update userdetails SET Email_Address = '"+ email+"', First_Name ='"+ fname+"', Last_Name ='"+ lname+"', Type='"+ type+"'  where User_Name ='"+ username+"'");
+			st = conn.prepareStatement("update userdetails SET Email_Address = '"+ email+"', First_Name ='"+ fname+"', Last_Name ='"+ lname+"', User_Type='"+ type+"'  where User_Name ='"+ username+"'");
 			st.clearParameters();
 			rs= st.executeUpdate();
 					if(rs != 0) {
-						res.sendRedirect("udpateAdmin.jsp");
+						res.sendRedirect("updateAdmin.jsp");
 						return;
 					}else {
 						
