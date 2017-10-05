@@ -18,6 +18,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../css/adminCss/adminNav.css">
     <link rel="stylesheet" href="../css/carCss/car.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <%@ page import="java.sql.ResultSet" %>
 	<%@ page import="java.sql.Statement" %>
 	<%@ page import="java.sql.Connection" %>
@@ -84,7 +87,36 @@
     <hr>
     <h1>See All Cars</h1>
     
-    <a class="addcar" href="carrentaladmin.jsp#form">Add a new car</a>
+    <button type="button" class="btn btn-info btn-lg" name="update" data-toggle="modal" data-target="#addModal">Add a new Car</button>
+           	<div id="addModal" class="modal fade" role="dialog">
+  				<div class="modal-dialog">
+
+   					 <!-- Modal content-->
+    				<div class="modal-content">
+     				 <div class="modal-header">
+       				 <button type="button" class="close" data-dismiss="modal">&times;</button>
+        			<h4 class="modal-title">Add Car Information</h4>
+      		</div>
+      			<div class="modal-body">
+       
+        <form action="newcar" method="POST">
+            <input type="text" name="Year" placeholder="Year" required>
+            <input type="text" name="Make" placeholder="Make" required>
+            <input type="text" name="Model" placeholder="Model" required>
+            <input type="text" name="Color" placeholder="Color" required>
+            <input id="submit" type="submit">
+        </form>
+       
+     
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+    
 
    <form method="post">
 
@@ -117,10 +149,45 @@
    %>
            <tr>
            <td>
-           		<form action="rentoutadmin?id=<%=rs.getInt("id") %>" method="POST">
-           		<input type="text" name="Email_Address" placeholder="Customer Email Address" required>
-           		<button type="submit" name="rent">Rent to customer</button>
-           </form>
+           <button type="button" class="btn btn-info btn-lg" name="update" data-toggle="modal" data-target="#rentoutModal">Rent to Customer</button>
+           	<div id="rentoutModal" class="modal fade" role="dialog">
+  				<div class="modal-dialog">
+
+   					 <!-- Modal content-->
+    				<div class="modal-content">
+     				 <div class="modal-header">
+       				 <button type="button" class="close" data-dismiss="modal">&times;</button>
+        			<h4 class="modal-title">Enter User Name to rent out the following Car</h4>
+      		</div>
+      			<div class="modal-body">
+        		 
+        <form action="rentoutadmin?id=<%=rs.getInt("id") %>" method="POST">
+        	<input type="text" name="User_Name" placeholder="User Name">
+        	<br>
+            <input id="submit" type="submit">
+        </form>
+       <br>
+        <p> ID: <%=rs.getInt("id") %></p>
+        <br>
+        <p> Year: <%=rs.getString("Year") %></p>
+        <br>
+        <p> Make: <%=rs.getString("Make") %></p>
+        <br>
+        <p> Model: <%=rs.getString("Model") %></p>
+        <br>
+        <p> Color: <%=rs.getString("Color") %></p>
+        <br>
+        <p> Availability: <%=rs.getString("Availability") %></p>
+     
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+           	
            </td>
            <td><%=rs.getInt("id") %></td>
            <td><%=rs.getString("Year") %></td>
@@ -129,7 +196,7 @@
            <td><%=rs.getString("Color") %></td>
            <td><%=rs.getString("Availability") %></td>
            <td> 
-           	<button type="button" name="update" data-toggle="modal" data-target="updateModal">Update</button>
+           	<button type="button" class="btn btn-info btn-lg" name="update" data-toggle="modal" data-target="#updateModal">Update</button>
            	<div id="updateModal" class="modal fade" role="dialog">
   				<div class="modal-dialog">
 
@@ -141,12 +208,12 @@
       		</div>
       			<div class="modal-body">
         		 
-        <form action="update" method="POST">
+        <form action="admincarupdate" method="POST">
         	<input type=hidden name="id" value=<%=rs.getInt("id") %>>
-            <input type="text" name="Year" placeholder=<%=rs.getString("Year") %> required>
-            <input type="text" name="Make" placeholder=<%=rs.getString("Make") %> required>
-            <input type="text" name="Model" placeholder=<%=rs.getString("Model") %> required>
-            <input type="text" name="Color" placeholder=<%=rs.getString("Color") %>required>
+            <input type="text" name="Year" placeholder=<%=rs.getString("Year") %>>
+            <input type="text" name="Make" placeholder=<%=rs.getString("Make") %>>
+            <input type="text" name="Model" placeholder=<%=rs.getString("Model") %>>
+            <input type="text" name="Color" placeholder=<%=rs.getString("Color") %>>
             <input id="submit" type="submit">
         </form>
      
@@ -179,16 +246,7 @@
    }
    %>
 </form>
- <div class="form">
-        <form action="newcar" method="POST">
-            <input type="text" name="Year" placeholder="Year" required>
-            <input type="text" name="Make" placeholder="Make" required>
-            <input type="text" name="Model" placeholder="Model" required>
-            <input type="text" name="Color" placeholder="Color" required>
-            <input id="submit" type="submit">
-        </form>
-        <div class="results"></div>
-    </div>
+ 
 		
 
     <hr>
