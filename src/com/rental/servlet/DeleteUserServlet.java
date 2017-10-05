@@ -59,7 +59,7 @@ public class DeleteUserServlet extends HttpServlet {
 					st.clearParameters();
 					rs= st.executeUpdate();
 							if(rs != 0) {
-								res.sendRedirect("deleteCustomer.jsp");
+								res.sendRedirect("adminUser.jsp");
 								return;
 							}else {
 								
