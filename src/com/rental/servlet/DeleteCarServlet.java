@@ -46,6 +46,7 @@ public class DeleteCarServlet extends HttpServlet {
 		
 		//get information of the car to be deleted and admins password
 		String carid = req.getParameter("id");
+		String nocar ="User has no car";
 		
 		
 		int rs;
@@ -58,6 +59,10 @@ public class DeleteCarServlet extends HttpServlet {
 		    Context env = ( Context )ctx.lookup( "java:comp/env" );
 		    DataSource ds = ( DataSource )env.lookup( "jdbc/carRentalSystem");
 			conn = ds.getConnection();
+			
+			st=conn.prepareStatement("update userdetails set Car_rental ='"+ nocar+"' where Car_Rental ='"+ carid+"'");
+			st.clearParameters();
+			rs=st.executeUpdate();
 
 			st = conn.prepareStatement("delete FROM cardetails where id='"+ carid+ "'");
 			st.clearParameters();
