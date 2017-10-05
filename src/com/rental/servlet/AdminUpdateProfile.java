@@ -46,7 +46,7 @@ public class AdminUpdateProfile extends HttpServlet {
 		String type = req.getParameter("Type");
 		
 		if (username.equals("") || username.equals(null)) {
-			res.sendRedirect("updateAdmin.jsp");
+			res.sendRedirect("adminUser.jsp");
 		}
 				
 		int rs;
@@ -65,7 +65,7 @@ public class AdminUpdateProfile extends HttpServlet {
 			st.clearParameters();
 			rs= st.executeUpdate();
 					if(rs != 0) {
-						res.sendRedirect("updateAdmin.jsp");
+						res.sendRedirect("adminUser.jsp");
 						return;
 					}else {
 						

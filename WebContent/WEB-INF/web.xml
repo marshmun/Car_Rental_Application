@@ -80,15 +80,6 @@
     <url-pattern>/admin/addAdmin</url-pattern>
   </servlet-mapping>
   <servlet>
-    <display-name>AdminRentOutServlet</display-name>
-    <servlet-name>AdminRentOutServlet</servlet-name>
-    <servlet-class>com.rental.servlet.AdminRentOutServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AdminRentOutServlet</servlet-name>
-    <url-pattern>/admin/rentoutadmin</url-pattern>
-  </servlet-mapping>
-  <servlet>
     <display-name>AdminaddUserServlet</display-name>
     <servlet-name>AdminaddUserServlet</servlet-name>
     <servlet-class>com.rental.servlet.AdminaddUserServlet</servlet-class>
@@ -132,5 +123,14 @@
   <servlet-mapping>
     <servlet-name>AdminUpdateCar</servlet-name>
     <url-pattern>/admin/admincarupdate</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>AdminRentOutServlet</display-name>
+    <servlet-name>AdminRentOutServlet</servlet-name>
+    <servlet-class>com.rental.servlet.AdminRentOutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminRentOutServlet</servlet-name>
+    <url-pattern>/admin/rentoutadmin</url-pattern>
   </servlet-mapping>
 </web-app>

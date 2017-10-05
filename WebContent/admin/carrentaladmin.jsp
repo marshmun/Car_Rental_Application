@@ -119,16 +119,17 @@
    					 <!-- Modal content-->
     				<div class="modal-content">
      				 <div class="modal-header">
-       				 <button type="button" class="close" data-dismiss="modal">&times;</button>
-        			<h4 class="modal-title">Enter User Name to rent out the following Car</h4>
-      		</div>
+       				 	<button type="button" class="close" data-dismiss="modal">&times;</button>
+        				<h4 class="modal-title">Enter User Name to rent out the following Car</h4>
+      				</div>
       			<div class="modal-body">
         		 
-       		 <form action="rentoutadmin?id=<%=rs.getInt("id") %>" method="POST">
-        		<input type="text" name="User_Name" placeholder="User Name">
-        		<br>
-            	<input id="submit" type="submit">
-        </form>
+        		  <form action="rentoutadmin" method="POST">
+            		<input type="hidden" name="id" placeholder="Year" value="<%=rs.getInt("id") %>">
+            		<input type="text" name="User_Name" placeholder="User Name">
+            		<input id="submit" type="submit">
+        		</form>
+       		
        <br>
         <p> ID: <%=rs.getInt("id") %></p>
         <br>
