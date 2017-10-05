@@ -34,54 +34,17 @@
         <li>
             <a href="./adminHome.jsp">Home</a>
         </li>
-
         <li>
-            <a href="./carrentaladmin.jsp">Car</a>
+        	<a href="./carrentaladmin.jsp">Car</a>
         </li>
+       
         <li>
-            <a href="#">Customer</a>
-
-            <ul>
-                <li>
-                    <a href="./addCustomer.jsp">Add New Customer</a>
-                </li>
-                <li>
-                    <a href="./updateCustomer.jsp">Update Exisiting Customer Profile</a>
-                </li>
-
-                <li>
-                    <a href="./deleteCustomer.jsp">Delete Exisiting Customer</a>
-                </li>
-            </ul>
+            <a href="./adminUser.jsp">Users</a>
 
         </li>
-        <li>
-            <a href="#">Admin</a>
-            <ul>
-                <li>
-                    <a href="./addAdmin.jsp">Add New Admin</a>
-                </li>
-
-                <li>
-                    <a href="./updateAdmin.jsp">Update Exisiting Amdin Profile</a>
-                </li>
-                <li>
-                    <a href="./deleteAdmin.jsp">Delete Exisiting Admin</a>
-                </li>
-            </ul>
-        </li>
+ 
         <li id="right">
-            <a href="#">Rentals</a>
-
-            <ul>
-                <li>
-                    <a href="./rentCar.jsp">Customer Rental</a>
-                </li>
-                <li>
-                    <a href="./returnCar.jsp">Return a Car</a>
-                </li>
-
-            </ul>
+            <a href="./returnCar.jsp">Return a Rental</a>
         </li>
     </ul>
     <hr>

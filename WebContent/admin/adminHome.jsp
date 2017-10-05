@@ -29,23 +29,11 @@
     <div class="options">
         <div>
             <img src="../pictures/carlogo.png" alt="Plus">
-            <a href="./carrentaladmin.jsp">Add/ Delete/ update Cars</a>
+            <a href="./carrentaladmin.jsp">Add, delete, update and rentout Cars</a>
         </div>
         <div>
-            <img src="../pictures/plusLogo.png" alt="Add Admin">
-            <a href="./addAdmin.jsp">Add New Admin</a>
-        </div>
-        <div>
-            <img id="admin" src="../pictures/Admin-logo.png" alt="Update Admin">
-            <a href="./updateAdmin.jsp">Update Exisiting Admin Profile</a>
-        </div>
-        <div>
-            <img src="../pictures/deleteButton.png" alt="Delete Exisiting Admin">
-            <a href="./deleteAdmin.jsp">Delete Exisiting Admin</a>
-        </div>
-        <div>
-            <img class="car" src="../pictures/carlogo.png" alt="Rent a Car">
-            <a href="./rentCar.jsp">Rent a Car for Exisiting Customer</a>
+            <img src="../pictures/Admin-logo.png" alt="Add Admin">
+            <a href="./adminUser.jsp">Add, delete, upgrade, or update Users</a>
         </div>
         <div>
             <img class="car" src="../pictures/carlogo.png" alt="Return a Car">
