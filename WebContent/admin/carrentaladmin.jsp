@@ -128,9 +128,37 @@
            <td><%=rs.getString("Model") %></td>
            <td><%=rs.getString("Color") %></td>
            <td><%=rs.getString("Availability") %></td>
-           <td> <form action="updatecar?id=<%=rs.getInt("id") %>" method="POST">
-           		<button type="submit" name="update">Update</button>
-           	</form></td>
+           <td> 
+           	<button type="button" name="update" data-toggle="modal" data-target="updateModal">Update</button>
+           	<div id="updateModal" class="modal fade" role="dialog">
+  				<div class="modal-dialog">
+
+   					 <!-- Modal content-->
+    				<div class="modal-content">
+     				 <div class="modal-header">
+       				 <button type="button" class="close" data-dismiss="modal">&times;</button>
+        			<h4 class="modal-title">Update Car information</h4>
+      		</div>
+      			<div class="modal-body">
+        		 
+        <form action="update" method="POST">
+        	<input type=hidden name="id" value=<%=rs.getInt("id") %>>
+            <input type="text" name="Year" placeholder=<%=rs.getString("Year") %> required>
+            <input type="text" name="Make" placeholder=<%=rs.getString("Make") %> required>
+            <input type="text" name="Model" placeholder=<%=rs.getString("Model") %> required>
+            <input type="text" name="Color" placeholder=<%=rs.getString("Color") %>required>
+            <input id="submit" type="submit">
+        </form>
+     
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+           	</td>
           	<td><form action="deletecar?id=<%=rs.getInt("id") %>" method="POST">
                 <button type="submit" name="delete">Delete</button>
             </form></td>

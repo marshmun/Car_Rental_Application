@@ -55,7 +55,7 @@ public class DeleteUserServlet extends HttpServlet {
 				    DataSource ds = ( DataSource )env.lookup( "jdbc/carRentalSystem");
 					conn = ds.getConnection();
 
-					st = conn.prepareStatement("delete FROM cardetails where User_Name='"+ user+ "'");
+					st = conn.prepareStatement("delete FROM userdetails where User_Name='"+ user+ "'");
 					st.clearParameters();
 					rs= st.executeUpdate();
 							if(rs != 0) {

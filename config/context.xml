@@ -1,0 +1,13 @@
+<Resource auth="Container"
+		driverClassName="com.mysql.jdbc.Driver"
+		maxTotal="4"
+		maxIdle="2"
+		maxWaitMillis="5000"
+		removeAbandonedOnBorrow="true"
+		name="jdbc/carRentalSystem"
+		password="javatest"
+		logAbandoned="true"
+		type="javax.sql.DataSource"
+		url="jdbc:mysql://localhost:3306/carrentalsystem"
+		username="root"
+		validationQuery="SELECT 1"/>
