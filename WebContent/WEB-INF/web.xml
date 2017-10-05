@@ -115,4 +115,13 @@
     <servlet-name>UserProfileUpdate</servlet-name>
     <url-pattern>/user/update</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <display-name>AdminUpdateProfile</display-name>
+    <servlet-name>AdminUpdateProfile</servlet-name>
+    <servlet-class>com.rental.servlet.AdminUpdateProfile</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminUpdateProfile</servlet-name>
+    <url-pattern>/admin/adminupdate</url-pattern>
+  </servlet-mapping>
 </web-app>

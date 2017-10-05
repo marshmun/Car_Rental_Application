@@ -80,7 +80,7 @@
     <h1>Update Admin</h1>
     <h2> Please enter the users User Name and ful-fill the changes you wish to make below</h2>
     <div class="form">
-        <form action="/updateAdmin" method="POST">
+        <form action="adminupdate" method="POST">
             <input type="text" name="User_Name" placeholder="User Name" required>
             <input  type="text" name="First_Name" placeholder="First Name">
             <input  type="text" name="Last_Name" placeholder="Last Name">
