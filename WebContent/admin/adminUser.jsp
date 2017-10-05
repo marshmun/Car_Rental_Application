@@ -62,6 +62,7 @@
             <input type="text" name="Last_Name" placeholder="Last Name" required>
             <input type="email" name="Email_Address" placeholder="Email Address" required>
             <input type="text" name="User_Type" placeholder="User Type" required> 
+            <input type="password" name="Password" placeholder ="Password" required>
             <input id="submit" type="submit">
         </form>
      

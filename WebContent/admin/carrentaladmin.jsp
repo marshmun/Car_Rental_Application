@@ -124,10 +124,10 @@
       		</div>
       			<div class="modal-body">
         		 
-        <form action="rentoutadmin?id=<%=rs.getInt("id") %>" method="POST">
-        	<input type="text" name="User_Name" placeholder="User Name">
-        	<br>
-            <input id="submit" type="submit">
+       		 <form action="rentoutadmin?id=<%=rs.getInt("id") %>" method="POST">
+        		<input type="text" name="User_Name" placeholder="User Name">
+        		<br>
+            	<input id="submit" type="submit">
         </form>
        <br>
         <p> ID: <%=rs.getInt("id") %></p>

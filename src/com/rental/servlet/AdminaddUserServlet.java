@@ -74,7 +74,7 @@ public class AdminaddUserServlet extends HttpServlet {
 				conn.close();
 				
 				//Dispatch into success page
-				RequestDispatcher requestDispatcher = req.getRequestDispatcher("login.jsp");
+				RequestDispatcher requestDispatcher = req.getRequestDispatcher("adminUser.jsp");
 				requestDispatcher.forward(req, res);
 			}
 				catch(Exception e){
