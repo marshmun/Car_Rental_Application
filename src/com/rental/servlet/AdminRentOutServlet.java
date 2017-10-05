@@ -41,7 +41,7 @@ public class AdminRentOutServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String carid = req.getParameter("id");
-		String email = req.getParameter("Email_Address" );
+		String username = req.getParameter("User_Name" );
 		
 		int rs;
 		Connection conn = null;
@@ -57,7 +57,7 @@ public class AdminRentOutServlet extends HttpServlet {
 			conn = ds.getConnection();
 			
 
-			st = conn.prepareCall("update userdetails SET Car_Rental = '"+ carid+"' where Email_Address='"+ email+ "'");
+			st = conn.prepareCall("update userdetails SET Car_Rental = '"+ carid+"' where User_Name='"+ username+ "'");
 			st.clearParameters();
 			rs= st.executeUpdate();
 			

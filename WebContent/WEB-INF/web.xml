@@ -124,4 +124,13 @@
     <servlet-name>AdminUpdateProfile</servlet-name>
     <url-pattern>/admin/adminupdate</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <display-name>AdminUpdateCar</display-name>
+    <servlet-name>AdminUpdateCar</servlet-name>
+    <servlet-class>com.rental.servlet.AdminUpdateCar</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminUpdateCar</servlet-name>
+    <url-pattern>/admin/admincarupdate</url-pattern>
+  </servlet-mapping>
 </web-app>

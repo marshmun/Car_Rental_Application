@@ -42,6 +42,7 @@
             <a href="./returnCar.jsp">Return a Rental</a>
         </li>
     </ul>
+    
     <hr>
     <h1>Return Customers Rental</h1>
     <h2> Please enter the customers Email</h2>
