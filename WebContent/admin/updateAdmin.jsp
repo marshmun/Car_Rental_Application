@@ -78,14 +78,14 @@
     </ul>
     <hr>
     <h1>Update Admin</h1>
-    <h2> Please enter the users Email</h2>
+    <h2> Please enter the users User Name and ful-fill the changes you wish to make below</h2>
     <div class="form">
         <form action="/updateAdmin" method="POST">
             <input type="text" name="User_Name" placeholder="User Name" required>
-            <input class="hidden" type="text" name="First_Name" placeholder="First Name">
-            <input class="hidden" type="text" name="Last_Name" placeholder="Last Name">
-            <input class="hidden" type="text" name="Email_Address" placeholder="Email Address">
-            <input class="hidden" type="text" name="Type" placeholder="Type">
+            <input  type="text" name="First_Name" placeholder="First Name">
+            <input  type="text" name="Last_Name" placeholder="Last Name">
+            <input  type="text" name="Email_Address" placeholder="Email Address">
+            <input  type="text" name="Type" placeholder="Type">
             <input id="submit" type="submit">
         </form>
         <div class="results"></div>

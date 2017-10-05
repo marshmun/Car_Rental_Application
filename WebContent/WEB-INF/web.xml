@@ -106,7 +106,7 @@
     <servlet-name>DeleteUserServlet</servlet-name>
     <url-pattern>/admin/admindeletecustomer</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <display-name>UserProfileUpdate</display-name>
     <servlet-name>UserProfileUpdate</servlet-name>
     <servlet-class>com.rental.servlet.UserProfileUpdate</servlet-class>
