@@ -81,7 +81,7 @@
 </div>
     
 
-   <form method="post">
+ 
 
 <table border="2">
    <tr class="tblHeader">
@@ -125,7 +125,7 @@
       			<div class="modal-body">
         		 
         		  <form action="rentoutadmin" method="POST">
-            		<input type="hidden" name="id" placeholder="Year" value="<%=rs.getInt("id") %>">
+            		<input type="hidden" name="id" value="<%=rs.getInt("id") %>">
             		<input type="text" name="User_Name" placeholder="User Name">
             		<input id="submit" type="submit">
         		</form>
@@ -209,7 +209,7 @@
         e.printStackTrace();
    }
    %>
-</form>
+
  
 		
 
