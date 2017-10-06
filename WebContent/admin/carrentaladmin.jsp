@@ -118,8 +118,8 @@
    %>
            <tr>
            <td>
-           <button type="button" class="btn btn-info btn-lg" name="update" data-toggle="modal" data-target="#rentoutModal<%=id%>">Rent to Customer</button>
-           	<div id="rentoutModal<%=id%>" class="modal fade" role="dialog">
+           <button type="button" class="btn btn-info btn-lg" name="update" data-toggle="modal" data-target="#rentoutModal?id=<%=id%>">Rent to Customer</button>
+           	<div id="rentoutModal?id=<%=id%>" class="modal fade" role="dialog">
   				<div class="modal-dialog">
 
    					 <!-- Modal content-->
@@ -165,8 +165,8 @@
            <td><%=color %></td>
            <td><%=avail %></td>
            <td> 
-           	<button type="button" class="btn btn-info btn-lg" name="update" data-toggle="modal" data-target="#updateModal<%=id%>">Update</button>
-           	<div id="updateModal<%=id%>" class="modal fade" role="dialog">
+           	<button type="button" class="btn btn-info btn-lg" name="update" data-toggle="modal" data-target="#updateModal">Update</button>
+           	<div id="updateModal" class="modal fade" role="dialog">
   				<div class="modal-dialog">
 
    					 <!-- Modal content-->
@@ -221,7 +221,9 @@
     <hr>
     <footer>
         <a href="adminHome.jsp">Home</a>
-        <a href="">Log out</a>
+        <form action="logout" method="POST">
+        <button type="submit" value="Logout">log out</button>
+        </form>
     </footer>
 </body>
 

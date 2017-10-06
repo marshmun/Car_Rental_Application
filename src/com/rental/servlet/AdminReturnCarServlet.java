@@ -2,6 +2,7 @@ package com.rental.servlet;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.ResultSet;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -39,7 +40,9 @@ public class AdminReturnCarServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		String carid = req.getParameter("id");
+		String carid ="";
+		String uname =req.getParameter("User_Name");
+		String defaulted = "User has no car";
 		
 		
 		int rs;
@@ -47,12 +50,19 @@ public class AdminReturnCarServlet extends HttpServlet {
 		java.sql.PreparedStatement st= null;
 		String nativeSQL = "";
 		
+		
 
 		try {
 			Context    ctx = new InitialContext();
 		    Context env = ( Context )ctx.lookup( "java:comp/env" );
 		    DataSource ds = ( DataSource )env.lookup( "jdbc/carRentalSystem");
 			conn = ds.getConnection();
+			
+			
+			
+			st = conn.prepareStatement("update userdetails SET Car_Rental ='"+ defaulted+"' where User_Name='"+ uname+"' ");
+			st.clearParameters();
+			rs= st.executeUpdate();
 
 			st = conn.prepareStatement("update cardetails SET Availability = 'Available' where id='"+ carid+ "'");
 			st.clearParameters();

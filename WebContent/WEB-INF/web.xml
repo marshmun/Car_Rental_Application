@@ -115,7 +115,7 @@
     <servlet-name>AdminUpdateProfile</servlet-name>
     <url-pattern>/admin/adminupdate</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <display-name>AdminUpdateCar</display-name>
     <servlet-name>AdminUpdateCar</servlet-name>
     <servlet-class>com.rental.servlet.AdminUpdateCar</servlet-class>
@@ -132,5 +132,15 @@
   <servlet-mapping>
     <servlet-name>AdminRentOutServlet</servlet-name>
     <url-pattern>/admin/rentoutadmin</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <display-name>LogoutServlet</display-name>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>com.rental.servlet.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/admin/logout</url-pattern>
+    <url-pattern>/user/logout</url-pattern>
   </servlet-mapping>
 </web-app>

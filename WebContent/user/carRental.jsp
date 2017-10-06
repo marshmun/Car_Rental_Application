@@ -99,7 +99,9 @@
     <footer>
         <a href="userhome.jsp">Home</a>
         <a href="FAQ.jsp">FAQ</a>
-        <a href="logout.jsp">Log Out</a>
+        <form action="logout" method="POST">
+       		 <button type="submit" value="Logout">log out</button>
+        </form>
     </footer>
 </body>
 

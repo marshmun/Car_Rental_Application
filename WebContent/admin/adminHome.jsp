@@ -43,7 +43,9 @@
     <hr>
     <footer>
         <a href="adminHome.jsp">Home</a>
-        <a href="">Log out</a>
+        <form action="logout" method="POST">
+        <button type="submit" value="Logout">log out</button>
+        </form>
     </footer>
 </body>
 

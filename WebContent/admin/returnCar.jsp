@@ -51,12 +51,14 @@
             <input type="text" name="User_Name" placeholder="User Name" required>
             <input id="submit" type="submit">
         </form>
-        <div class="results"></div>
+        
     </div>
     <hr>
     <footer>
         <a href="adminHome.jsp">Home</a>
-        <a href="">Log out</a>
+        <form action="logout" method="POST">
+        <button type="submit" value="Logout">log out</button>
+        </form>
     </footer>
 </body>
 
