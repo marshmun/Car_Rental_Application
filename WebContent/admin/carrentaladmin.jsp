@@ -187,12 +187,12 @@
 							<div class="modal-body">
 
 								<form action="admincarupdate" method="POST">
-									<input type=hidden name="id" value=<%=id%>> <input
-										type="text" name="Year" placeholder=<%=year%>> <input
-										type="text" name="Make" placeholder=<%=make%>> <input
-										type="text" name="Model" placeholder=<%=model%>> <input
-										type="text" name="Color" placeholder=<%=color%>> <input
-										id="submit" type="submit">
+									<input type=hidden name="id" value=<%=id%>> 
+									<input type="text" name="Year" placeholder=<%=year%>>
+									<input type="text" name="Make" placeholder=<%=make%>> 
+									<input type="text" name="Model" placeholder=<%=model%>> 
+									<input type="text" name="Color" placeholder=<%=color%>> 
+									<input id="submit" type="submit">
 								</form>
 
 							</div>
@@ -228,9 +228,10 @@
 
 	<hr>
 	<footer>
-		<a href="adminHome.jsp">Home</a>
+		<a href="adminHome.jsp" class="btn btn-primary btn-lg active"
+			role="button">Home</a>
 		<form action="logout" method="POST">
-			<button type="submit" value="Logout">log out</button>
+			<button type="submit" class="btn btn-primary btn-lg active" >log out</button>
 		</form>
 	</footer>
 </body>

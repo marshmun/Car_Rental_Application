@@ -45,9 +45,10 @@
 	</div>
 	<hr>
 	<footer>
-		<a href="adminHome.jsp">Home</a>
+		<a href="adminHome.jsp" class="btn btn-primary btn-lg active"
+			role="button">Home</a>
 		<form action="logout" method="POST">
-			<button type="submit" value="Logout">log out</button>
+			<button type="submit" class="btn btn-primary btn-lg active" >log out</button>
 		</form>
 	</footer>
 </body>

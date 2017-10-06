@@ -30,9 +30,7 @@
 	<ul class="nav">
 		<li><a href="./adminHome.jsp">Home</a></li>
 		<li><a href="./carrentaladmin.jsp">Car</a></li>
-
 		<li><a href="./adminUser.jsp">Users</a></li>
-
 		<li id="right"><a href="./returnCar.jsp">Return a Rental</a></li>
 	</ul>
 	<hr>
@@ -135,9 +133,10 @@
 
 	<hr>
 	<footer>
-		<a href="adminHome.jsp">Home</a>
+		<a href="adminHome.jsp" class="btn btn-primary btn-lg active"
+			role="button">Home</a>
 		<form action="logout" method="POST">
-			<button type="submit" value="Logout">log out</button>
+			<button type="submit" class="btn btn-primary btn-lg active" >log out</button>
 		</form>
 	</footer>
 

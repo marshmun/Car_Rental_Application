@@ -58,8 +58,7 @@ public class AdminReturnCarServlet extends HttpServlet {
 			DataSource ds = (DataSource) env.lookup("jdbc/carRentalSystem");
 			conn = ds.getConnection();
 
-			st = conn.prepareStatement(
-					"update userdetails SET Car_Rental ='" + defaulted + "' where User_Name='" + uname + "' ");
+			st = conn.prepareStatement("update userdetails SET Car_Rental ='" + defaulted + "' where User_Name='" + uname + "' ");
 			st.clearParameters();
 			rs = st.executeUpdate();
 
