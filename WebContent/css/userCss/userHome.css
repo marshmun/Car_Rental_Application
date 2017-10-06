@@ -1,62 +1,66 @@
-body{
-    text-align: center;
-}
-.container{
-    border:solid black 1px;
-    height:15rem;
-    border-radius: 2rem;
-    width:50rem;
-    margin:auto;
-    margin-bottom: 3rem;
+body {
+	text-align: center;
 }
 
-.container a{
-    float:right;
-    text-decoration: none;
-    color:black;
-    font-weight: bold;
-    padding-top: 10rem;
-    padding-right: 4rem;
-    font-size: 2rem;
+.container {
+	border: solid black 1px;
+	height: 15rem;
+	border-radius: 2rem;
+	width: 50rem;
+	margin: auto;
+	margin-bottom: 3rem;
 }
 
-.container a:hover{
-    color:grey;
+.container a {
+	float: right;
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
+	padding-top: 10rem;
+	padding-right: 4rem;
+	font-size: 2rem;
 }
 
-img{
-    height: 13rem;
-    margin-left: 2rem;
-    margin-top: 2rem;
-    float:left;
+.container a:hover {
+	color: grey;
 }
+
+img {
+	height: 13rem;
+	margin-left: 2rem;
+	margin-top: 2rem;
+	float: left;
+}
+
 button {
-    background:none!important;
-    color:inherit;
-    border:none; 
-    padding:0!important;
-    font: inherit;
-    cursor: pointer;
-    font-size: 2rem;
-    font-weight: bold;
-    float:right;
-    margin-top: 10rem;
-    margin-right: 4rem;
-}
-button:hover{
-    color:grey;
-}
-footer{
-    display:flex;
-    justify-content: space-around;
+	background: none !important;
+	color: inherit;
+	border: none;
+	padding: 0 !important;
+	font: inherit;
+	cursor: pointer;
+	font-size: 2rem;
+	font-weight: bold;
+	float: right;
+	margin-top: 10rem;
+	margin-right: 4rem;
 }
 
-footer a{
-    text-decoration: none;
-   color:black;
-   font-weight: bold;
+button:hover {
+	color: grey;
 }
 
-footer a:hover{
-    color:grey;
+footer {
+	display: flex;
+	justify-content: space-around;
+}
+
+footer a {
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
+}
+
+footer a:hover {
+	color: grey;
 }

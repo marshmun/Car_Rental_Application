@@ -1,14 +1,14 @@
 package com.rental.models;
 
 public class User {
-	
+
 	private String First_name;
 	private String Last_Name;
 	private String User_Name;
 	private String Email_address;
 	private String Type;
 	private String Password;
-	
+
 	public User() {
 		super();
 	}
@@ -60,7 +60,5 @@ public class User {
 	public void setPassword(String password) {
 		Password = password;
 	}
-	
-	
 
 }

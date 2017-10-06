@@ -8,7 +8,7 @@ public class Car {
 	private String Model;
 	private String Color;
 	private String Available;
-	
+
 	public Car() {
 		super();
 	}
@@ -45,7 +45,6 @@ public class Car {
 		Color = color;
 	}
 
-
 	public String getId() {
 		return Id;
 	}
@@ -62,6 +61,4 @@ public class Car {
 		Available = available;
 	}
 
-	
-	
 }

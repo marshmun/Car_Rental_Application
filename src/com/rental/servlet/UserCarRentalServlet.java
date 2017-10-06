@@ -25,68 +25,75 @@ import javafx.scene.control.Alert;
 @WebServlet("/UserCarRentalServlet")
 public class UserCarRentalServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UserCarRentalServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public UserCarRentalServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
 	@SuppressWarnings("resource")
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		HttpSession session = req.getSession(true);
 		User user = (User) session.getAttribute("user");
-		
-				String carid = req.getParameter("id");
-				
-				
-				int rs;
-				Connection conn = null;
-				java.sql.PreparedStatement st= null;
-				String nativeSQL = "";
-				
 
-				try {
-					Context    ctx = new InitialContext();
-				    Context env = ( Context )ctx.lookup( "java:comp/env" );
-				    DataSource ds = ( DataSource )env.lookup( "jdbc/carRentalSystem");
-					conn = ds.getConnection();
-					
-					st = conn.prepareCall("update userdetails SET Car_Rental = '"+ carid+"' where User_Name='"+ user.getUser_Name()+ "'");
-					st.clearParameters();
-					rs= st.executeUpdate();
-					
+		String carid = req.getParameter("id");
 
-					st = conn.prepareStatement("update cardetails SET Availability = 'Unavailable' where id='"+ carid+ "'");
-					st.clearParameters();
-					rs= st.executeUpdate();
-							if(rs != 0) {
-								res.sendRedirect("carRental.jsp");
-								return;
-							}else {
-								
-							}
-					}
-					catch(Exception e) {
-						e.printStackTrace();
-						}
-					finally {
-			            try{ if(st != null ) st.close(); } catch(java.sql.SQLException e){}
-			            try{ if(conn != null ) conn.close(); } catch(java.sql.SQLException e){}
+		int rs;
+		Connection conn = null;
+		java.sql.PreparedStatement st = null;
+		String nativeSQL = "";
 
-					}
-				}
+		try {
+			Context ctx = new InitialContext();
+			Context env = (Context) ctx.lookup("java:comp/env");
+			DataSource ds = (DataSource) env.lookup("jdbc/carRentalSystem");
+			conn = ds.getConnection();
+
+			st = conn.prepareCall("update userdetails SET Car_Rental = '" + carid + "' where User_Name='"
+					+ user.getUser_Name() + "'");
+			st.clearParameters();
+			rs = st.executeUpdate();
+
+			st = conn.prepareStatement("update cardetails SET Availability = 'Unavailable' where id='" + carid + "'");
+			st.clearParameters();
+			rs = st.executeUpdate();
+			if (rs != 0) {
+				res.sendRedirect("carRental.jsp");
+				return;
+			} else {
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (st != null)
+					st.close();
+			} catch (java.sql.SQLException e) {
+			}
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (java.sql.SQLException e) {
+			}
+
 		}
+	}
+}

@@ -3,7 +3,7 @@ package com.rental.models;
 import java.util.List;
 
 public class CarData {
-	
+
 	private List<Car> cars;
 
 	public CarData() {
@@ -17,6 +17,5 @@ public class CarData {
 	public void setCars(List<Car> cars) {
 		this.cars = cars;
 	}
-	
 
 }
