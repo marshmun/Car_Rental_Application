@@ -51,12 +51,19 @@ public class AdminReturnCarServlet extends HttpServlet {
 		Connection conn = null;
 		java.sql.PreparedStatement st = null;
 		String nativeSQL = "";
+		ResultSet result  =null;
 
 		try {
 			Context ctx = new InitialContext();
 			Context env = (Context) ctx.lookup("java:comp/env");
 			DataSource ds = (DataSource) env.lookup("jdbc/carRentalSystem");
 			conn = ds.getConnection();
+			
+			conn.setAutoCommit(false);
+			result = st.executeQuery("SELECT * FROM userdetails where User_Name='"+ uname+"'");
+			if(result.next()) {
+				carid= result.getString("Car_Rental");
+			}
 
 			st = conn.prepareStatement("update userdetails SET Car_Rental ='" + defaulted + "' where User_Name='" + uname + "' ");
 			st.clearParameters();
@@ -70,8 +77,12 @@ public class AdminReturnCarServlet extends HttpServlet {
 				return;
 			} else {
 
-			}
+			} 
+			conn.commit();
+			
+			
 		} catch (Exception e) {
+			try{conn.rollback();}catch(Exception e1){}
 			e.printStackTrace();
 		} finally {
 			try {

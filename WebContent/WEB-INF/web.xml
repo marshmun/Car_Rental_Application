@@ -71,7 +71,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>AdminReturnCarServlet</servlet-name>
-		<url-pattern>/admin/returnACar</url-pattern>
+		<url-pattern>/admin/returnacar</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<display-name>AdminAddAdminServlet</display-name>

@@ -107,11 +107,12 @@
 					String model = rs.getString("Model");
 					String color = rs.getString("Color");
 					String avail = rs.getString("Availability");
+					String renting;
 		%>
 		<tr>
 			<td>
-				<button type="button" class="btn btn-info btn-lg" name="update"
-					data-toggle="modal" data-target="#rentoutModal?id=<%=id%>">Rent
+				<button type="button" class="btn btn-info btn-lg" name="update" <% if(avail.equals("Unavailable")){  renting = "disabled" ;}else{ renting="";}  %>
+					<%=renting %> data-toggle="modal" data-target="#rentoutModal?id=<%=id%>">Rent
 					to Customer</button>
 				<div id="rentoutModal?id=<%=id%>" class="modal fade" role="dialog">
 					<div class="modal-dialog">

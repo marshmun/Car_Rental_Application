@@ -42,7 +42,7 @@
 	<h1>Return Customers Rental</h1>
 	<h2>Please enter the customers Email</h2>
 	<div class="form">
-		<form action="returnACar" method="POST">
+		<form action="returnacar" method="POST">
 			<input type="text" name="User_Name" placeholder="User Name" required>
 			<input id="submit" type="submit">
 		</form>
