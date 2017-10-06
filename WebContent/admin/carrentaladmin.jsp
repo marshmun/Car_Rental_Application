@@ -109,6 +109,12 @@
        ResultSet rs=stmt.executeQuery(query);
        while(rs.next())
        {
+    	   Integer id =rs.getInt("id");
+    	   String year = rs.getString("Year");
+    	   String make = rs.getString("Make");
+    	   String model = rs.getString("Model");
+    	   String color = rs.getString("Color");
+    	   String avail = rs.getString("Availability");
    %>
            <tr>
            <td>
@@ -124,24 +130,23 @@
       				</div>
       			<div class="modal-body">
         		 
-        		  <form action="rentoutadmin" method="POST">
-            		<input type="hidden" name="id" value="<%=rs.getInt("id") %>">
+        		  <form action="rentoutadmin?id=<%=id%>" method="POST">
             		<input type="text" name="User_Name" placeholder="User Name">
             		<input id="submit" type="submit">
         		</form>
        		
        <br>
-        <p> ID: <%=rs.getInt("id") %></p>
+        <p> ID: <%=id%></p>
         <br>
-        <p> Year: <%=rs.getString("Year") %></p>
+        <p> Year: <%=year %></p>
         <br>
-        <p> Make: <%=rs.getString("Make") %></p>
+        <p> Make: <%=make %></p>
         <br>
-        <p> Model: <%=rs.getString("Model") %></p>
+        <p> Model: <%=model %></p>
         <br>
-        <p> Color: <%=rs.getString("Color") %></p>
+        <p> Color: <%=color %></p>
         <br>
-        <p> Availability: <%=rs.getString("Availability") %></p>
+        <p> Availability: <%=avail %></p>
      
       </div>
       <div class="modal-footer">
@@ -153,12 +158,12 @@
 </div>
            	
            </td>
-           <td><%=rs.getInt("id") %></td>
-           <td><%=rs.getString("Year") %></td>
-           <td><%=rs.getString("Make") %></td>
-           <td><%=rs.getString("Model") %></td>
-           <td><%=rs.getString("Color") %></td>
-           <td><%=rs.getString("Availability") %></td>
+           <td><%=id%></td>
+           <td><%=year %></td>
+           <td><%=make %></td>
+           <td><%=model %></td>
+           <td><%=color %></td>
+           <td><%=avail %></td>
            <td> 
            	<button type="button" class="btn btn-info btn-lg" name="update" data-toggle="modal" data-target="#updateModal">Update</button>
            	<div id="updateModal" class="modal fade" role="dialog">
@@ -173,11 +178,11 @@
       			<div class="modal-body">
         		 
         <form action="admincarupdate" method="POST">
-        	<input type=hidden name="id" value=<%=rs.getInt("id") %>>
-            <input type="text" name="Year" placeholder=<%=rs.getString("Year") %>>
-            <input type="text" name="Make" placeholder=<%=rs.getString("Make") %>>
-            <input type="text" name="Model" placeholder=<%=rs.getString("Model") %>>
-            <input type="text" name="Color" placeholder=<%=rs.getString("Color") %>>
+        	<input type=hidden name="id" value=<%=id%>>
+            <input type="text" name="Year" placeholder=<%=year %>>
+            <input type="text" name="Make" placeholder=<%=make %>>
+            <input type="text" name="Model" placeholder=<%=model %>>
+            <input type="text" name="Color" placeholder=<%=color %>>
             <input id="submit" type="submit">
         </form>
      
@@ -190,8 +195,8 @@
   </div>
 </div>
            	</td>
-          	<td><form action="deletecar?id=<%=rs.getInt("id") %>" method="POST">
-                <button type="submit" name="delete">Delete</button>
+          	<td><form action="deletecar?id=<%=id%>" method="POST">
+                <button type="submit" class="btn btn-info btn-lg" name="delete">Delete</button>
             </form></td>
             
              </tr>
