@@ -3,6 +3,7 @@ package com.rental.servlet;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -43,13 +44,14 @@ public class AdminReturnCarServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		String carid = "";
+		Integer carid = null;
 		String uname = req.getParameter("User_Name");
 		String defaulted = "User has no car";
 
 		int rs;
 		Connection conn = null;
 		java.sql.PreparedStatement st = null;
+		Statement sp = null;
 		String nativeSQL = "";
 		ResultSet result  =null;
 
@@ -58,22 +60,27 @@ public class AdminReturnCarServlet extends HttpServlet {
 			Context env = (Context) ctx.lookup("java:comp/env");
 			DataSource ds = (DataSource) env.lookup("jdbc/carRentalSystem");
 			conn = ds.getConnection();
+			sp = conn.createStatement();
 			
 			conn.setAutoCommit(false);
-			result = st.executeQuery("SELECT * FROM userdetails where User_Name='"+ uname+"'");
+			result = sp.executeQuery("SELECT * FROM userdetails where User_Name='"+ uname+"'");
 			if(result.next()) {
-				carid= result.getString("Car_Rental");
+				carid= result.getInt("Car_Rental");
+				if (carid.equals("User has no car")) {
+					System.out.println("User has no vehicle to return");
+					res.sendRedirect("returnCar.jsp");
+				}
 			}
 
-			st = conn.prepareStatement("update userdetails SET Car_Rental ='" + defaulted + "' where User_Name='" + uname + "' ");
+			st = conn.prepareStatement("update userdetails SET Car_Rental ='" + defaulted+ "' where User_Name='" + uname+ "' ");
 			st.clearParameters();
 			rs = st.executeUpdate();
 
-			st = conn.prepareStatement("update cardetails SET Availability = 'Available' where id='" + carid + "'");
+			st = conn.prepareStatement("update cardetails SET Availability = 'Available' where id='" + carid+ "'");
 			st.clearParameters();
 			rs = st.executeUpdate();
 			if (rs != 0) {
-				res.sendRedirect("carRental.jsp");
+				res.sendRedirect("returnCar.jsp");
 				return;
 			} else {
 

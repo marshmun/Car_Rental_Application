@@ -39,8 +39,8 @@
 	<div>
 		<div class="container">
 			<img src="../pictures/logout.jpg" alt="Log Out">
-			<form action="/logout">
-				<button type="submit">Log Out</button>
+			<form action="logout" method="POST">
+				<button type="submit" value="Logout">log out</button>
 			</form>
 		</div>
 	</div>
