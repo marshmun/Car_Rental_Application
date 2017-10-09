@@ -2,6 +2,10 @@ body {
 	text-align: center;
 }
 
+img{
+	height: 6rem;
+}
+
 .links {
 	display: flex;
 	justify-content: space-around;
@@ -17,30 +21,23 @@ body {
 	color: grey;
 }
 
-form {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding: 3rem;
-}
-
-form input {
-	width: 13rem;
-	padding: 1rem;
-}
-
-.form {
-	border: solid 1px black;
-	border-radius: 2rem;
-	width: 50rem;
-	margin: auto;
-	margin-bottom: 3rem;
-}
-
 .button {
 	width: 15rem;
 }
 
+.brand__logo{
+	float:left;
+	
+}
+
+.form-inline{
+	float:right;
+	padding-top: 2rem;
+}
 #red {
 	color: red;
+}
+
+.formhome .input-group{
+	
 }
