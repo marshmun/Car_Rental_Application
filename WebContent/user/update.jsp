@@ -52,10 +52,10 @@
 	<h2>Update your profile</h2>
 	<div class="form">
 		<form action="update" method="POST">
-			<input type="text" name="Email_Address"
-				placeholder=<%=rs.getString("Email_address")%>> <input
+			<p>Email Address:</p><input type="text" name="Email_Address"
+				placeholder=<%=rs.getString("Email_address")%>> <p>First Name:</p> <input
 				type="text" name="First_Name"
-				placeholder=<%=rs.getString("First_Name")%>> <input
+				placeholder=<%=rs.getString("First_Name")%>><p>Last Name:</p> <input
 				type="text" name="Last_Name"
 				placeholder=<%=rs.getString("Last_Name")%>> <input
 				class="button" type="submit">
