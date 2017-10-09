@@ -62,18 +62,80 @@
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(query);
 				while (rs.next()) {
+					Integer id = rs.getInt("id");
+					String year = rs.getString("Year");
+					String make = rs.getString("Make");
+					String model = rs.getString("Model");
+					String color = rs.getString("Color");
+					String avail = rs.getString("Availability");
+					String renting;
 		%>
 		<tr>
-			<td><form action="rentoutuser?id=<%=rs.getInt("id")%>"
-					method="POST">
-					<button type="submit" name="rent">Rent</button>
-				</form></td>
-			<td><%=rs.getInt("id")%></td>
-			<td><%=rs.getString("Year")%></td>
-			<td><%=rs.getString("Make")%></td>
-			<td><%=rs.getString("Model")%></td>
-			<td><%=rs.getString("Color")%></td>
-			<td><%=rs.getString("Availability")%></td>
+			<td>
+				<button type="button" class="btn btn-info btn-lg" name="update"
+					<%if (avail.equals("Unavailable")) {
+						renting = "disabled";
+					} else {
+						renting = "";
+					}%>
+					<%=renting%> data-toggle="modal"
+					data-target="#rentmeoutModal<%=id%>">Rent this car</button>
+				<div id="rentmeoutModal<%=id%>" class="modal fade" role="dialog">
+					<div class="modal-dialog">
+
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Are you sure you'd like to rent this car?</h4>
+							</div>
+							<div class="modal-body">
+
+								<form action="rentoutuser?id=<%=id%>" method="POST">
+									<button type="submit" name="rent">Rent</button>
+								</form>
+
+								<br>
+								<p>
+									ID:
+									<%=id%></p>
+								<br>
+								<p>
+									Year:
+									<%=year%></p>
+								<br>
+								<p>
+									Make:
+									<%=make%></p>
+								<br>
+								<p>
+									Model:
+									<%=model%></p>
+								<br>
+								<p>
+									Color:
+									<%=color%></p>
+								<br>
+								<p>
+									Availability:
+									<%=avail%></p>
+
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">Close</button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</td>
+			<td><%=id%></td>
+			<td><%=year%></td>
+			<td><%=make%></td>
+			<td><%=model%></td>
+			<td><%=color%></td>
+			<td><%=avail%></td>
 		</tr>
 		<%
 			}
