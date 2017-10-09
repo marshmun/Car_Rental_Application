@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import com.rental.models.ErrorBean;
+
 /**
  * Servlet implementation class DeleteCarServlet
  */
@@ -77,6 +79,9 @@ public class DeleteCarServlet extends HttpServlet {
 
 			}
 		} catch (Exception e) {
+			ErrorBean errorbean = new ErrorBean();
+			errorbean.setError(e);
+			res.sendRedirect("adminError.jsp");
 			e.printStackTrace();
 		} finally {
 			try {

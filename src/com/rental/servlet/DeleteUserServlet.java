@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import com.rental.models.ErrorBean;
+
 /**
  * Servlet implementation class DeleteUserServlet
  */
@@ -61,12 +63,16 @@ public class DeleteUserServlet extends HttpServlet {
 			st.clearParameters();
 			rs = st.executeUpdate();
 			if (rs != 0) {
+				
 				res.sendRedirect("adminUser.jsp");
 				return;
 			} else {
 
 			}
 		} catch (Exception e) {
+			ErrorBean errorbean = new ErrorBean();
+			errorbean.setError(e);
+			res.sendRedirect("adminError.jsp");
 			e.printStackTrace();
 		} finally {
 			try {

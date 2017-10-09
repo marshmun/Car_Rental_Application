@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import com.rental.models.ErrorBean;
 import com.rental.models.User;
 
 import javafx.scene.control.Alert;
@@ -81,6 +82,9 @@ public class UserCarRentalServlet extends HttpServlet {
 
 			}
 		} catch (Exception e) {
+			ErrorBean errorbean = new ErrorBean();
+			errorbean.setError(e);
+			res.sendRedirect("userError.jsp");
 			e.printStackTrace();
 		} finally {
 			try {

@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import com.rental.models.ErrorBean;
+
 /**
  * Servlet implementation class RegistrationServlet
  */
@@ -81,6 +83,9 @@ public class RegistrationServlet extends HttpServlet {
 			RequestDispatcher requestDispatcher = req.getRequestDispatcher("login.jsp");
 			requestDispatcher.forward(req, res);
 		} catch (Exception e) {
+			ErrorBean errorbean = new ErrorBean();
+			errorbean.setError(e);
+			res.sendRedirect("userError.jsp");
 			System.out.println(e);
 		} finally {
 			try {

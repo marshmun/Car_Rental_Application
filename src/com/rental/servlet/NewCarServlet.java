@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import com.rental.models.ErrorBean;
+
 /**
  * Servlet implementation class NewCarServlet
  */
@@ -81,6 +83,9 @@ public class NewCarServlet extends HttpServlet {
 			requestDispatcher.forward(req, res);
 
 		} catch (Exception e) {
+			ErrorBean errorbean = new ErrorBean();
+			errorbean.setError(e);
+			res.sendRedirect("adminError.jsp");
 			System.out.println(e);
 		} finally {
 			try {

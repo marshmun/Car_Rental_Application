@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import com.rental.models.ErrorBean;
 import com.rental.models.User;
 
 import java.sql.Statement;
@@ -88,6 +89,9 @@ public class LoginServlet extends HttpServlet {
 				res.sendRedirect("login.jsp");
 			}
 		} catch (Exception e) {
+			ErrorBean errorbean = new ErrorBean();
+			errorbean.setError(e);
+			res.sendRedirect("userError.jsp");
 			System.out.println(e);
 		} finally {
 			try {

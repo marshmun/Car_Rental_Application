@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
+
+import com.rental.models.ErrorBean;
 import com.rental.models.User;
 
 /**
@@ -86,6 +88,9 @@ public class UserProfileUpdate extends HttpServlet {
 
 			}
 		} catch (Exception e) {
+			ErrorBean errorbean = new ErrorBean();
+			errorbean.setError(e);
+			res.sendRedirect("userError.jsp");
 			e.printStackTrace();
 		} finally {
 			try {
