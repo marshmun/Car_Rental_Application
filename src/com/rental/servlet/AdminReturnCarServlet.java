@@ -66,7 +66,7 @@ public class AdminReturnCarServlet extends HttpServlet {
 			result = sp.executeQuery("SELECT * FROM userdetails where User_Name='"+ uname+"'");
 			if(result.next()) {
 				carid= result.getInt("Car_Rental");
-				if (carid.equals("User has no car")) {
+				if (carid.equals("User has no  car")) {
 					System.out.println("User has no vehicle to return");
 					res.sendRedirect("returnCar.jsp");
 				}
@@ -75,17 +75,23 @@ public class AdminReturnCarServlet extends HttpServlet {
 			st = conn.prepareStatement("update userdetails SET Car_Rental ='" + defaulted+ "' where User_Name='" + uname+ "' ");
 			st.clearParameters();
 			rs = st.executeUpdate();
+			if (rs !=0) {
+				System.out.println("user is set back to not having a car");
+			}
 
 			st = conn.prepareStatement("update cardetails SET Availability = 'Available' where id='" + carid+ "'");
 			st.clearParameters();
 			rs = st.executeUpdate();
 			if (rs != 0) {
-				res.sendRedirect("returnCar.jsp");
-				return;
+				System.out.println("car is set back to available");
+				
+				
 			} else {
 
 			} 
 			conn.commit();
+			res.sendRedirect("returnCar.jsp");
+			return;
 			
 			
 		} catch (Exception e) {
