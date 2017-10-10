@@ -4,6 +4,11 @@ body{
 img{
 	height: 6rem;
 }
+
+a{
+	font-weight:bold;
+}
+
 .containers img{
 	height:23rem !important;
 	margin-left: 5rem;
