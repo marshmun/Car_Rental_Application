@@ -8,6 +8,7 @@
 		response.sendRedirect("../noccsess.jsp");
 	}
 %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,12 +28,24 @@
 </head>
 
 <body>
-	<ul class="nav">
-		<li><a href="./adminHome.jsp">Home</a></li>
-		<li><a href="./carrentaladmin.jsp">Car</a></li>
-		<li><a href="./adminUser.jsp">Users</a></li>
-		<li id="right"><a href="./returnCar.jsp">Return a Rental</a></li>
-	</ul>
+		<nav class="navbar navbar-default --primary">
+				<div class="container">
+					<div class="navbar--brand brand">
+						<a href="#" class="brand__logo">
+							<img src="../pictures/farmBureau.png" alt="Render logo">
+						</a>
+					</div>
+					<ul class="nav">
+							<li><a href="./adminHome.jsp"><button class="btn btn-outline-success" type="button">Home</button></a></li>
+							<li><a href="./carrentaladmin.jsp"><button class="btn btn-outline-success" type="button">Car</button></a></li>
+							<li><a href="./adminUser.jsp"><button class="btn btn-outline-success" type="button">Users</button></a></li>
+							<li id="right"><a href="./returnCar.jsp"><button class="btn btn-outline-success" type="button">Return a rental</button></a></li>
+					</ul>
+					<div class="confirmation">
+						<p>Logged in as :</p>
+					</div>
+				</div>
+			</nav>
 	<hr>
 	<h1>Add remove or update a user or an Admin!</h1>
 	<button type="button" class="btn btn-info btn-lg" name="update"
