@@ -83,16 +83,20 @@ public class DeleteUserServlet extends HttpServlet {
 			rs = st.executeUpdate();
 			if (rs != 0) {
 				
-				res.sendRedirect("adminUser.jsp");
-				return;
+				
+				
 			} else {
 
 			}
+			conn.commit();
+			res.sendRedirect("adminUser.jsp");
+			return;
 		} catch (Exception e) {
 			ErrorBean errorbean = new ErrorBean();
 			errorbean.setError(e);
 			res.sendRedirect("adminError.jsp");
 			e.printStackTrace();
+			return;
 		} finally {
 			try {
 				if (st != null)

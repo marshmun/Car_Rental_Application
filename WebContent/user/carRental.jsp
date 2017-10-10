@@ -90,8 +90,7 @@
 				<td>
 					<button type="button" class="btn btn-info btn-lg" name="update" <%if (avail.equals( "Unavailable")) { renting="disabled"
 					 ; } else { renting="" ; }%>
-						<%=renting%> data-toggle="modal" data-target="#rentmeoutModal
-							<%=id%>">Rent this car</button>
+						<%=renting%> data-toggle="modal" data-target="#rentmeoutModal<%=id%>">Rent this car</button>
 					<div id="rentmeoutModal<%=id%>" class="modal fade" role="dialog">
 						<div class="modal-dialog">
 
