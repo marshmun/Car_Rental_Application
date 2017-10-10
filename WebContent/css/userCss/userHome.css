@@ -1,66 +1,45 @@
-body {
+body{
 	text-align: center;
 }
-
-.container {
-	border: solid black 1px;
-	height: 15rem;
-	border-radius: 2rem;
-	width: 50rem;
-	margin: auto;
-	margin-bottom: 3rem;
+img{
+	height:6rem;
 }
-
-.container a {
-	float: right;
-	text-decoration: none;
-	color: black;
+a{
 	font-weight: bold;
-	padding-top: 10rem;
-	padding-right: 4rem;
-	font-size: 2rem;
 }
 
-.container a:hover {
-	color: grey;
-}
-
-img {
-	height: 13rem;
-	margin-left: 2rem;
-	margin-top: 2rem;
-	float: left;
-}
-
-button {
-	background: none !important;
-	color: inherit;
-	border: none;
-	padding: 0 !important;
-	font: inherit;
-	cursor: pointer;
-	font-size: 2rem;
+form{
 	font-weight: bold;
-	float: right;
-	margin-top: 10rem;
-	margin-right: 4rem;
 }
 
-button:hover {
-	color: grey;
-}
-
-footer {
-	display: flex;
+footer{
+	display:flex !important;
 	justify-content: space-around;
 }
 
-footer a {
-	text-decoration: none;
-	color: black;
+.confirmation{
+	float:right;
+	margin-top: 2rem;
 	font-weight: bold;
 }
 
-footer a:hover {
-	color: grey;
+.options{
+	display:flex;
+	flex-wrap: wrap;
+}
+
+.container{
+	flex:1 1 45%;
+}
+
+.container img{
+	height:23rem !important;
+}
+
+.borderless{
+	border:none;
+}
+.brand__logo{
+	height:6rem !important;
+	float: left;
 }

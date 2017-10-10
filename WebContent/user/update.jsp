@@ -31,11 +31,31 @@
 </head>
 
 <body>
-	<ul class="nav">
-		<li><a href="./userhome.jsp">Home</a></li>
-		<li><a href="./update.jsp">Update Profile</a></li>
-		<li><a href="./carRental.jsp">See Cars Available For Rental</a></li>
-	</ul>
+		<nav class="navbar navbar-default --primary">
+				<div class="containers">
+					<div class="navbar--brand brand">
+						<a href="#" class="brand__logo">
+							<img src="../pictures/farmBureau.png" alt="Render logo">
+						</a>
+					</div>
+					<div>
+						<ul class="nav">
+							<li>
+								<a href="./userHome.jsp"><button class="btn btn-outline-success">Home</button></a>
+							</li>
+							<li>
+									<a href="./update.jsp"><button class="btn btn-outline-success">Update Profile</button></a>
+							<li>
+									<a href="./carRental.jsp"><button class="btn btn-outline-success">See Cars Available For Rental</button></a>
+							</li>
+		
+						</ul>
+					</div>
+					<div class="confirmation">
+						<p>Logged in as :<%=user.getFirst_name() %> <%=user.getLast_Name() %></p>
+					</div>
+				</div>
+			</nav>
 	<%
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -74,9 +94,10 @@
 	%>
 	<hr>
 	<footer>
-		<a href="userhome.jsp">Home</a> <a href="FAQ.jsp">FAQ</a>
+		<a href="userhome.jsp"><button class="btn btn-outline-success">Home</button></a> 
+		<a href="FAQ.jsp"></a><button class="btn btn-outline-success">FAQ</button></a>
 		<form action="logout" method="POST">
-			<button type="submit" value="Logout">log out</button>
+			<button type="submit" class="btn btn-outline-success" value="Logout">log out</button>
 		</form>
 	</footer>
 </body>
