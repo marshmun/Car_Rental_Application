@@ -42,7 +42,7 @@
 							<li id="right"><a href="./returnCar.jsp"><button class="btn btn-outline-success" type="button">Return a rental</button></a></li>
 					</ul>
 					<div class="confirmation">
-						<p>Logged in as :</p>
+						<p>Logged in as :<%=user.getFirst_name() %> <%=user.getLast_Name() %></p>
 					</div>
 				</div>
 			</nav>

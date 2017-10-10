@@ -31,7 +31,7 @@
 				</a>
 			</div>
 			<div class="confirmation">
-				<p>Logged in as :</p>
+				<p>Logged in as : <%=user.getFirst_name() %> <%=user.getLast_Name() %></p>
 			</div>
 		</div>
 	</nav>
