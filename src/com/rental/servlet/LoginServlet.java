@@ -86,7 +86,7 @@ public class LoginServlet extends HttpServlet {
 				}
 			} else {
 				System.out.println("Invalid password, please try again");
-				res.sendRedirect("login.jsp");
+				res.sendRedirect("index.jsp");
 			}
 		} catch (Exception e) {
 			ErrorBean errorbean = new ErrorBean();
