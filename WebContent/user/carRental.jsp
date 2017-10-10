@@ -38,7 +38,7 @@
 			<div>
 				<ul class="nav">
 					<li>
-						<a href="./userHome.jsp"><button class="btn btn-outline-success">Home</button></a>
+						<a href="./userhome.jsp"><button class="btn btn-outline-success">Home</button></a>
 					</li>
 					<li>
 							<a href="./update.jsp"><button class="btn btn-outline-success">Update Profile</button></a>
