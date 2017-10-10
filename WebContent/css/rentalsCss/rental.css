@@ -34,3 +34,8 @@ form input {
 #submit {
 	width: 15rem;
 }
+
+footer{
+	display: flex !important;
+	justify-content: space-around;
+}

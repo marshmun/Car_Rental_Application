@@ -1,6 +1,10 @@
 body{
 	text-align: center;
 }
+
+table{
+	margin:auto
+}
 footer{
 	display:flex !important;
 	justify-content: space-around;
