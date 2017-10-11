@@ -6,6 +6,7 @@ import java.sql.Connection;
 import javax.mail.Session;
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -90,8 +91,10 @@ public class UserProfileUpdate extends HttpServlet {
 		} catch (Exception e) {
 			ErrorBean errorbean = new ErrorBean();
 			errorbean.setError(e);
-			res.sendRedirect("userError.jsp");
-			e.printStackTrace();
+			req.setAttribute("errorbean", errorbean);
+			RequestDispatcher requestDispatcher = req.getRequestDispatcher("userError.jsp");
+			requestDispatcher.forward(req, res);
+			System.out.println(e);
 		} finally {
 			try {
 				if (st != null)

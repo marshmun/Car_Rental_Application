@@ -8,7 +8,7 @@
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 	<session-config>
-		<session-timeout>90</session-timeout>
+		<session-timeout>30</session-timeout>
 	</session-config>
 	<servlet>
 		<display-name>RegistrationServlet</display-name>

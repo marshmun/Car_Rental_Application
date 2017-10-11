@@ -11,8 +11,10 @@
 <body>
 
 <h3>Please send the error seen below to an IT Specialist</h3>
-<% ErrorBean errorbean = new ErrorBean();
-	errorbean.getError();
+<%
+ErrorBean errorbean = (ErrorBean)request.getAttribute("errorbean");
+out.println(errorbean.getError());
+
 %>
 
 </body>

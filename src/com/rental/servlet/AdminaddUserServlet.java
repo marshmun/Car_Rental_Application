@@ -85,7 +85,9 @@ public class AdminaddUserServlet extends HttpServlet {
 		} catch (Exception e) {
 			ErrorBean errorbean = new ErrorBean();
 			errorbean.setError(e);
-			res.sendRedirect("adminError.jsp");
+			req.setAttribute("errorbean", errorbean);
+			RequestDispatcher requestDispatcher = req.getRequestDispatcher("adminError.jsp");
+			requestDispatcher.forward(req, res);
 			System.out.println(e);
 		} finally {
 			try {

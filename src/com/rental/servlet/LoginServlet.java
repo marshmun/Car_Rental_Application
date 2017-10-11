@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -91,7 +92,9 @@ public class LoginServlet extends HttpServlet {
 		} catch (Exception e) {
 			ErrorBean errorbean = new ErrorBean();
 			errorbean.setError(e);
-			res.sendRedirect("userError.jsp");
+			req.setAttribute("errorbean", errorbean);
+			RequestDispatcher requestDispatcher = req.getRequestDispatcher("adminError.jsp");
+			requestDispatcher.forward(req, res);
 			System.out.println(e);
 		} finally {
 			try {

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import com.rental.models.ErrorBean;
+import com.sun.org.apache.regexp.internal.recompile;
 
 /**
  * Servlet implementation class RegistrationServlet
@@ -85,7 +86,9 @@ public class RegistrationServlet extends HttpServlet {
 		} catch (Exception e) {
 			ErrorBean errorbean = new ErrorBean();
 			errorbean.setError(e);
-			res.sendRedirect("userError.jsp");
+			req.setAttribute("errorbean", errorbean);
+			RequestDispatcher requestDispatcher = req.getRequestDispatcher("userError.jsp");
+			requestDispatcher.forward(req, res);
 			System.out.println(e);
 		} finally {
 			try {

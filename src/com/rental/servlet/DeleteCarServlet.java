@@ -81,8 +81,10 @@ public class DeleteCarServlet extends HttpServlet {
 		} catch (Exception e) {
 			ErrorBean errorbean = new ErrorBean();
 			errorbean.setError(e);
-			res.sendRedirect("adminError.jsp");
-			e.printStackTrace();
+			req.setAttribute("errorbean", errorbean);
+			RequestDispatcher requestDispatcher = req.getRequestDispatcher("adminError.jsp");
+			requestDispatcher.forward(req, res);
+			System.out.println(e);
 		} finally {
 			try {
 				if (st != null)
