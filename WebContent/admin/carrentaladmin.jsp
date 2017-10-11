@@ -56,7 +56,7 @@
 	<h1>See All Cars</h1>
 
 	<button type="button" class="btn btn-info btn-lg" name="update"
-		data-toggle="modal" data-target="#addModal">Add a new Car</button>
+		data-toggle="modal" id="topbutton" data-target="#addModal">Add a new Car</button>
 	<div id="addModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 

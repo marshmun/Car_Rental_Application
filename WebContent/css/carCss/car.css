@@ -2,8 +2,15 @@ body{
 	text-align: center;
 }
 
+#topbutton{
+	margin-bottom:4rem;
+	
+	
+}
+
 table{
-	margin:auto
+	margin:auto;
+	margin-bottom:4rem;
 }
 footer{
 	display:flex !important;
@@ -16,4 +23,8 @@ button{
 
 table td{
 	padding:1rem;
+}
+
+.tblHeader{
+	font-weight:bold;
 }
