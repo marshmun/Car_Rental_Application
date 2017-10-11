@@ -9,3 +9,11 @@ footer{
 	display:flex !important;
 	justify-content: space-around;
 }
+
+button{
+	font-weight:bold;
+}
+
+table td{
+	padding:1rem;
+}

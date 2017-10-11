@@ -94,11 +94,11 @@
 	%>
 	<hr>
 	<footer>
-		<a href="userhome.jsp"><button class="btn btn-outline-success">Home</button></a> 
-		<a href="FAQ.jsp"></a><button class="btn btn-outline-success">FAQ</button></a>
-		<form action="logout" method="POST">
-			<button type="submit" class="btn btn-outline-success" value="Logout">log out</button>
-		</form>
+			<a href="userhome.jsp"><button class="btn btn-outline-success">Home</button></a>
+			<a href="FAQ.jsp"><button class="btn btn-outline-success">FAQ</button></a>
+			<form action="logout" method="POST">
+				<button class=" btn btn-outline-success" type="submit" value="Logout">log out</button>
+			</form>
 	</footer>
 </body>
 
