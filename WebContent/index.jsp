@@ -27,7 +27,7 @@
 				</div>
 				<div class="form-group">
 					<label for="password">Password:</label>
-					<input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
+					<input type="password" class="form-control" id="password" name="password" >
 				</div>
 				<div class="checkbox">
 					<label><input type="checkbox"> Remember me</label>
@@ -53,15 +53,15 @@
 			</div>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-				<input id="First_Name" type="text" class="form-control" name="First_Name" placeholder="First Name">
+				<input id="First_Name" type="text" class="form-control" name="First_Name" placeholder="First Name"placeholder="Enter password" maxlength="15" minlength="2">
 			</div>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-				<input id="Last_Name" type="text" class="form-control" name="Last_Name" placeholder="Last Name">
+				<input id="Last_Name" type="text" class="form-control" name="Last_Name" placeholder="Last Name"placeholder="Enter password" maxlength="15" minlength="2">
 			</div>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-				<input id="password" type="password" class="form-control" name="password" placeholder="Password">
+				<input id="password" type="password" class="form-control" name="password" placeholder="Password"placeholder="Enter password" maxlength="15" minlength="6">
 			</div>
 			<div class="input-group">
 					<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
