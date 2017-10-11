@@ -28,3 +28,9 @@ table td{
 .tblHeader{
 	font-weight:bold;
 }
+
+.form{
+	display:flex;
+	flex-direction:column;
+	margin:1rem 6rem;
+}

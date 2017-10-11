@@ -68,7 +68,7 @@
 				</div>
 				<div class="modal-body">
 
-					<form action="newcar" method="POST">
+					<form class="form" action="newcar" method="POST">
 						<input type="text" name="Year" placeholder="Year" required>
 						<input type="text" name="Make" placeholder="Make" required>
 						<input type="text" name="Model" placeholder="Model" required>
@@ -199,7 +199,7 @@
 							</div>
 							<div class="modal-body">
 
-								<form action="admincarupdate" method="POST">
+								<form class="form" action="admincarupdate" method="POST">
 									<input type=hidden name="id" value=<%=id%>> 
 									<input type="text" name="Year" placeholder=<%=year%>>
 									<input type="text" name="Make" placeholder=<%=make%>> 

@@ -62,7 +62,7 @@
 				</div>
 				<div class="modal-body">
 
-					<form action="adminadduser" method="POST">
+					<form class="form" action="adminadduser" method="POST">
 						<input type="text" name="User_Name" placeholder="User Name"
 							required> <input type="text" name="First_Name"
 							placeholder="First Name" required> <input type="text"
@@ -97,7 +97,7 @@
 				</div>
 				<div class="modal-body">
 
-					<form action="adminupdate" method="POST">
+					<form class="form" action="adminupdate" method="POST">
 						<input type="text" name="User_Name" placeholder="User Name"
 							required> <input type="text" name="First_Name"
 							placeholder="First Name"> <input type="text"
