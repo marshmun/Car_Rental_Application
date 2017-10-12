@@ -18,6 +18,7 @@ import javax.sql.DataSource;
 
 import com.rental.models.ErrorBean;
 import com.rental.models.User;
+import com.rental.models.Work;
 
 import javafx.scene.control.Alert;
 
@@ -52,6 +53,7 @@ public class UserCarRentalServlet extends HttpServlet {
 	 */
 	@SuppressWarnings("resource")
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		Work work = new Work();
 		HttpSession session = req.getSession(true);
 		User user = (User) session.getAttribute("user");
 
@@ -63,13 +65,9 @@ public class UserCarRentalServlet extends HttpServlet {
 		String nativeSQL = "";
 
 		try {
-			Context ctx = new InitialContext();
-			Context env = (Context) ctx.lookup("java:comp/env");
-			DataSource ds = (DataSource) env.lookup("jdbc/carRentalSystem");
-			conn = ds.getConnection();
+			conn = work.createConnection();
 
-			st = conn.prepareCall("update userdetails SET Car_Rental = '" + carid + "' where User_Name='"
-					+ user.getUser_Name() + "'");
+			st = conn.prepareCall("update userdetails SET Car_Rental = '" + carid + "' where User_Name='" + user.getUser_Name() + "'");
 			st.clearParameters();
 			rs = st.executeUpdate();
 
@@ -83,12 +81,9 @@ public class UserCarRentalServlet extends HttpServlet {
 
 			}
 		} catch (Exception e) {
+			work.ErrorUser(req, res, e);
 			ErrorBean errorbean = new ErrorBean();
-			errorbean.setError(e);
-			req.setAttribute("errorbean", errorbean);
-			RequestDispatcher requestDispatcher = req.getRequestDispatcher("userError.jsp");
-			requestDispatcher.forward(req, res);
-			System.out.println(e);
+			
 		} finally {
 			try {
 				if (st != null)

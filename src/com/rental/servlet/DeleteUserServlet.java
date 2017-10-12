@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import com.rental.models.ErrorBean;
+import com.rental.models.Work;
 
 /**
  * Servlet implementation class DeleteUserServlet
@@ -47,6 +48,7 @@ public class DeleteUserServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		Work work = new Work();
 
 		// get information of the car to be deleted and admins password
 		String uname = req.getParameter("User_Name");
@@ -60,10 +62,7 @@ public class DeleteUserServlet extends HttpServlet {
 		ResultSet result  =null;
 
 		try {
-			Context ctx = new InitialContext();
-			Context env = (Context) ctx.lookup("java:comp/env");
-			DataSource ds = (DataSource) env.lookup("jdbc/carRentalSystem");
-			conn = ds.getConnection();
+			conn = work.createConnection();
 			sp = conn.createStatement();
 			
 			conn.setAutoCommit(false);
@@ -93,12 +92,7 @@ public class DeleteUserServlet extends HttpServlet {
 			res.sendRedirect("adminUser.jsp");
 			return;
 		} catch (Exception e) {
-			ErrorBean errorbean = new ErrorBean();
-			errorbean.setError(e);
-			req.setAttribute("errorbean", errorbean);
-			RequestDispatcher requestDispatcher = req.getRequestDispatcher("adminError.jsp");
-			requestDispatcher.forward(req, res);
-			System.out.println(e);
+			work.ErrorAdmin(req, res, e);
 			return;
 		} finally {
 			try {

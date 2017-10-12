@@ -17,6 +17,7 @@ import javax.sql.DataSource;
 
 import com.rental.models.ErrorBean;
 import com.rental.models.User;
+import com.rental.models.Work;
 
 /**
  * Servlet implementation class UserProfileUpdate
@@ -48,6 +49,7 @@ public class UserProfileUpdate extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		Work work = new Work();
 		HttpSession session = req.getSession(true);
 		User user = (User) session.getAttribute("user");
 
@@ -70,13 +72,10 @@ public class UserProfileUpdate extends HttpServlet {
 		String nativeSQL = "";
 
 		try {
-			Context ctx = new InitialContext();
-			Context env = (Context) ctx.lookup("java:comp/env");
-			DataSource ds = (DataSource) env.lookup("jdbc/carRentalSystem");
-			conn = ds.getConnection();
+			conn = work.createConnection();
+			
 
-			st = conn.prepareStatement("update userdetails SET Email_Address = '" + email + "', First_Name ='" + fname
-					+ "', Last_Name ='" + lname + "'  where User_Name ='" + user.getUser_Name() + "'");
+			st = conn.prepareStatement("update userdetails SET Email_Address = '" + email + "', First_Name ='" + fname+ "', Last_Name ='" + lname + "'  where User_Name ='" + user.getUser_Name() + "'");
 			st.clearParameters();
 			rs = st.executeUpdate();
 			if (rs != 0) {
@@ -89,12 +88,8 @@ public class UserProfileUpdate extends HttpServlet {
 
 			}
 		} catch (Exception e) {
+			work.ErrorUser(req, res, e);
 			ErrorBean errorbean = new ErrorBean();
-			errorbean.setError(e);
-			req.setAttribute("errorbean", errorbean);
-			RequestDispatcher requestDispatcher = req.getRequestDispatcher("userError.jsp");
-			requestDispatcher.forward(req, res);
-			System.out.println(e);
 		} finally {
 			try {
 				if (st != null)

@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import com.rental.models.ErrorBean;
+import com.rental.models.Work;
 
 /**
  * Servlet implementation class DeleteCarServlet
@@ -48,6 +49,7 @@ public class DeleteCarServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		Work work = new Work();
 
 		// get information of the car to be deleted and admins password
 		String carid = req.getParameter("id");
@@ -59,13 +61,10 @@ public class DeleteCarServlet extends HttpServlet {
 		String nativeSQL = "";
 
 		try {
-			Context ctx = new InitialContext();
-			Context env = (Context) ctx.lookup("java:comp/env");
-			DataSource ds = (DataSource) env.lookup("jdbc/carRentalSystem");
-			conn = ds.getConnection();
+			conn = work.createConnection();
+			
 
-			st = conn.prepareStatement(
-					"update userdetails set Car_rental ='" + nocar + "' where Car_Rental ='" + carid + "'");
+			st = conn.prepareStatement("update userdetails set Car_rental ='" + nocar + "' where Car_Rental ='" + carid + "'");
 			st.clearParameters();
 			rs = st.executeUpdate();
 
@@ -79,12 +78,8 @@ public class DeleteCarServlet extends HttpServlet {
 
 			}
 		} catch (Exception e) {
-			ErrorBean errorbean = new ErrorBean();
-			errorbean.setError(e);
-			req.setAttribute("errorbean", errorbean);
-			RequestDispatcher requestDispatcher = req.getRequestDispatcher("adminError.jsp");
-			requestDispatcher.forward(req, res);
-			System.out.println(e);
+			work.ErrorAdmin(req, res, e);
+			
 		} finally {
 			try {
 				if (st != null)

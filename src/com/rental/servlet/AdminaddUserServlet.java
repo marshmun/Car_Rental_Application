@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import com.rental.models.ErrorBean;
+import com.rental.models.Work;
 
 /**
  * Servlet implementation class AdminaddUserServlet
@@ -48,6 +49,7 @@ public class AdminaddUserServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		Work work = new Work();
 		// Obtain submitted form data
 		String firstName = req.getParameter("First_Name");
 		String lastName = req.getParameter("Last_Name");
@@ -60,11 +62,8 @@ public class AdminaddUserServlet extends HttpServlet {
 		Statement st = null;
 
 		try {
-			// Setup the Database datasource
-			Context ctx = new InitialContext();
-			Context env = (Context) ctx.lookup("java:comp/env");
-			DataSource ds = (DataSource) env.lookup("jdbc/carRentalSystem");
-			conn = ds.getConnection();
+			conn = work.createConnection();
+			
 
 			// Prepare the SQL statmenet to insert the values
 			PreparedStatement stmt = conn.prepareStatement(
@@ -83,12 +82,9 @@ public class AdminaddUserServlet extends HttpServlet {
 			RequestDispatcher requestDispatcher = req.getRequestDispatcher("adminUser.jsp");
 			requestDispatcher.forward(req, res);
 		} catch (Exception e) {
+			work.ErrorAdmin(req, res, e);
 			ErrorBean errorbean = new ErrorBean();
-			errorbean.setError(e);
-			req.setAttribute("errorbean", errorbean);
-			RequestDispatcher requestDispatcher = req.getRequestDispatcher("adminError.jsp");
-			requestDispatcher.forward(req, res);
-			System.out.println(e);
+			
 		} finally {
 			try {
 				if (st != null)

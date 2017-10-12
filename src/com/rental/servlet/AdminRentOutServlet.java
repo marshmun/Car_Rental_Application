@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import com.rental.models.ErrorBean;
+import com.rental.models.Work;
 
 /**
  * Servlet implementation class AdminRentOutServlet
@@ -46,6 +47,7 @@ public class AdminRentOutServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		Work work = new Work();
 		String carid = req.getParameter("id");
 		String username = req.getParameter("User_Name");
 
@@ -55,13 +57,10 @@ public class AdminRentOutServlet extends HttpServlet {
 		String nativeSQL = "";
 
 		try {
-			Context ctx = new InitialContext();
-			Context env = (Context) ctx.lookup("java:comp/env");
-			DataSource ds = (DataSource) env.lookup("jdbc/carRentalSystem");
-			conn = ds.getConnection();
+			conn = work.createConnection();
+			
 
-			st = conn.prepareCall(
-					"update userdetails SET Car_Rental = '" + carid + "' where User_Name='" + username + "'");
+			st = conn.prepareCall("update userdetails SET Car_Rental = '" + carid + "' where User_Name='" + username + "'");
 			st.clearParameters();
 			rs = st.executeUpdate();
 
@@ -75,12 +74,9 @@ public class AdminRentOutServlet extends HttpServlet {
 
 			}
 		} catch (Exception e) {
+			work.ErrorAdmin(req, res, e);
 			ErrorBean errorbean = new ErrorBean();
-			errorbean.setError(e);
-			req.setAttribute("errorbean", errorbean);
-			RequestDispatcher requestDispatcher = req.getRequestDispatcher("adminError.jsp");
-			requestDispatcher.forward(req, res);
-			System.out.println(e);
+			
 		} finally {
 			try {
 				if (st != null)
