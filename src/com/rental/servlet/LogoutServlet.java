@@ -42,5 +42,6 @@ public class LogoutServlet extends HttpServlet {
 		res.sendRedirect("../index.jsp");
 
 	}
+	
 
 }

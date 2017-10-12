@@ -61,7 +61,7 @@
 			</div>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-				<input id="password" type="password" class="form-control" name="password" placeholder="Password"placeholder="Enter password" maxlength="15" minlength="6">
+				<input id="Password" type="Password" name="Password" class="form-control" name="Password" placeholder="Password" maxlength="15" minlength="6">
 			</div>
 			<div class="input-group">
 					<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>

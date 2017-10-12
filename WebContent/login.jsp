@@ -19,6 +19,7 @@
 <body>
 	<h1>Log in!</h1>
 	<hr>
+	<h2> Congratulations you have created your account succsessfully please use the credientials below you created!</h2>
 	<div class="form">
 		<form action="login" method="POST">
 			<input type="text" name="User_Name" placeholder="User Name" required>

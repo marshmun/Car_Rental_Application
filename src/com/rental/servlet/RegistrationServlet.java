@@ -17,6 +17,7 @@ import javax.sql.DataSource;
 
 import com.rental.models.ErrorBean;
 import com.sun.org.apache.regexp.internal.recompile;
+import com.rental.models.Work;
 
 /**
  * Servlet implementation class RegistrationServlet
@@ -50,6 +51,8 @@ public class RegistrationServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 		// Obtain submitted form data
+		
+		Work work = new Work();
 		String firstName = req.getParameter("First_Name");
 		String lastName = req.getParameter("Last_Name");
 		String username = req.getParameter("User_Name");
@@ -61,15 +64,12 @@ public class RegistrationServlet extends HttpServlet {
 		Statement st = null;
 
 		try {
-			// Setup the Database datasource
-			Context ctx = new InitialContext();
-			Context env = (Context) ctx.lookup("java:comp/env");
-			DataSource ds = (DataSource) env.lookup("jdbc/carRentalSystem");
-			conn = ds.getConnection();
+			conn = work.createConnection();
+		
 
 			// Prepare the SQL statmenet to insert the values
-			PreparedStatement stmt = conn.prepareStatement(
-					"INSERT INTO userdetails(First_Name, Last_Name, Email_Address, Password, User_Name)  VALUES (?,?,?,?,?)");
+			
+			PreparedStatement stmt = conn.prepareStatement("INSERT INTO userdetails(First_Name, Last_Name, Email_Address, Password, User_Name)  VALUES (?,?,?,?,?)");
 			stmt.setString(1, firstName);
 			stmt.setString(2, lastName);
 			stmt.setString(3, email);
@@ -84,12 +84,7 @@ public class RegistrationServlet extends HttpServlet {
 			RequestDispatcher requestDispatcher = req.getRequestDispatcher("login.jsp");
 			requestDispatcher.forward(req, res);
 		} catch (Exception e) {
-			ErrorBean errorbean = new ErrorBean();
-			errorbean.setError(e);
-			req.setAttribute("errorbean", errorbean);
-			RequestDispatcher requestDispatcher = req.getRequestDispatcher("userError.jsp");
-			requestDispatcher.forward(req, res);
-			System.out.println(e);
+			work.ErrorHome(req, res, e);
 		} finally {
 			try {
 				if (st != null)
