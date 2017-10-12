@@ -2,7 +2,7 @@ package com.rental.models;
 
 public class Car {
 
-	private String Id;
+	private int Id;
 	private String Year;
 	private String Make;
 	private String Model;
@@ -45,13 +45,6 @@ public class Car {
 		Color = color;
 	}
 
-	public String getId() {
-		return Id;
-	}
-
-	public void setId(String id) {
-		Id = id;
-	}
 
 	public String getAvailable() {
 		return Available;
@@ -60,5 +53,14 @@ public class Car {
 	public void setAvailable(String available) {
 		Available = available;
 	}
+
+	public int getId() {
+		return Id;
+	}
+
+	public void setId(int id) {
+		Id = id;
+	}
+
 
 }

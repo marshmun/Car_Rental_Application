@@ -1,4 +1,7 @@
+<%@page import="java.util.List"%>
 <%@ page import="com.rental.models.User"%>
+<%@ page import="com.rental.models.Table"%>
+<%@ page import="com.rental.models.Car"%>
 <%
 	User user = (User) session.getAttribute("user");
 	if (user == null) {
@@ -34,29 +37,37 @@
 </head>
 
 <body>
-		<nav class="navbar navbar-default --primary">
-				<div class="container">
-					<div class="navbar--brand brand">
-						<a href="#" class="brand__logo">
-							<img src="../pictures/farmBureau.png" alt="Render logo">
-						</a>
-					</div>
-					<ul class="nav">
-							<li><a href="./adminHome.jsp"><button class="btn btn-outline-success" type="button">Home</button></a></li>
-							<li><a href="./carrentaladmin.jsp"><button class="btn btn-outline-success" type="button">Car</button></a></li>
-							<li><a href="./adminUser.jsp"><button class="btn btn-outline-success" type="button">Users</button></a></li>
-							<li id="right"><a href="./returnCar.jsp"><button class="btn btn-outline-success" type="button">Return a rental</button></a></li>
-					</ul>
-					<div class="confirmation">
-						<p>Logged in as :<%=user.getFirst_name() %> <%=user.getLast_Name() %></p>
-					</div>
-				</div>
-			</nav>
+	<nav class="navbar navbar-default --primary">
+		<div class="container">
+			<div class="navbar--brand brand">
+				<a href="#" class="brand__logo"> <img
+					src="../pictures/farmBureau.png" alt="Render logo">
+				</a>
+			</div>
+			<ul class="nav">
+				<li><a href="./adminHome.jsp"><button
+							class="btn btn-outline-success" type="button">Home</button></a></li>
+				<li><a href="./carrentaladmin.jsp"><button
+							class="btn btn-outline-success" type="button">Car</button></a></li>
+				<li><a href="./adminUser.jsp"><button
+							class="btn btn-outline-success" type="button">Users</button></a></li>
+				<li id="right"><a href="./returnCar.jsp"><button
+							class="btn btn-outline-success" type="button">Return a
+							rental</button></a></li>
+			</ul>
+			<div class="confirmation">
+				<p>
+					Logged in as :<%=user.getFirst_name()%>
+					<%=user.getLast_Name()%></p>
+			</div>
+		</div>
+	</nav>
 	<hr>
 	<h1>See All Cars</h1>
 
 	<button type="button" class="btn btn-info btn-lg" name="update"
-		data-toggle="modal" id="topbutton" data-target="#addModal">Add a new Car</button>
+		data-toggle="modal" id="topbutton" data-target="#addModal">Add
+		a new Car</button>
 	<div id="addModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 
@@ -103,29 +114,25 @@
 
 		</tr>
 		<%
-			try {
-				Class.forName("com.mysql.jdbc.Driver");
-				String url = "jdbc:mysql://localhost:3306/carrentalsystem";
-				String username = "root";
-				String password = "javatest";
-				String query = "select * from cardetails";
-				Connection conn = DriverManager.getConnection(url, username, password);
-				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery(query);
-				while (rs.next()) {
-					Integer id = rs.getInt("id");
-					String year = rs.getString("Year");
-					String make = rs.getString("Make");
-					String model = rs.getString("Model");
-					String color = rs.getString("Color");
-					String avail = rs.getString("Availability");
-					String renting;
+			Table table = new Table();
+			table.getTableConnection();
+			List<Car> cars = table.getTableConnection();
+			String renting;
+			for (Car c : cars) {
+				int id = c.getId();
+				String year = c.getYear();
+				String make = c.getMake();
+				String model = c.getModel();
+				String color = c.getColor();
+				String avail = c.getAvailable();
+				
 		%>
 		<tr>
 			<td>
-				<button type="button" class="btn btn-info btn-lg" name="update" <% if(avail.equals("Unavailable")){  renting = "disabled" ;}else{ renting="";}  %>
-					<%=renting %> data-toggle="modal" data-target="#rentoutModal<%=id%>">Rent
-					to Customer</button>
+				<button type="button" class="btn btn-info btn-lg" name="update"<%if (avail.equals("Unavailable")) {renting = "disabled";} else {renting = "";
+				}%>
+					<%=renting%> data-toggle="modal"
+					data-target="#rentoutModal<%=id%>">Rent to Customer</button>
 				<div id="rentoutModal<%=id%>" class="modal fade" role="dialog">
 					<div class="modal-dialog">
 
@@ -200,12 +207,12 @@
 							<div class="modal-body">
 
 								<form class="form" action="admincarupdate" method="POST">
-									<input type=hidden name="id" value=<%=id%>> 
-									<input type="text" name="Year" placeholder=<%=year%>>
-									<input type="text" name="Make" placeholder=<%=make%>> 
-									<input type="text" name="Model" placeholder=<%=model%>> 
-									<input type="text" name="Color" placeholder=<%=color%>> 
-									<input id="submit" type="submit">
+									<input type=hidden name="id" value=<%=id%>> <input
+										type="text" name="Year" placeholder=<%=year%>> <input
+										type="text" name="Make" placeholder=<%=make%>> <input
+										type="text" name="Model" placeholder=<%=model%>> <input
+										type="text" name="Color" placeholder=<%=color%>> <input
+										id="submit" type="submit">
 								</form>
 
 							</div>
@@ -223,19 +230,12 @@
 				</form></td>
 
 		</tr>
-		<%
-			}
-		%>
+
 	</table>
+
 	<%
-		rs.close();
-			stmt.close();
-			conn.close();
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	%>
-
 
 
 
@@ -244,7 +244,8 @@
 		<a href="adminHome.jsp" class="btn btn-primary btn-lg active"
 			role="button">Home</a>
 		<form action="logout" method="POST">
-			<button type="submit" class="btn btn-primary btn-lg active" >log out</button>
+			<button type="submit" class="btn btn-primary btn-lg active">log
+				out</button>
 		</form>
 	</footer>
 </body>
