@@ -18,6 +18,7 @@ import javax.sql.DataSource;
 
 import com.rental.models.ErrorBean;
 import com.rental.models.User;
+import com.rental.models.Work;
 
 import java.sql.Statement;
 
@@ -49,7 +50,7 @@ public class LoginServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
+		Work work = new Work();
 		// Get the users information
 		User user = new User();
 		user.setUser_Name(req.getParameter("User_Name"));
@@ -61,14 +62,10 @@ public class LoginServlet extends HttpServlet {
 		Statement st = null;
 
 		try {
-			Context ctx = new InitialContext();
-			Context env = (Context) ctx.lookup("java:comp/env");
-			DataSource ds = (DataSource) env.lookup("jdbc/carRentalSystem");
-			conn = ds.getConnection();
+			conn = work.createConnection();
 			st = conn.createStatement();
 
-			rs = st.executeQuery("SELECT * FROM userdetails where User_Name='" + user.getUser_Name()
-					+ "' and password='" + user.getPassword() + "'");
+			rs = st.executeQuery("SELECT * FROM userdetails where User_Name='" + user.getUser_Name()+ "' and password='" + user.getPassword() + "'");
 			if (rs.next()) {
 				HttpSession session = req.getSession();
 				user.setFirst_name(rs.getString("First_Name"));
@@ -90,12 +87,7 @@ public class LoginServlet extends HttpServlet {
 				res.sendRedirect("index.jsp");
 			}
 		} catch (Exception e) {
-			ErrorBean errorbean = new ErrorBean();
-			errorbean.setError(e);
-			req.setAttribute("errorbean", errorbean);
-			RequestDispatcher requestDispatcher = req.getRequestDispatcher("adminError.jsp");
-			requestDispatcher.forward(req, res);
-			System.out.println(e);
+			work.ErrorHome(req, res, e);
 		} finally {
 			try {
 				if (st != null)
