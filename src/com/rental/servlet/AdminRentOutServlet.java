@@ -60,12 +60,15 @@ public class AdminRentOutServlet extends HttpServlet {
 			conn = work.createConnection();
 			
 
-			st = conn.prepareCall("update userdetails SET Car_Rental = '" + carid + "' where User_Name='" + username + "'");
+			st = conn.prepareCall("update userdetails SET Car_Rental = ? where User_Name= ?");
 			st.clearParameters();
+			st.setString(1, carid);
+			st.setString(2, username);
 			rs = st.executeUpdate();
 
-			st = conn.prepareStatement("update cardetails SET Availability = 'Unavailable' where id='" + carid + "'");
+			st = conn.prepareStatement("update cardetails SET Availability = 'Unavailable' where id=?");
 			st.clearParameters();
+			st.setString(1, carid);
 			rs = st.executeUpdate();
 			if (rs != 0) {
 				res.sendRedirect("carrentaladmin.jsp");

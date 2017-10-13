@@ -71,8 +71,10 @@ public class UserCarRentalServlet extends HttpServlet {
 			st.clearParameters();
 			rs = st.executeUpdate();
 
-			st = conn.prepareStatement("update cardetails SET Availability = 'Unavailable' where id='" + carid + "'");
+			st = conn.prepareStatement("update cardetails SET Availability = 'Unavailable' where id= ?");
 			st.clearParameters();
+			st.setString(1, carid);
+			
 			rs = st.executeUpdate();
 			if (rs != 0) {
 				res.sendRedirect("carRental.jsp");

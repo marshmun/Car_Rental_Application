@@ -63,8 +63,15 @@ public class AdminUpdateCar extends HttpServlet {
 			
 		
 
-			st = conn.prepareStatement("update cardetails SET Year = '" + year + "', Make ='" + make + "', Model ='"+ model + "', Color='" + color + "'  where id ='" + id + "'");
+			st = conn.prepareStatement("update cardetails SET Year = ?, Make = ?, Model = ?, Color= ?  where id = ?");
 			st.clearParameters();
+			st.setString(1, year);
+			st.setString(2, make);
+			st.setString(3, model);
+			st.setString(4, color);
+			st.setString(5, id);
+			
+			
 			rs = st.executeUpdate();
 			if (rs != 0) {
 				res.sendRedirect("carrentaladmin.jsp");

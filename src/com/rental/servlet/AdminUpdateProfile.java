@@ -66,9 +66,14 @@ public class AdminUpdateProfile extends HttpServlet {
 			conn = work.createConnection();
 			
 
-			st = conn.prepareStatement("update userdetails SET Email_Address = '" + email + "', First_Name ='" + fname
-					+ "', Last_Name ='" + lname + "', User_Type='" + type + "'  where User_Name ='" + username + "'");
+			st = conn.prepareStatement("update userdetails SET Email_Address = ?, First_Name = ?, Last_Name = ?, User_Type= ?  where User_Name = ?");
 			st.clearParameters();
+			st.setString(1, email);
+			st.setString(2, fname);
+			st.setString(3, lname);
+			st.setString(4, type);
+			st.setString(5, username);
+			
 			rs = st.executeUpdate();
 			if (rs != 0) {
 				res.sendRedirect("adminUser.jsp");

@@ -71,15 +71,19 @@ public class DeleteUserServlet extends HttpServlet {
 				carid= result.getInt("Car_Rental");
 			}
 			if(!carid.equals("User has no car")) {
-				st = conn.prepareStatement("update cardetails SET Availability = 'Available' where id='" + carid+ "'");
+				st = conn.prepareStatement("update cardetails SET Availability = 'Available' where id= ?");
 				st.clearParameters();
+				st.setInt(1, carid);
+				
 				rs = st.executeUpdate();
 				if (rs != 0) {
 					System.out.println("car is set back to available");
 			}
 			}
-			st = conn.prepareStatement("delete FROM userdetails where User_Name='" + uname+ "'");
+			st = conn.prepareStatement("delete FROM userdetails where User_Name= ?");
 			st.clearParameters();
+			st.setString(1, uname);
+			
 			rs = st.executeUpdate();
 			if (rs != 0) {
 				

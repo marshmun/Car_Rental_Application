@@ -66,6 +66,7 @@ public class AdminReturnCarServlet extends HttpServlet {
 			
 			conn.setAutoCommit(false);
 			result = sp.executeQuery("SELECT * FROM userdetails where User_Name='"+ uname+"'");
+			
 			if(result.next()) {
 				carid= result.getInt("Car_Rental");
 				if (carid.equals("User has no  car")) {
@@ -74,15 +75,18 @@ public class AdminReturnCarServlet extends HttpServlet {
 				}
 			}
 
-			st = conn.prepareStatement("update userdetails SET Car_Rental ='" + defaulted+ "' where User_Name='" + uname+ "' ");
+			st = conn.prepareStatement("update userdetails SET Car_Rental = ? where User_Name= ?");
 			st.clearParameters();
+			st.setString(1, defaulted);
+			st.setString(2, uname);
 			rs = st.executeUpdate();
 			if (rs !=0) {
 				System.out.println("user is set back to not having a car");
 			}
 
-			st = conn.prepareStatement("update cardetails SET Availability = 'Available' where id='" + carid+ "'");
+			st = conn.prepareStatement("update cardetails SET Availability = 'Available' where id= ?");
 			st.clearParameters();
+			st.setInt(1, carid);
 			rs = st.executeUpdate();
 			if (rs != 0) {
 				System.out.println("car is set back to available");

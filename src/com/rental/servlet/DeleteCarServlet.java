@@ -64,12 +64,17 @@ public class DeleteCarServlet extends HttpServlet {
 			conn = work.createConnection();
 			
 
-			st = conn.prepareStatement("update userdetails set Car_rental ='" + nocar + "' where Car_Rental ='" + carid + "'");
+			st = conn.prepareStatement("update userdetails set Car_rental = ? where Car_Rental = ?");
 			st.clearParameters();
+			st.setString(1, nocar);
+			st.setString(2, carid);
+			
 			rs = st.executeUpdate();
 
-			st = conn.prepareStatement("delete FROM cardetails where id='" + carid + "'");
+			st = conn.prepareStatement("delete FROM cardetails where id= ?");
 			st.clearParameters();
+			st.setString(1, carid);
+			
 			rs = st.executeUpdate();
 			if (rs != 0) {
 				res.sendRedirect("carrentaladmin.jsp");

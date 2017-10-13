@@ -75,8 +75,13 @@ public class UserProfileUpdate extends HttpServlet {
 			conn = work.createConnection();
 			
 
-			st = conn.prepareStatement("update userdetails SET Email_Address = '" + email + "', First_Name ='" + fname+ "', Last_Name ='" + lname + "'  where User_Name ='" + user.getUser_Name() + "'");
+			st = conn.prepareStatement("update userdetails SET Email_Address = ?, First_Name = ?, Last_Name = ?  where User_Name = ?");
 			st.clearParameters();
+			st.setString(1, email);
+			st.setString(2, fname);
+			st.setString(3, lname);
+			st.setString(4, user.getUser_Name());
+			
 			rs = st.executeUpdate();
 			if (rs != 0) {
 				user.setFirst_name(fname);

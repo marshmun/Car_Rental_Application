@@ -57,8 +57,9 @@ public class AdminAddAdminServlet extends HttpServlet {
 		try {
 			conn = work.createConnection();
 
-			st = conn.prepareStatement("update userdetails SET User_Type = 'Admin' where User_Name='" + username + "'");
+			st = conn.prepareStatement("update userdetails SET User_Type = 'Admin' where User_Name= ?");
 			st.clearParameters();
+			st.setString(1, username);
 			rs = st.executeUpdate();
 			if (rs != 0) {
 				res.sendRedirect("addAdmin.jsp");
