@@ -1,4 +1,7 @@
+<%@page import="java.util.List"%>
 <%@ page import="com.rental.models.User"%>
+<%@ page import="com.rental.models.Table" %>
+<%@ page import="com.rental.models.Car"%>
 <%
 	User user = (User) session.getAttribute("user");
 	if (user == null) {
@@ -68,23 +71,18 @@
 
 		</tr>
 		<%
-			try {
-				Class.forName("com.mysql.jdbc.Driver");
-				String url = "jdbc:mysql://localhost:3306/carrentalsystem";
-				String username = "root";
-				String password = "javatest";
-				String query = "select * from cardetails";
-				Connection conn = DriverManager.getConnection(url, username, password);
-				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery(query);
-				while (rs.next()) {
-					Integer id = rs.getInt("id");
-					String year = rs.getString("Year");
-					String make = rs.getString("Make");
-					String model = rs.getString("Model");
-					String color = rs.getString("Color");
-					String avail = rs.getString("Availability");
-					String renting;
+			
+				Table table = new Table();
+				table.getTableConnection();
+				List<Car> cars = table.getTableConnection();
+				String renting;
+				for (Car c : cars) {
+					int id = c.getId();
+					String year = c.getYear();
+					String make = c.getMake();
+					String model = c.getModel();
+					String color = c.getColor();
+					String avail = c.getAvailable();
 		%>
 			<tr>
 				<td>
@@ -169,14 +167,7 @@
 			}
 		%>
 	</table>
-	<%
-		rs.close();
-			stmt.close();
-			conn.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	%>
+
 		</form>
 		<hr>
 		<footer>
