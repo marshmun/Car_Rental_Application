@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <link rel="stylesheet" href="./css/main.css">
-<script src="/password.js"></script>
+<script type="text/javascript" src="./password.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <link rel="stylesheet"
@@ -28,10 +28,11 @@
 				required> <input type="text" name="First_Name"
 				placeholder="First Name" required> <input type="text"
 				name="Last_Name" placeholder="Last Name" required> <input
-				type="password" name="Password" placeholder="Password" required>
-			<input type="password" name="confirm_password" id="confirm_password"
-				placeholder="Confirm Password" /> <span id='message'></span> <input
-				class="button" type="submit">
+				type="password" name="Password" id='password' placeholder="Password" required>
+			<input type="password" name="confirm_password" id='confirm_password'
+				placeholder="Confirm Password" /> 
+				<span id='message'></span>
+				 <input class="button" type="submit">
 
 		</form>
 	</div>

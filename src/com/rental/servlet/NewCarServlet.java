@@ -49,6 +49,8 @@ public class NewCarServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		String confirmation = "You have succsessfully created a new vehicle";
+		String url ="carrentaladmin.jsp";
 		Work work = new Work();
 
 		// get the required car information from the form
@@ -78,8 +80,8 @@ public class NewCarServlet extends HttpServlet {
 			conn.close();
 
 			// Dispatch into success page
-			RequestDispatcher requestDispatcher = req.getRequestDispatcher("carrentaladmin.jsp");
-			requestDispatcher.forward(req, res);
+			work.Confirmation(req, res, confirmation, url);
+			
 
 		} catch (Exception e) {
 			work.ErrorAdmin(req, res, e);

@@ -1,4 +1,5 @@
 <%@ page import="com.rental.models.User"%>
+<%@ page import="com.rental.models.ConfirmationBean" %>
 <%
 	User user = (User) session.getAttribute("user");
 	if (user == null) {
@@ -47,6 +48,15 @@
 				</div>
 			</nav>
 	<hr>
+	<h4 class="sucsess">
+	<%  ConfirmationBean confirmationBean = (ConfirmationBean)request.getAttribute("confirmation");
+		if(confirmationBean != null){
+		if( !confirmationBean.getConfirmation().equals("") || confirmationBean.getConfirmation() != null){
+			out.println(confirmationBean.getConfirmation());
+		}
+		}
+	%>
+	</h4>
 	<h1>Add remove or update a user or an Admin!</h1>
 	<button type="button" class="btn btn-info btn-lg" name="update"
 		data-toggle="modal" data-target="#adduserModal">Add a new

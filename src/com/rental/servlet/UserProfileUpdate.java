@@ -49,6 +49,8 @@ public class UserProfileUpdate extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		String confirmation = "You have succsessfully updated your profile";
+		String url ="update.jsp";
 		Work work = new Work();
 		HttpSession session = req.getSession(true);
 		User user = (User) session.getAttribute("user");
@@ -87,7 +89,7 @@ public class UserProfileUpdate extends HttpServlet {
 				user.setFirst_name(fname);
 				user.setLast_Name(lname);
 				user.setEmail_address(email);
-				res.sendRedirect("update.jsp");
+				work.Confirmation(req, res, confirmation, url);
 				return;
 			} else {
 

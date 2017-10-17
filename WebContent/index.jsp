@@ -45,27 +45,27 @@
 		<form action ="register" class="formhome" method="POST">
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-				<input id="User_Name" type="text" class="form-control" name="User_Name" placeholder="User Name">
+				<input id="User_Name" type="text" class="form-control" name="User_Name" placeholder="User Name" required>
 			</div>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-				<input id="Email_Address" type="Email_Address" class="form-control" name="Email_Address" placeholder="Email Address">
+				<input id="Email_Address" type="email" class="form-control" name="Email_Address" placeholder="Email Address" required>
 			</div>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-				<input id="First_Name" type="text" class="form-control" name="First_Name" placeholder="First Name"placeholder="Enter password" maxlength="15" minlength="2">
+				<input id="First_Name" type="text" class="form-control" name="First_Name" placeholder="First Name"placeholder="Enter password" maxlength="15" minlength="2" required>
 			</div>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-				<input id="Last_Name" type="text" class="form-control" name="Last_Name" placeholder="Last Name"placeholder="Enter password" maxlength="15" minlength="2">
+				<input id="Last_Name" type="text" class="form-control" name="Last_Name" placeholder="Last Name"placeholder="Enter password" maxlength="15" minlength="2" required>
 			</div>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-				<input id="Password" type="Password" name="Password" class="form-control" name="Password" placeholder="Password" maxlength="15" minlength="6">
+				<input id="Password" type="Password" name="Password" class="form-control" name="Password" placeholder="Password" maxlength="15" minlength="6" required>
 			</div>
 			<div class="input-group">
 					<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-					<input id="confirm_password" type="password" class="form-control" name="confirm_password" placeholder="Confirm Password">
+					<input id="confirm_password" type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required>
 			</div>
 			<input class="button" type="submit">
 

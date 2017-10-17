@@ -47,11 +47,21 @@ public class AdminUpdateCar extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		Work work = new Work();
+		
 		String id = req.getParameter("id");
 		String year = req.getParameter("Year");
 		String make = req.getParameter("Make");
 		String model = req.getParameter("Model");
 		String color = req.getParameter("Color");
+		if (id.equals("") || id.equals(null)) {
+			String needid;
+			needid = "Please enter a valid id";
+			res.sendRedirect("adminUser.jsp");
+			}
+		if (year.equals("")||year.equals(null)) {}
+		if (make.equals("")||make.equals(null)) {}
+		if (model.equals("")||model.equals(null)) {}
+		if (color.equals("")||color.equals(null)) {}
 
 		int rs;
 		Connection conn = null;

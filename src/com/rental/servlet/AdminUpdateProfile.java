@@ -46,6 +46,8 @@ public class AdminUpdateProfile extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		String confirmation = "You have succsessfully added an user to Admin status";
+		String url ="addUser.jsp";
 		Work work = new Work();
 		String username = req.getParameter("User_Name");
 		String email = req.getParameter("Email_Address");
@@ -76,7 +78,8 @@ public class AdminUpdateProfile extends HttpServlet {
 			
 			rs = st.executeUpdate();
 			if (rs != 0) {
-				res.sendRedirect("adminUser.jsp");
+				work.Confirmation(req, res, confirmation, url);
+		
 				return;
 			} else {
 

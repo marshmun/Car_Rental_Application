@@ -58,7 +58,7 @@ public class RegistrationServlet extends HttpServlet {
 		String username = req.getParameter("User_Name");
 		String email = req.getParameter("Email_Address");
 		String password = req.getParameter("Password");
-
+		
 		ResultSet rs = null;
 		Connection conn = null;
 		Statement st = null;

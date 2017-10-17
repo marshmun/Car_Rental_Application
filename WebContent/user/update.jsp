@@ -1,4 +1,5 @@
 <%@ page import="com.rental.models.User"%>
+<%@ page import="com.rental.models.ConfirmationBean" %>
 <%
 	User user = (User) session.getAttribute("user");
 	if (user == null) {
@@ -56,7 +57,15 @@
 					</div>
 				</div>
 			</nav>
+		<%  ConfirmationBean confirmationBean = (ConfirmationBean)request.getAttribute("confirmation");
+		if(confirmationBean != null){
+		if( !confirmationBean.getConfirmation().equals("") || confirmationBean.getConfirmation() != null){
+			out.println(confirmationBean.getConfirmation());
+		}
+		}
+	%>
 	<%
+	
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			String url = "jdbc:mysql://localhost:3306/carrentalsystem";

@@ -49,6 +49,8 @@ public class AdminaddUserServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		String confirmation = "You have succsessfully added a user";
+		String url ="adminUser.jsp";
 		Work work = new Work();
 		// Obtain submitted form data
 		String firstName = req.getParameter("First_Name");
@@ -79,8 +81,8 @@ public class AdminaddUserServlet extends HttpServlet {
 			conn.close();
 
 			// Dispatch into success page
-			RequestDispatcher requestDispatcher = req.getRequestDispatcher("adminUser.jsp");
-			requestDispatcher.forward(req, res);
+			work.Confirmation(req, res, confirmation, url);
+			
 		} catch (Exception e) {
 			work.ErrorAdmin(req, res, e);
 			ErrorBean errorbean = new ErrorBean();

@@ -6,3 +6,7 @@ footer {
 	display: flex !important;
 	justify-content: space-around;
 }
+
+.sucsess{
+	color:green;
+}

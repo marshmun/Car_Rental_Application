@@ -49,6 +49,8 @@ public class DeleteCarServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		String confirmation = "You have succsessfully deleted the vehicle";
+		String url ="carrentaladmin.jsp";
 		Work work = new Work();
 
 		// get information of the car to be deleted and admins password
@@ -77,7 +79,8 @@ public class DeleteCarServlet extends HttpServlet {
 			
 			rs = st.executeUpdate();
 			if (rs != 0) {
-				res.sendRedirect("carrentaladmin.jsp");
+				work.Confirmation(req, res, confirmation, url);
+				
 				return;
 			} else {
 

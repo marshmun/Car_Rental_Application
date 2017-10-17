@@ -48,6 +48,8 @@ public class DeleteUserServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		String confirmation = "You have succsessfully added an user to Admin status";
+		String url ="addAdmin.jsp";
 		Work work = new Work();
 
 		// get information of the car to be deleted and admins password
@@ -93,7 +95,8 @@ public class DeleteUserServlet extends HttpServlet {
 
 			}
 			conn.commit();
-			res.sendRedirect("adminUser.jsp");
+			work.Confirmation(req, res, confirmation, url);
+			
 			return;
 		} catch (Exception e) {
 			work.ErrorAdmin(req, res, e);

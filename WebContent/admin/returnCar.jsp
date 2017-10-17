@@ -1,4 +1,5 @@
 <%@ page import="com.rental.models.User"%>
+<%@ page import="com.rental.models.ConfirmationBean" %>
 <%
 	User user = (User) session.getAttribute("user");
 	if (user == null) {
@@ -50,6 +51,15 @@
 
 	<hr>
 	<h1>Return Customers Rental</h1>
+	<h4 class="sucsess">
+	<%  ConfirmationBean confirmationBean = (ConfirmationBean)request.getAttribute("confirmation");
+		if(confirmationBean != null){
+		if( !confirmationBean.getConfirmation().equals("") || confirmationBean.getConfirmation() != null){
+			out.println(confirmationBean.getConfirmation());
+		}
+		}
+	%>
+	</h4>
 	<h2>Please enter the customers Email</h2>
 	<div class="form">
 		<form action="returnacar" method="POST">

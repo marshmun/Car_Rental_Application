@@ -48,6 +48,8 @@ public class AdminReturnCarServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		String confirmation = "You have succsessfully returned the vehicle";
+		String url ="returnCar.jsp";
 		Work work = new Work();
 		Integer carid = null;
 		String uname = req.getParameter("User_Name");
@@ -96,7 +98,7 @@ public class AdminReturnCarServlet extends HttpServlet {
 
 			} 
 			conn.commit();
-			res.sendRedirect("returnCar.jsp");
+			work.Confirmation(req, res, confirmation, url);
 			return;
 			
 			

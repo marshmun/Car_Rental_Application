@@ -2,6 +2,7 @@
 <%@ page import="com.rental.models.User"%>
 <%@ page import="com.rental.models.Table"%>
 <%@ page import="com.rental.models.Car"%>
+<%@ page import="com.rental.models.ConfirmationBean" %>
 <%
 	User user = (User) session.getAttribute("user");
 	if (user == null) {
@@ -64,7 +65,15 @@
 	</nav>
 	<hr>
 	<h1>See All Cars</h1>
-
+	<h4 class="sucsess">
+	<%  ConfirmationBean confirmationBean = (ConfirmationBean)request.getAttribute("confirmation");
+		if(confirmationBean != null){
+		if( !confirmationBean.getConfirmation().equals("") || confirmationBean.getConfirmation() != null){
+			out.println(confirmationBean.getConfirmation());
+		}
+		}
+	%>
+	</h4>
 	<button type="button" class="btn btn-info btn-lg" name="update"
 		data-toggle="modal" id="topbutton" data-target="#addModal">Add
 		a new Car</button>

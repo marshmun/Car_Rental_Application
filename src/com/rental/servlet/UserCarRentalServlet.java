@@ -53,6 +53,8 @@ public class UserCarRentalServlet extends HttpServlet {
 	 */
 	@SuppressWarnings("resource")
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		String confirmation = "You have succsessfully rented out the vehicle";
+		String url ="carRental.jsp";
 		Work work = new Work();
 		HttpSession session = req.getSession(true);
 		User user = (User) session.getAttribute("user");
@@ -77,7 +79,7 @@ public class UserCarRentalServlet extends HttpServlet {
 			
 			rs = st.executeUpdate();
 			if (rs != 0) {
-				res.sendRedirect("carRental.jsp");
+				work.Confirmation(req, res, confirmation, url);
 				return;
 			} else {
 
