@@ -46,6 +46,8 @@ public class AdminUpdateCar extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		String confirmation = "You have succsessfully updated vehicle";
+		String url ="carrentaladmin.jsp";
 		Work work = new Work();
 		
 		String id = req.getParameter("id");
@@ -84,7 +86,7 @@ public class AdminUpdateCar extends HttpServlet {
 			
 			rs = st.executeUpdate();
 			if (rs != 0) {
-				res.sendRedirect("carrentaladmin.jsp");
+				work.Confirmation(req, res, confirmation, url);
 				return;
 			} else {
 
