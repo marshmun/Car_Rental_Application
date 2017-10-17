@@ -51,7 +51,7 @@ public class AdminReturnCarServlet extends HttpServlet {
 		String confirmation = "You have succsessfully returned the vehicle";
 		String url ="returnCar.jsp";
 		Work work = new Work();
-		Integer carid = null;
+		String carid = null;
 		String uname = req.getParameter("User_Name");
 		String defaulted = "User has no car";
 
@@ -70,10 +70,10 @@ public class AdminReturnCarServlet extends HttpServlet {
 			result = sp.executeQuery("SELECT * FROM userdetails where User_Name='"+ uname+"'");
 			
 			if(result.next()) {
-				carid= result.getInt("Car_Rental");
+				carid= result.getString("Car_Rental");
 				if (carid.equals("User has no  car")) {
-					System.out.println("User has no vehicle to return");
-					res.sendRedirect("returnCar.jsp");
+					confirmation = "User has no vehicle to return";
+					work.Confirmation(req, res, confirmation, url);
 				}
 			}
 
@@ -88,7 +88,7 @@ public class AdminReturnCarServlet extends HttpServlet {
 
 			st = conn.prepareStatement("update cardetails SET Availability = 'Available' where id= ?");
 			st.clearParameters();
-			st.setInt(1, carid);
+			st.setString(1, carid);
 			rs = st.executeUpdate();
 			if (rs != 0) {
 				System.out.println("car is set back to available");
