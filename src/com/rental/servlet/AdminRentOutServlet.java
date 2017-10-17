@@ -50,6 +50,8 @@ public class AdminRentOutServlet extends HttpServlet {
 		String confirmation = "You have succsessfully rented out the vehicle";
 		String url ="carrentaladmin.jsp";
 		Work work = new Work();
+		String errorurl = work.getAdminerror();
+		
 		String carid = req.getParameter("id");
 		String username = req.getParameter("User_Name");
 
@@ -80,8 +82,7 @@ public class AdminRentOutServlet extends HttpServlet {
 
 			}
 		} catch (Exception e) {
-			work.ErrorAdmin(req, res, e);
-			ErrorBean errorbean = new ErrorBean();
+			work.ErrorHandling(req, res, e, errorurl);
 			
 		} finally {
 			try {

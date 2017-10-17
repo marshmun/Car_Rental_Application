@@ -51,6 +51,8 @@ public class AdminReturnCarServlet extends HttpServlet {
 		String confirmation = "You have succsessfully returned the vehicle";
 		String url ="returnCar.jsp";
 		Work work = new Work();
+		
+		String errorurl = work.getAdminerror();
 		String carid = null;
 		String uname = req.getParameter("User_Name");
 		String defaulted = "User has no car";
@@ -104,7 +106,7 @@ public class AdminReturnCarServlet extends HttpServlet {
 			
 		} catch (Exception e) {
 			try{conn.rollback();}catch(Exception e1){}
-			work.ErrorAdmin(req, res, e);
+			work.ErrorHandling(req, res, e, errorurl);
 		
 		} finally {
 			try {

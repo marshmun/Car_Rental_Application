@@ -27,36 +27,49 @@ public class Work {
 	    DataSource ds = (DataSource) env.lookup("jdbc/carRentalSystem");
 	    return ds.getConnection();
 	}
-
-	public void ErrorAdmin(HttpServletRequest req, HttpServletResponse res, Exception e)
+	
+	public void ErrorHandling(HttpServletRequest req, HttpServletResponse res, Exception e, String errorurl)
 			throws ServletException, IOException {
 		ErrorBean errorbean = new ErrorBean();
 		errorbean.setError(e);
 		req.setAttribute("errorbean", errorbean);
-		RequestDispatcher requestDispatcher = req.getRequestDispatcher("adminError.jsp");
+		RequestDispatcher requestDispatcher= req.getRequestDispatcher(errorurl);
 		requestDispatcher.forward(req, res);
 		System.out.println(e);
-	}
-
-	public void ErrorUser(HttpServletRequest req, HttpServletResponse res, Exception e)
-			throws ServletException, IOException {
-		ErrorBean errorbean = new ErrorBean();
-		errorbean.setError(e);
-		req.setAttribute("errorbean", errorbean);
-		RequestDispatcher requestDispatcher = req.getRequestDispatcher("userError.jsp");
-		requestDispatcher.forward(req, res);
-		System.out.println(e);
+				
 	}
 	
-	public void ErrorHome(HttpServletRequest req, HttpServletResponse res, Exception e) throws ServletException, IOException {
+	public String adminerror = "adminError.jsp";
+	public String usererror ="usererror.jsp";
+	public String homeerror="homeError.jsp";
+	
+	
 
-		ErrorBean errorbean = new ErrorBean();
-		errorbean.setError(e);
-		req.setAttribute("errorbean", errorbean);
-		RequestDispatcher requestDispatcher = req.getRequestDispatcher("homeError.jsp");
-		requestDispatcher.forward(req, res);
-		System.out.println(e);
+	public String getAdminerror() {
+		return adminerror;
 	}
+
+	public void setAdminerror(String adminerror) {
+		this.adminerror = adminerror;
+	}
+
+	public String getUsererror() {
+		return usererror;
+	}
+
+	public void setUsererror(String usererror) {
+		this.usererror = usererror;
+	}
+
+	public String getHomeerror() {
+		return homeerror;
+	}
+
+	public void setHomeerror(String homeerror) {
+		this.homeerror = homeerror;
+	}
+
+	
 	
 	public void Confirmation(HttpServletRequest req, HttpServletResponse res, String confirmation, String url) throws ServletException, IOException {
 		

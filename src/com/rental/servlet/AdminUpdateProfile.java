@@ -49,6 +49,8 @@ public class AdminUpdateProfile extends HttpServlet {
 		String confirmation = "You have succsessfully added an user to Admin status";
 		String url ="addUser.jsp";
 		Work work = new Work();
+		String errorurl = work.getAdminerror();
+		
 		String username = req.getParameter("User_Name");
 		String email = req.getParameter("Email_Address");
 		String fname = req.getParameter("First_Name");
@@ -85,7 +87,7 @@ public class AdminUpdateProfile extends HttpServlet {
 
 			}
 		} catch (Exception e) {
-			work.ErrorAdmin(req, res, e);
+			work.ErrorHandling(req, res, e, errorurl);
 			
 		} finally {
 			try {

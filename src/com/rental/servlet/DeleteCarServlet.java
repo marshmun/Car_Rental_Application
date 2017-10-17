@@ -52,7 +52,7 @@ public class DeleteCarServlet extends HttpServlet {
 		String confirmation = "You have succsessfully deleted the vehicle";
 		String url ="carrentaladmin.jsp";
 		Work work = new Work();
-
+		String errorurl = work.getAdminerror();
 		// get information of the car to be deleted and admins password
 		String carid = req.getParameter("id");
 		String nocar = "User has no car";
@@ -86,7 +86,8 @@ public class DeleteCarServlet extends HttpServlet {
 
 			}
 		} catch (Exception e) {
-			work.ErrorAdmin(req, res, e);
+			work.ErrorHandling(req, res, e, errorurl);
+			
 			
 		} finally {
 			try {

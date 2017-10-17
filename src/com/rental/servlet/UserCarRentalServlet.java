@@ -56,6 +56,8 @@ public class UserCarRentalServlet extends HttpServlet {
 		String confirmation = "You have succsessfully rented out the vehicle";
 		String url ="carRental.jsp";
 		Work work = new Work();
+		String errorurl = work.getUsererror();
+		
 		HttpSession session = req.getSession(true);
 		User user = (User) session.getAttribute("user");
 
@@ -85,8 +87,8 @@ public class UserCarRentalServlet extends HttpServlet {
 
 			}
 		} catch (Exception e) {
-			work.ErrorUser(req, res, e);
-			ErrorBean errorbean = new ErrorBean();
+			work.ErrorHandling(req, res, e, errorurl);
+			
 			
 		} finally {
 			try {

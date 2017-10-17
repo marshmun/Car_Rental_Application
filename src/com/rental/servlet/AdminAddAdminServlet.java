@@ -46,9 +46,12 @@ public class AdminAddAdminServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		Work work = new Work();
+		
 		String confirmation = "You have succsessfully added an user to Admin status";
 		String url ="addAdmin.jsp";
-		Work work = new Work();
+		String errorurl = work.getAdminerror();
+		
 		String username = req.getParameter("User_Name");
 
 		int rs;
@@ -71,7 +74,7 @@ public class AdminAddAdminServlet extends HttpServlet {
 
 			}
 		} catch (Exception e) {
-			work.ErrorAdmin(req, res, e);
+			work.ErrorHandling(req, res, e, errorurl);
 			
 		} finally {
 			try {

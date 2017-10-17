@@ -53,6 +53,8 @@ public class RegistrationServlet extends HttpServlet {
 		// Obtain submitted form data
 		
 		Work work = new Work();
+		String errorurl = work.getHomeerror();
+		
 		String firstName = req.getParameter("First_Name");
 		String lastName = req.getParameter("Last_Name");
 		String username = req.getParameter("User_Name");
@@ -84,7 +86,8 @@ public class RegistrationServlet extends HttpServlet {
 			RequestDispatcher requestDispatcher = req.getRequestDispatcher("login.jsp");
 			requestDispatcher.forward(req, res);
 		} catch (Exception e) {
-			work.ErrorHome(req, res, e);
+			work.ErrorHandling(req, res, e, errorurl);
+			
 		} finally {
 			try {
 				if (st != null)

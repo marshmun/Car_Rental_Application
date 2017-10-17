@@ -49,6 +49,7 @@ public class AdminUpdateCar extends HttpServlet {
 		String confirmation = "You have succsessfully updated vehicle";
 		String url ="carrentaladmin.jsp";
 		Work work = new Work();
+		String errorurl = work.getAdminerror();
 		
 		String id = req.getParameter("id");
 		String year = req.getParameter("Year");
@@ -92,8 +93,7 @@ public class AdminUpdateCar extends HttpServlet {
 
 			}
 		} catch (Exception e) {
-			work.ErrorAdmin(req, res, e);
-			ErrorBean errorbean = new ErrorBean();
+			work.ErrorHandling(req, res, e, errorurl);
 		} finally {
 			try {
 				if (st != null)

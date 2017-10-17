@@ -52,6 +52,7 @@ public class NewCarServlet extends HttpServlet {
 		String confirmation = "You have succsessfully created a new vehicle";
 		String url ="carrentaladmin.jsp";
 		Work work = new Work();
+		String errorurl = work.getAdminerror();
 
 		// get the required car information from the form
 		String year = req.getParameter("Year");
@@ -84,8 +85,8 @@ public class NewCarServlet extends HttpServlet {
 			
 
 		} catch (Exception e) {
-			work.ErrorAdmin(req, res, e);
-			ErrorBean errorbean = new ErrorBean();
+			work.ErrorHandling(req, res, e, errorurl);
+			
 		} finally {
 			try {
 				if (st != null)

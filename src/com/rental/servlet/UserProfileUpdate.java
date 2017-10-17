@@ -52,6 +52,8 @@ public class UserProfileUpdate extends HttpServlet {
 		String confirmation = "You have succsessfully updated your profile";
 		String url ="update.jsp";
 		Work work = new Work();
+		String errorurl = work.getUsererror();
+		
 		HttpSession session = req.getSession(true);
 		User user = (User) session.getAttribute("user");
 
@@ -95,8 +97,8 @@ public class UserProfileUpdate extends HttpServlet {
 
 			}
 		} catch (Exception e) {
-			work.ErrorUser(req, res, e);
-			ErrorBean errorbean = new ErrorBean();
+			work.ErrorHandling(req, res, e, errorurl);
+			
 		} finally {
 			try {
 				if (st != null)

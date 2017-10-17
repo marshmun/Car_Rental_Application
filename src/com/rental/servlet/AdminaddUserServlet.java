@@ -52,6 +52,8 @@ public class AdminaddUserServlet extends HttpServlet {
 		String confirmation = "You have succsessfully added a user";
 		String url ="adminUser.jsp";
 		Work work = new Work();
+		
+		String errorurl = work.getAdminerror();
 		// Obtain submitted form data
 		String firstName = req.getParameter("First_Name");
 		String lastName = req.getParameter("Last_Name");
@@ -84,8 +86,7 @@ public class AdminaddUserServlet extends HttpServlet {
 			work.Confirmation(req, res, confirmation, url);
 			
 		} catch (Exception e) {
-			work.ErrorAdmin(req, res, e);
-			ErrorBean errorbean = new ErrorBean();
+			work.ErrorHandling(req, res, e, errorurl);
 			
 		} finally {
 			try {

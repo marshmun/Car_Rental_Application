@@ -51,6 +51,7 @@ public class DeleteUserServlet extends HttpServlet {
 		String confirmation = "You have succsessfully added an user to Admin status";
 		String url ="addAdmin.jsp";
 		Work work = new Work();
+		String errorurl = work.getAdminerror();
 
 		// get information of the car to be deleted and admins password
 		String uname = req.getParameter("User_Name");
@@ -99,7 +100,8 @@ public class DeleteUserServlet extends HttpServlet {
 			
 			return;
 		} catch (Exception e) {
-			work.ErrorAdmin(req, res, e);
+			work.ErrorHandling(req, res, e, errorurl);
+			
 			return;
 		} finally {
 			try {

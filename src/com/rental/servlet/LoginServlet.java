@@ -51,6 +51,8 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		Work work = new Work();
+		String errorurl = work.getHomeerror();
+		
 		// Get the users information
 		User user = new User();
 		user.setUser_Name(req.getParameter("User_Name"));
@@ -87,7 +89,7 @@ public class LoginServlet extends HttpServlet {
 				res.sendRedirect("index.jsp");
 			}
 		} catch (Exception e) {
-			work.ErrorHome(req, res, e);
+			work.ErrorHandling(req, res, e, errorurl);
 		} finally {
 			try {
 				if (st != null)
