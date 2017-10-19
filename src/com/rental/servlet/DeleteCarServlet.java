@@ -18,6 +18,7 @@ import javax.sql.DataSource;
 
 import com.rental.models.ErrorBean;
 import com.rental.work.DBConnector;
+import com.rental.work.ErrorHandling;
 import com.rental.work.Work;
 
 /**
@@ -91,7 +92,8 @@ public class DeleteCarServlet extends HttpServlet {
 			}
 		} catch (Exception e) {
 			//creating a new error object and pushing it to the front
-			work.ErrorHandling(req, res, e, errorurl);
+			ErrorHandling errorHandling = new ErrorHandling();
+			errorHandling.createtheerror(req, res, e, errorurl);
 			
 			
 		} finally {

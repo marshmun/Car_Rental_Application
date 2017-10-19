@@ -21,26 +21,18 @@ import com.rental.models.ErrorBean;
 
 public class Work {
 
-	private ServletRequest req;
 
-//	public Connection createConnection() throws NamingException, SQLException {
-//	    // Setup the Database datasource
-//	    Context ctx = new InitialContext();
-//	    Context env = (Context) ctx.lookup("java:comp/env");
-//	    DataSource ds = (DataSource) env.lookup("jdbc/carRentalSystem");
-//	    return ds.getConnection();
-//	}
 	
-	public void ErrorHandling(HttpServletRequest req, HttpServletResponse res, Exception e, String errorurl)
-			throws ServletException, IOException {
-		ErrorBean errorbean = new ErrorBean();
-		errorbean.setError(e);
-		req.setAttribute("errorbean", errorbean);
-		RequestDispatcher requestDispatcher= req.getRequestDispatcher(errorurl);
-		requestDispatcher.forward(req, res);
-		System.out.println(e);
-				
-	}
+//	public void ErrorHandling(HttpServletRequest req, HttpServletResponse res, Exception e, String errorurl)
+//			throws ServletException, IOException {
+//		ErrorBean errorbean = new ErrorBean();
+//		errorbean.setError(e);
+//		req.setAttribute("errorbean", errorbean);
+//		RequestDispatcher requestDispatcher= req.getRequestDispatcher(errorurl);
+//		requestDispatcher.forward(req, res);
+//		System.out.println(e);
+//				
+//	}
 	
 	public String adminerror = "adminError.jsp";
 	public String usererror ="usererror.jsp";
