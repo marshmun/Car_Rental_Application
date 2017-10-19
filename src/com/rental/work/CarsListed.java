@@ -1,4 +1,5 @@
-package com.rental.models;
+package com.rental.work;
+import com.rental.models.Car;
 import com.rental.models.CarData;
 
 import java.sql.Connection;
@@ -14,7 +15,7 @@ public class CarsListed {
 	
 	
 	public List<Car> createcarlist() throws ClassNotFoundException, SQLException {
-		Work work = new Work();
+		
 		ResultSet result  =null;
 		Statement sp = null;
 		Connection conn = null;
@@ -23,7 +24,7 @@ public class CarsListed {
 		
 		
 		try {
- 			conn = work.createConnection();
+ 			conn = DBConnector.createConnection();
 			sp = conn.createStatement();
 			conn.setAutoCommit(false);
 			result = sp.executeQuery("SELECT * FROM cardetails");

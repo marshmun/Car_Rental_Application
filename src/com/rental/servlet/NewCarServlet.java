@@ -17,7 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import com.rental.models.ErrorBean;
-import com.rental.models.Work;
+import com.rental.work.DBConnector;
+import com.rental.work.Work;
 
 /**
  * Servlet implementation class NewCarServlet
@@ -67,7 +68,7 @@ public class NewCarServlet extends HttpServlet {
 
 		try {
 			//creating connection with DB
-			conn = work.createConnection();
+			conn = DBConnector.createConnection();
 			
 
 			// Prepare the SQL statmenet to insert the values

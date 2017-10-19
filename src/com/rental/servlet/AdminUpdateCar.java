@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import com.rental.models.ErrorBean;
-import com.rental.models.Work;
+import com.rental.work.DBConnector;
+import com.rental.work.Work;
 
 /**
  * Servlet implementation class AdminUpdateCar
@@ -73,7 +74,7 @@ public class AdminUpdateCar extends HttpServlet {
 		String nativeSQL = "";
 
 		try {
-			conn = work.createConnection();
+			conn = DBConnector.createConnection();
 			
 		
 

@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import com.rental.models.ErrorBean;
-import com.rental.models.Work;
+import com.rental.work.DBConnector;
+import com.rental.work.Work;
 
 /**
  * Servlet implementation class AdminAddAdminServlet
@@ -61,7 +62,7 @@ public class AdminAddAdminServlet extends HttpServlet {
 
 		try {
 			//create a connection with the db
-			conn = work.createConnection();
+			conn = DBConnector.createConnection();
 
 			st = conn.prepareStatement("update userdetails SET User_Type = 'Admin' where User_Name= ?");
 			st.clearParameters();

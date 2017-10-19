@@ -18,7 +18,8 @@ import javax.sql.DataSource;
 
 import com.rental.models.ErrorBean;
 import com.rental.models.User;
-import com.rental.models.Work;
+import com.rental.work.DBConnector;
+import com.rental.work.Work;
 
 import java.sql.Statement;
 
@@ -66,7 +67,7 @@ public class LoginServlet extends HttpServlet {
 
 		try {
 			//creating new connetion to DB
-			conn = work.createConnection();
+			conn = DBConnector.createConnection();
 			st = conn.createStatement();
 
 			rs = st.executeQuery("SELECT * FROM userdetails where User_Name='" + user.getUserName()+ "' and password='" + user.getPassword() + "'");

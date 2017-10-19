@@ -16,8 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import com.rental.models.ErrorBean;
+import com.rental.work.DBConnector;
+import com.rental.work.Work;
 import com.sun.org.apache.regexp.internal.recompile;
-import com.rental.models.Work;
 
 /**
  * Servlet implementation class RegistrationServlet
@@ -67,7 +68,7 @@ public class RegistrationServlet extends HttpServlet {
 
 		try {
 			//creating new connection with the DB
-			conn = work.createConnection();
+			conn = DBConnector.createConnection();
 		
 
 			// Prepare the SQL statmenet to insert the values

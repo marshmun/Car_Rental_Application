@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import com.rental.models.ErrorBean;
-import com.rental.models.Work;
+import com.rental.work.DBConnector;
+import com.rental.work.Work;
 
 /**
  * Servlet implementation class AdminUpdateProfile
@@ -68,7 +69,7 @@ public class AdminUpdateProfile extends HttpServlet {
 		String nativeSQL = "";
 
 		try {
-			conn = work.createConnection();
+			conn = DBConnector.createConnection();
 			
 
 			st = conn.prepareStatement("update userdetails SET Email_Address = ?, First_Name = ?, Last_Name = ?, User_Type= ?  where User_Name = ?");

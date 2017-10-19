@@ -1,4 +1,4 @@
-package com.rental.models;
+package com.rental.work;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -9,7 +9,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 public class DBConnector {
-	public Connection createConnection() throws NamingException, SQLException {
+	public static Connection createConnection() throws NamingException, SQLException {
 	    // Setup the Database datasource
 	    Context ctx = new InitialContext();
 	    Context env = (Context) ctx.lookup("java:comp/env");

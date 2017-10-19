@@ -17,7 +17,8 @@ import javax.sql.DataSource;
 
 import com.rental.models.ErrorBean;
 import com.rental.models.User;
-import com.rental.models.Work;
+import com.rental.work.DBConnector;
+import com.rental.work.Work;
 
 /**
  * Servlet implementation class UserProfileUpdate
@@ -79,7 +80,7 @@ public class UserProfileUpdate extends HttpServlet {
 
 		try {
 			//connect to the DB
-			conn = work.createConnection();
+			conn = DBConnector.createConnection();
 			
 
 			st = conn.prepareStatement("update userdetails SET Email_Address = ?, First_Name = ?, Last_Name = ?  where User_Name = ?");

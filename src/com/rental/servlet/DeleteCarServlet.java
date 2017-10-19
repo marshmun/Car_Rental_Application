@@ -17,7 +17,8 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import com.rental.models.ErrorBean;
-import com.rental.models.Work;
+import com.rental.work.DBConnector;
+import com.rental.work.Work;
 
 /**
  * Servlet implementation class DeleteCarServlet
@@ -66,7 +67,7 @@ public class DeleteCarServlet extends HttpServlet {
 
 		try {
 			//create connection with the DB
-			conn = work.createConnection();
+			conn = DBConnector.createConnection();
 			
 
 			st = conn.prepareStatement("update userdetails set Car_rental = ? where Car_Rental = ?");

@@ -15,7 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import com.rental.models.ErrorBean;
-import com.rental.models.Work;
+import com.rental.work.DBConnector;
+import com.rental.work.Work;
 
 /**
  * Servlet implementation class AdminRentOutServlet
@@ -62,7 +63,7 @@ public class AdminRentOutServlet extends HttpServlet {
 
 		try {
 			//connect with the DB
-			conn = work.createConnection();
+			conn = DBConnector.createConnection();
 			
 
 			st = conn.prepareCall("update userdetails SET Car_Rental = ? where User_Name= ?");

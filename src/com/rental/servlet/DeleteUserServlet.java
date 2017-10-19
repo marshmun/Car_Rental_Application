@@ -16,7 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import com.rental.models.ErrorBean;
-import com.rental.models.Work;
+import com.rental.work.DBConnector;
+import com.rental.work.Work;
 
 /**
  * Servlet implementation class DeleteUserServlet
@@ -67,7 +68,7 @@ public class DeleteUserServlet extends HttpServlet {
 
 		try {
 			//creating connection with the DB
-			conn = work.createConnection();
+			conn = DBConnector.createConnection();
 			sp = conn.createStatement();
 			
 			conn.setAutoCommit(false);

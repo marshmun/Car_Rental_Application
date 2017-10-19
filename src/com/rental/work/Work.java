@@ -1,4 +1,4 @@
-package com.rental.models;
+package com.rental.work;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -16,17 +16,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import com.rental.models.ConfirmationBean;
+import com.rental.models.ErrorBean;
+
 public class Work {
 
 	private ServletRequest req;
 
-	public Connection createConnection() throws NamingException, SQLException {
-	    // Setup the Database datasource
-	    Context ctx = new InitialContext();
-	    Context env = (Context) ctx.lookup("java:comp/env");
-	    DataSource ds = (DataSource) env.lookup("jdbc/carRentalSystem");
-	    return ds.getConnection();
-	}
+//	public Connection createConnection() throws NamingException, SQLException {
+//	    // Setup the Database datasource
+//	    Context ctx = new InitialContext();
+//	    Context env = (Context) ctx.lookup("java:comp/env");
+//	    DataSource ds = (DataSource) env.lookup("jdbc/carRentalSystem");
+//	    return ds.getConnection();
+//	}
 	
 	public void ErrorHandling(HttpServletRequest req, HttpServletResponse res, Exception e, String errorurl)
 			throws ServletException, IOException {

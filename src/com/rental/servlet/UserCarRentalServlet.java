@@ -18,7 +18,8 @@ import javax.sql.DataSource;
 
 import com.rental.models.ErrorBean;
 import com.rental.models.User;
-import com.rental.models.Work;
+import com.rental.work.DBConnector;
+import com.rental.work.Work;
 
 import javafx.scene.control.Alert;
 
@@ -69,7 +70,7 @@ public class UserCarRentalServlet extends HttpServlet {
 		String nativeSQL = "";
 
 		try {
-			conn = work.createConnection();
+			conn = DBConnector.createConnection();
 
 			st = conn.prepareCall("update userdetails SET Car_Rental = '" + carid + "' where User_Name='" + user.getUserName() + "'");
 			st.clearParameters();
