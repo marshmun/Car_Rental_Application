@@ -49,9 +49,10 @@ public class AdminaddUserServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		//create new work object and strings to do the work
+		Work work = new Work();
 		String confirmation = "You have succsessfully added a user";
 		String url ="adminUser.jsp";
-		Work work = new Work();
 		
 		String errorurl = work.getAdminerror();
 		// Obtain submitted form data
@@ -66,6 +67,7 @@ public class AdminaddUserServlet extends HttpServlet {
 		Statement st = null;
 
 		try {
+			//create connection with db
 			conn = work.createConnection();
 			
 
@@ -86,6 +88,7 @@ public class AdminaddUserServlet extends HttpServlet {
 			work.Confirmation(req, res, confirmation, url);
 			
 		} catch (Exception e) {
+			//create new error object and push it to the front
 			work.ErrorHandling(req, res, e, errorurl);
 			
 		} finally {

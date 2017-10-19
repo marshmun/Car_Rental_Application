@@ -48,9 +48,10 @@ public class DeleteUserServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		//creating connection to the work object, and creating strings to do the work.
+		Work work = new Work();
 		String confirmation = "You have succsessfully added an user to Admin status";
 		String url ="addAdmin.jsp";
-		Work work = new Work();
 		String errorurl = work.getAdminerror();
 
 		// get information of the car to be deleted and admins password
@@ -65,6 +66,7 @@ public class DeleteUserServlet extends HttpServlet {
 		ResultSet result  =null;
 
 		try {
+			//creating connection with the DB
 			conn = work.createConnection();
 			sp = conn.createStatement();
 			
@@ -100,6 +102,7 @@ public class DeleteUserServlet extends HttpServlet {
 			
 			return;
 		} catch (Exception e) {
+			//creating new error object and pushing it to the front.
 			work.ErrorHandling(req, res, e, errorurl);
 			
 			return;

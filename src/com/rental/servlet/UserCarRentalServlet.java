@@ -53,15 +53,15 @@ public class UserCarRentalServlet extends HttpServlet {
 	 */
 	@SuppressWarnings("resource")
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		Work work = new Work();
 		String confirmation = "You have succsessfully rented out the vehicle";
 		String url ="carRental.jsp";
-		Work work = new Work();
 		String errorurl = work.getUsererror();
 		
 		HttpSession session = req.getSession(true);
 		User user = (User) session.getAttribute("user");
-
 		String carid = req.getParameter("id");
+
 
 		int rs;
 		Connection conn = null;
@@ -71,7 +71,7 @@ public class UserCarRentalServlet extends HttpServlet {
 		try {
 			conn = work.createConnection();
 
-			st = conn.prepareCall("update userdetails SET Car_Rental = '" + carid + "' where User_Name='" + user.getUser_Name() + "'");
+			st = conn.prepareCall("update userdetails SET Car_Rental = '" + carid + "' where User_Name='" + user.getUserName() + "'");
 			st.clearParameters();
 			rs = st.executeUpdate();
 

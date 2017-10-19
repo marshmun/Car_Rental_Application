@@ -48,10 +48,10 @@ public class AdminReturnCarServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		//create connection with work object and make strings to do the work
+		Work work = new Work();
 		String confirmation = "You have succsessfully returned the vehicle";
 		String url ="returnCar.jsp";
-		Work work = new Work();
-		
 		String errorurl = work.getAdminerror();
 		String carid = null;
 		String uname = req.getParameter("User_Name");
@@ -65,6 +65,7 @@ public class AdminReturnCarServlet extends HttpServlet {
 		ResultSet result  =null;
 
 		try {
+			//create connection with DB
 			conn = work.createConnection();
 			sp = conn.createStatement();
 			
@@ -106,6 +107,7 @@ public class AdminReturnCarServlet extends HttpServlet {
 			
 		} catch (Exception e) {
 			try{conn.rollback();}catch(Exception e1){}
+			//generate new error object and push it to the front.
 			work.ErrorHandling(req, res, e, errorurl);
 		
 		} finally {

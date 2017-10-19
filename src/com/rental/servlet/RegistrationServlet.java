@@ -66,6 +66,7 @@ public class RegistrationServlet extends HttpServlet {
 		Statement st = null;
 
 		try {
+			//creating new connection with the DB
 			conn = work.createConnection();
 		
 
@@ -86,6 +87,7 @@ public class RegistrationServlet extends HttpServlet {
 			RequestDispatcher requestDispatcher = req.getRequestDispatcher("login.jsp");
 			requestDispatcher.forward(req, res);
 		} catch (Exception e) {
+			//creating new error and pushing it to the front
 			work.ErrorHandling(req, res, e, errorurl);
 			
 		} finally {

@@ -50,12 +50,13 @@ public class LoginServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		//creating new work object
 		Work work = new Work();
 		String errorurl = work.getHomeerror();
 		
 		// Get the users information
 		User user = new User();
-		user.setUser_Name(req.getParameter("User_Name"));
+		user.setUserName(req.getParameter("User_Name"));
 		user.setPassword(req.getParameter("password"));
 
 		// Make connection with the DB to authenticate against it
@@ -64,15 +65,16 @@ public class LoginServlet extends HttpServlet {
 		Statement st = null;
 
 		try {
+			//creating new connetion to DB
 			conn = work.createConnection();
 			st = conn.createStatement();
 
-			rs = st.executeQuery("SELECT * FROM userdetails where User_Name='" + user.getUser_Name()+ "' and password='" + user.getPassword() + "'");
+			rs = st.executeQuery("SELECT * FROM userdetails where User_Name='" + user.getUserName()+ "' and password='" + user.getPassword() + "'");
 			if (rs.next()) {
 				HttpSession session = req.getSession();
-				user.setFirst_name(rs.getString("First_Name"));
-				user.setLast_Name(rs.getString("Last_Name"));
-				user.setEmail_address(rs.getString("Email_Address"));
+				user.setFirstName(rs.getString("First_Name"));
+				user.setLastName(rs.getString("Last_Name"));
+				user.setEmailAddress(rs.getString("Email_Address"));
 				user.setType(rs.getString("User_Type"));
 				session.setAttribute("user", user);
 
@@ -89,6 +91,7 @@ public class LoginServlet extends HttpServlet {
 				res.sendRedirect("index.jsp");
 			}
 		} catch (Exception e) {
+			//creating new error and pushing it to the front
 			work.ErrorHandling(req, res, e, errorurl);
 		} finally {
 			try {

@@ -46,19 +46,20 @@ public class AdminUpdateProfile extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		String confirmation = "You have succsessfully added an user to Admin status";
-		String url ="addUser.jsp";
+		//creates new connection to work object and strings created to do work.
 		Work work = new Work();
+		String confirmation = "You have succsessfully added an user to Admin status";
+		String url ="adminUser.jsp";
 		String errorurl = work.getAdminerror();
-		
 		String username = req.getParameter("User_Name");
 		String email = req.getParameter("Email_Address");
 		String fname = req.getParameter("First_Name");
 		String lname = req.getParameter("Last_Name");
 		String type = req.getParameter("Type");
-
-		if (username.equals("") || username.equals(null)) {
-			res.sendRedirect("adminUser.jsp");
+		//conditonal to send you back to provide a user name to update a user
+		if (username.equals("") || username == null) {
+			confirmation ="Please provide a valid user name";
+			work.Confirmation(req, res, confirmation, errorurl);
 		}
 
 		int rs;
@@ -87,6 +88,7 @@ public class AdminUpdateProfile extends HttpServlet {
 
 			}
 		} catch (Exception e) {
+			//new error object created and sent to the front
 			work.ErrorHandling(req, res, e, errorurl);
 			
 		} finally {

@@ -49,25 +49,27 @@ public class UserProfileUpdate extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		String confirmation = "You have succsessfully updated your profile";
-		String url ="update.jsp";
-		Work work = new Work();
-		String errorurl = work.getUsererror();
-		
+		//get the session and pull out user information
 		HttpSession session = req.getSession(true);
 		User user = (User) session.getAttribute("user");
-
+		//connect with the work object and create strings to do the work
+		Work work = new Work();
+		String confirmation = "You have succsessfully updated your profile";
+		String url ="update.jsp";
+		String errorurl = work.getUsererror();
 		String email = req.getParameter("Email_Address");
 		String fname = req.getParameter("First_Name");
 		String lname = req.getParameter("Last_Name");
-		if (email.equals("") || email.equals(null)) {
-			email = user.getEmail_address();
+		
+		//conditonals if nothing is put in the for the following params
+		if (email.equals("") || email == null) {
+			email = user.getEmailAddress();
 		}
-		if (fname.equals("") || fname.equals(null)) {
-			fname = user.getFirst_name();
+		if (fname.equals("") || fname == null) {
+			fname = user.getFirstName();
 		}
-		if (lname.equals("") || lname.equals(null)) {
-			lname = user.getLast_Name();
+		if (lname.equals("") || lname == null) {
+			lname = user.getLastName();
 		}
 
 		int rs;
@@ -76,6 +78,7 @@ public class UserProfileUpdate extends HttpServlet {
 		String nativeSQL = "";
 
 		try {
+			//connect to the DB
 			conn = work.createConnection();
 			
 
@@ -84,19 +87,20 @@ public class UserProfileUpdate extends HttpServlet {
 			st.setString(1, email);
 			st.setString(2, fname);
 			st.setString(3, lname);
-			st.setString(4, user.getUser_Name());
+			st.setString(4, user.getUserName());
 			
 			rs = st.executeUpdate();
 			if (rs != 0) {
-				user.setFirst_name(fname);
-				user.setLast_Name(lname);
-				user.setEmail_address(email);
+				user.setFirstName(fname);
+				user.setLastName(lname);
+				user.setEmailAddress(email);
 				work.Confirmation(req, res, confirmation, url);
 				return;
 			} else {
 
 			}
 		} catch (Exception e) {
+			//create new error object and push it to the front
 			work.ErrorHandling(req, res, e, errorurl);
 			
 		} finally {

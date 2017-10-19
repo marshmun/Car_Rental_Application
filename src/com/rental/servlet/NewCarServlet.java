@@ -49,9 +49,10 @@ public class NewCarServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		//creating work object and strings to do the work.
+		Work work = new Work();
 		String confirmation = "You have succsessfully created a new vehicle";
 		String url ="carrentaladmin.jsp";
-		Work work = new Work();
 		String errorurl = work.getAdminerror();
 
 		// get the required car information from the form
@@ -65,6 +66,7 @@ public class NewCarServlet extends HttpServlet {
 		Statement st = null;
 
 		try {
+			//creating connection with DB
 			conn = work.createConnection();
 			
 
@@ -85,6 +87,7 @@ public class NewCarServlet extends HttpServlet {
 			
 
 		} catch (Exception e) {
+			//creating new error and pushing it to the front.
 			work.ErrorHandling(req, res, e, errorurl);
 			
 		} finally {

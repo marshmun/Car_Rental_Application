@@ -53,7 +53,7 @@
 						</ul>
 					</div>
 					<div class="confirmation">
-						<p>Logged in as :<%=user.getFirst_name() %> <%=user.getLast_Name() %></p>
+						<p>Logged in as :<%=user.getFirstName() %> <%=user.getLastName() %></p>
 					</div>
 				</div>
 			</nav>
@@ -71,7 +71,7 @@
 			String url = "jdbc:mysql://localhost:3306/carrentalsystem";
 			String username = "root";
 			String password = "javatest";
-			String query = "select * from userdetails where Email_Address ='" + user.getEmail_address() + "'";
+			String query = "select * from userdetails where Email_Address ='" + user.getEmailAddress() + "'";
 			Connection conn = DriverManager.getConnection(url, username, password);
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);

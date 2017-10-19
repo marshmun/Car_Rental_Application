@@ -49,10 +49,12 @@ public class DeleteCarServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		//create connection with work object and creating strings to do the work.
+		Work work = new Work();
 		String confirmation = "You have succsessfully deleted the vehicle";
 		String url ="carrentaladmin.jsp";
-		Work work = new Work();
 		String errorurl = work.getAdminerror();
+		
 		// get information of the car to be deleted and admins password
 		String carid = req.getParameter("id");
 		String nocar = "User has no car";
@@ -63,6 +65,7 @@ public class DeleteCarServlet extends HttpServlet {
 		String nativeSQL = "";
 
 		try {
+			//create connection with the DB
 			conn = work.createConnection();
 			
 
@@ -86,6 +89,7 @@ public class DeleteCarServlet extends HttpServlet {
 
 			}
 		} catch (Exception e) {
+			//creating a new error object and pushing it to the front
 			work.ErrorHandling(req, res, e, errorurl);
 			
 			

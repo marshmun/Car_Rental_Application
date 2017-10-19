@@ -46,20 +46,21 @@ public class AdminAddAdminServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		//create connection with work object and create strings to do the work
 		Work work = new Work();
 		
 		String confirmation = "You have succsessfully added an user to Admin status";
 		String url ="addAdmin.jsp";
 		String errorurl = work.getAdminerror();
-		
 		String username = req.getParameter("User_Name");
-
+		
 		int rs;
 		Connection conn = null;
 		java.sql.PreparedStatement st = null;
 		String nativeSQL = "";
 
 		try {
+			//create a connection with the db
 			conn = work.createConnection();
 
 			st = conn.prepareStatement("update userdetails SET User_Type = 'Admin' where User_Name= ?");
@@ -74,6 +75,7 @@ public class AdminAddAdminServlet extends HttpServlet {
 
 			}
 		} catch (Exception e) {
+			//create new error object and push it to the front
 			work.ErrorHandling(req, res, e, errorurl);
 			
 		} finally {

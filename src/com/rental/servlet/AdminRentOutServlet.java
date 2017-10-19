@@ -47,11 +47,11 @@ public class AdminRentOutServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		//create connection with work object and make strings to do the work
+		Work work = new Work();
 		String confirmation = "You have succsessfully rented out the vehicle";
 		String url ="carrentaladmin.jsp";
-		Work work = new Work();
 		String errorurl = work.getAdminerror();
-		
 		String carid = req.getParameter("id");
 		String username = req.getParameter("User_Name");
 
@@ -61,6 +61,7 @@ public class AdminRentOutServlet extends HttpServlet {
 		String nativeSQL = "";
 
 		try {
+			//connect with the DB
 			conn = work.createConnection();
 			
 
@@ -82,6 +83,7 @@ public class AdminRentOutServlet extends HttpServlet {
 
 			}
 		} catch (Exception e) {
+			//create error object and push it to the front
 			work.ErrorHandling(req, res, e, errorurl);
 			
 		} finally {

@@ -1,6 +1,6 @@
 <%@page import="java.util.List"%>
 <%@ page import="com.rental.models.User"%>
-<%@ page import="com.rental.models.Table"%>
+<%@ page import="com.rental.models.CarsListed"%>
 <%@ page import="com.rental.models.Car"%>
 <%@ page import="com.rental.models.ConfirmationBean" %>
 <%
@@ -123,9 +123,9 @@
 
 		</tr>
 		<%
-			Table table = new Table();
-			table.getTableConnection();
-			List<Car> cars = table.getTableConnection();
+			CarsListed carsListed = new CarsListed();
+			carsListed.createcarlist();
+			List<Car> cars = carsListed.createcarlist();
 			String renting;
 			for (Car c : cars) {
 				int id = c.getId();
@@ -243,7 +243,7 @@
 	
 
 	<%
-		}
+			} 
 	%>
 </table>
 

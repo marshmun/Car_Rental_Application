@@ -2,55 +2,55 @@ package com.rental.models;
 
 public class User {
 
-	private String First_name;
-	private String Last_Name;
-	private String User_Name;
-	private String Email_address;
-	private String Type;
+	private String firstName;
+	private String lastName;
+	private String userName;
+	private String emailAddress;
+	private String type;
 	private String Password;
 
 	public User() {
 		super();
 	}
 
-	public String getFirst_name() {
-		return First_name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setFirst_name(String first_name) {
-		First_name = first_name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public String getLast_Name() {
-		return Last_Name;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setLast_Name(String last_Name) {
-		Last_Name = last_Name;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	public String getUser_Name() {
-		return User_Name;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUser_Name(String user_Name) {
-		User_Name = user_Name;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-	public String getEmail_address() {
-		return Email_address;
+	public String getEmailAddress() {
+		return emailAddress;
 	}
 
-	public void setEmail_address(String email_address) {
-		Email_address = email_address;
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
 	}
 
 	public String getType() {
-		return Type;
+		return type;
 	}
 
 	public void setType(String type) {
-		Type = type;
+		this.type = type;
 	}
 
 	public String getPassword() {

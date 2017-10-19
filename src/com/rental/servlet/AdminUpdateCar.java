@@ -46,17 +46,18 @@ public class AdminUpdateCar extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		//create connection to work object and create strings to do the work
+		Work work = new Work();
 		String confirmation = "You have succsessfully updated vehicle";
 		String url ="carrentaladmin.jsp";
-		Work work = new Work();
 		String errorurl = work.getAdminerror();
-		
 		String id = req.getParameter("id");
 		String year = req.getParameter("Year");
 		String make = req.getParameter("Make");
 		String model = req.getParameter("Model");
 		String color = req.getParameter("Color");
-		if (id.equals("") || id.equals(null)) {
+		//conditionals if the following events are left null
+		if (id.equals("") || id == null) {
 			String needid;
 			needid = "Please enter a valid id";
 			res.sendRedirect("adminUser.jsp");
@@ -93,6 +94,7 @@ public class AdminUpdateCar extends HttpServlet {
 
 			}
 		} catch (Exception e) {
+			//create new error object and push to the front.
 			work.ErrorHandling(req, res, e, errorurl);
 		} finally {
 			try {
