@@ -18,7 +18,7 @@ import javax.sql.DataSource;
 import com.rental.models.ErrorBean;
 import com.rental.work.DBConnector;
 import com.rental.work.ErrorHandling;
-import com.rental.work.Work;
+import com.rental.work.Confirmation;
 import com.sun.org.apache.regexp.internal.recompile;
 
 /**
@@ -53,10 +53,6 @@ public class RegistrationServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 		// Obtain submitted form data
-		
-		Work work = new Work();
-		String errorurl = work.getHomeerror();
-		
 		String firstName = req.getParameter("First_Name");
 		String lastName = req.getParameter("Last_Name");
 		String username = req.getParameter("User_Name");
@@ -91,7 +87,7 @@ public class RegistrationServlet extends HttpServlet {
 		} catch (Exception e) {
 			//creating new error and pushing it to the front
 			ErrorHandling errorHandling = new ErrorHandling();
-			errorHandling.createtheerror(req, res, e, errorurl);
+			errorHandling.createtheerror(req, res, e, errorHandling.HOMEERROR);
 			
 		} finally {
 			try {

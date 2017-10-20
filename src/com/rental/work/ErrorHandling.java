@@ -22,4 +22,22 @@ public class ErrorHandling {
 		System.out.println(e);
 			
 }
+	
+	public final String ADMINERROR = "adminError.jsp";
+	public final String USERERROR ="usererror.jsp";
+	public final String HOMEERROR="homeError.jsp";
+	
+	public String getADMINERROR() {
+		return ADMINERROR;
+	}
+	public String getUSERERROR() {
+		return USERERROR;
+	}
+	public String getHOMEERROR() {
+		return HOMEERROR;
+	}
+	
+	
+
+
 }

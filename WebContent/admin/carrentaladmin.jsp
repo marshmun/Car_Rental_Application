@@ -1,6 +1,6 @@
 <%@page import="java.util.List"%>
 <%@ page import="com.rental.models.User"%>
-<%@ page import="com.rental.models.CarsListed"%>
+<%@ page import="com.rental.work.CarsListed"%>
 <%@ page import="com.rental.models.Car"%>
 <%@ page import="com.rental.models.ConfirmationBean" %>
 <%
@@ -58,8 +58,8 @@
 			</ul>
 			<div class="confirmation">
 				<p>
-					Logged in as :<%=user.getFirst_name()%>
-					<%=user.getLast_Name()%></p>
+					Logged in as :<%=user.getFirstName()%>
+					<%=user.getLastName()%></p>
 			</div>
 		</div>
 	</nav>

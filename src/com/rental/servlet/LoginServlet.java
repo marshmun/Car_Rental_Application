@@ -20,7 +20,7 @@ import com.rental.models.ErrorBean;
 import com.rental.models.User;
 import com.rental.work.DBConnector;
 import com.rental.work.ErrorHandling;
-import com.rental.work.Work;
+import com.rental.work.Confirmation;
 
 import java.sql.Statement;
 
@@ -53,8 +53,8 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		//creating new work object
-		Work work = new Work();
-		String errorurl = work.getHomeerror();
+		Confirmation work = new Confirmation();
+	
 		
 		// Get the users information
 		User user = new User();
@@ -95,7 +95,7 @@ public class LoginServlet extends HttpServlet {
 		} catch (Exception e) {
 			//creating new error and pushing it to the front
 			ErrorHandling errorHandling = new ErrorHandling();
-			errorHandling.createtheerror(req, res, e, errorurl);
+			errorHandling.createtheerror(req, res, e, errorHandling.HOMEERROR);
 		} finally {
 			try {
 				if (st != null)

@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 import com.rental.models.ErrorBean;
 import com.rental.work.DBConnector;
 import com.rental.work.ErrorHandling;
-import com.rental.work.Work;
+import com.rental.work.Confirmation;
 
 /**
  * Servlet implementation class NewCarServlet
@@ -52,10 +52,9 @@ public class NewCarServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		//creating work object and strings to do the work.
-		Work work = new Work();
+		Confirmation work = new Confirmation();
 		String confirmation = "You have succsessfully created a new vehicle";
-		String url ="carrentaladmin.jsp";
-		String errorurl = work.getAdminerror();
+
 
 		// get the required car information from the form
 		String year = req.getParameter("Year");
@@ -85,13 +84,13 @@ public class NewCarServlet extends HttpServlet {
 			conn.close();
 
 			// Dispatch into success page
-			work.Confirmation(req, res, confirmation, url);
+			work.getConfirmation(req, res, confirmation, work.ADMINCARRENTAL);
 			
 
 		} catch (Exception e) {
 			//creating new error and pushing it to the front.
 			ErrorHandling errorHandling = new ErrorHandling();
-			errorHandling.createtheerror(req, res, e, errorurl);
+			errorHandling.createtheerror(req, res, e, errorHandling.ADMINERROR);
 			
 		} finally {
 			try {

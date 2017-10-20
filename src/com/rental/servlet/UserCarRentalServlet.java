@@ -20,7 +20,7 @@ import com.rental.models.ErrorBean;
 import com.rental.models.User;
 import com.rental.work.DBConnector;
 import com.rental.work.ErrorHandling;
-import com.rental.work.Work;
+import com.rental.work.Confirmation;
 
 import javafx.scene.control.Alert;
 
@@ -55,10 +55,9 @@ public class UserCarRentalServlet extends HttpServlet {
 	 */
 	@SuppressWarnings("resource")
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		Work work = new Work();
+		Confirmation work = new Confirmation();
 		String confirmation = "You have succsessfully rented out the vehicle";
-		String url ="carRental.jsp";
-		String errorurl = work.getUsererror();
+
 		
 		HttpSession session = req.getSession(true);
 		User user = (User) session.getAttribute("user");
@@ -83,14 +82,14 @@ public class UserCarRentalServlet extends HttpServlet {
 			
 			rs = st.executeUpdate();
 			if (rs != 0) {
-				work.Confirmation(req, res, confirmation, url);
+				work.getConfirmation(req, res, confirmation, work.USERCARRENTAL);
 				return;
 			} else {
 
 			}
 		} catch (Exception e) {
 			ErrorHandling errorHandling = new ErrorHandling();
-			errorHandling.createtheerror(req, res, e, errorurl);
+			errorHandling.createtheerror(req, res, e, errorHandling.USERERROR);
 			
 			
 		} finally {

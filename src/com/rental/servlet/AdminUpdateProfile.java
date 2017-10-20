@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 import com.rental.models.ErrorBean;
 import com.rental.work.DBConnector;
 import com.rental.work.ErrorHandling;
-import com.rental.work.Work;
+import com.rental.work.Confirmation;
 
 /**
  * Servlet implementation class AdminUpdateProfile
@@ -49,10 +49,10 @@ public class AdminUpdateProfile extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		//creates new connection to work object and strings created to do work.
-		Work work = new Work();
+		Confirmation work = new Confirmation();
+		ErrorHandling errorHandling = new ErrorHandling();
 		String confirmation = "You have succsessfully added an user to Admin status";
-		String url ="adminUser.jsp";
-		String errorurl = work.getAdminerror();
+		
 		String username = req.getParameter("User_Name");
 		String email = req.getParameter("Email_Address");
 		String fname = req.getParameter("First_Name");
@@ -61,7 +61,7 @@ public class AdminUpdateProfile extends HttpServlet {
 		//conditonal to send you back to provide a user name to update a user
 		if (username.equals("") || username == null) {
 			confirmation ="Please provide a valid user name";
-			work.Confirmation(req, res, confirmation, errorurl);
+			work.getConfirmation(req, res, confirmation, work.ADMINUSER);
 		}
 
 		int rs;
@@ -83,7 +83,7 @@ public class AdminUpdateProfile extends HttpServlet {
 			
 			rs = st.executeUpdate();
 			if (rs != 0) {
-				work.Confirmation(req, res, confirmation, url);
+				work.getConfirmation(req, res, confirmation, work.ADMINUSER);
 		
 				return;
 			} else {
@@ -91,8 +91,8 @@ public class AdminUpdateProfile extends HttpServlet {
 			}
 		} catch (Exception e) {
 			//new error object created and sent to the front
-			ErrorHandling errorHandling = new ErrorHandling();
-			errorHandling.createtheerror(req, res, e, errorurl);
+			
+			errorHandling.createtheerror(req, res, e, errorHandling.getADMINERROR());
 			
 		} finally {
 			try {

@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 import com.rental.models.ErrorBean;
 import com.rental.work.DBConnector;
 import com.rental.work.ErrorHandling;
-import com.rental.work.Work;
+import com.rental.work.Confirmation;
 
 /**
  * Servlet implementation class AdminAddAdminServlet
@@ -49,11 +49,10 @@ public class AdminAddAdminServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		//create connection with work object and create strings to do the work
-		Work work = new Work();
+		Confirmation work = new Confirmation();
 		
 		String confirmation = "You have succsessfully added an user to Admin status";
-		String url ="addAdmin.jsp";
-		String errorurl = work.getAdminerror();
+		
 		String username = req.getParameter("User_Name");
 		
 		int rs;
@@ -70,8 +69,7 @@ public class AdminAddAdminServlet extends HttpServlet {
 			st.setString(1, username);
 			rs = st.executeUpdate();
 			if (rs != 0) {
-				work.Confirmation(req, res, confirmation, url);
-				
+				work.getConfirmation(req, res, confirmation, work.ADMINUSER);
 				return;
 			} else {
 
@@ -79,7 +77,7 @@ public class AdminAddAdminServlet extends HttpServlet {
 		} catch (Exception e) {
 			//create new error object and push it to the front
 			ErrorHandling errorHandling = new ErrorHandling();
-			errorHandling.createtheerror(req, res, e, errorurl);
+			errorHandling.createtheerror(req, res, e, errorHandling.getADMINERROR());
 			
 			
 		} finally {

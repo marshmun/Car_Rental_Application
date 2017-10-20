@@ -17,7 +17,7 @@ import javax.sql.DataSource;
 import com.rental.models.ErrorBean;
 import com.rental.work.DBConnector;
 import com.rental.work.ErrorHandling;
-import com.rental.work.Work;
+import com.rental.work.Confirmation;
 
 /**
  * Servlet implementation class AdminRentOutServlet
@@ -50,10 +50,9 @@ public class AdminRentOutServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		//create connection with work object and make strings to do the work
-		Work work = new Work();
+		Confirmation work = new Confirmation();
 		String confirmation = "You have succsessfully rented out the vehicle";
-		String url ="carrentaladmin.jsp";
-		String errorurl = work.getAdminerror();
+		
 		String carid = req.getParameter("id");
 		String username = req.getParameter("User_Name");
 
@@ -78,7 +77,7 @@ public class AdminRentOutServlet extends HttpServlet {
 			st.setString(1, carid);
 			rs = st.executeUpdate();
 			if (rs != 0) {
-				work.Confirmation(req, res, confirmation, url);
+				work.getConfirmation(req, res, confirmation, work.ADMINCARRENTAL);
 				
 				return;
 			} else {
@@ -87,7 +86,7 @@ public class AdminRentOutServlet extends HttpServlet {
 		} catch (Exception e) {
 			//create error object and push it to the front
 			ErrorHandling errorHandling = new ErrorHandling();
-			errorHandling.createtheerror(req, res, e, errorurl);
+			errorHandling.createtheerror(req, res, e, errorHandling.getADMINERROR());
 			
 		} finally {
 			try {

@@ -19,7 +19,7 @@ import com.rental.models.ErrorBean;
 import com.rental.models.User;
 import com.rental.work.DBConnector;
 import com.rental.work.ErrorHandling;
-import com.rental.work.Work;
+import com.rental.work.Confirmation;
 
 /**
  * Servlet implementation class UserProfileUpdate
@@ -54,11 +54,12 @@ public class UserProfileUpdate extends HttpServlet {
 		//get the session and pull out user information
 		HttpSession session = req.getSession(true);
 		User user = (User) session.getAttribute("user");
+		
 		//connect with the work object and create strings to do the work
-		Work work = new Work();
+		
+		Confirmation work = new Confirmation();
 		String confirmation = "You have succsessfully updated your profile";
-		String url ="update.jsp";
-		String errorurl = work.getUsererror();
+
 		String email = req.getParameter("Email_Address");
 		String fname = req.getParameter("First_Name");
 		String lname = req.getParameter("Last_Name");
@@ -96,7 +97,7 @@ public class UserProfileUpdate extends HttpServlet {
 				user.setFirstName(fname);
 				user.setLastName(lname);
 				user.setEmailAddress(email);
-				work.Confirmation(req, res, confirmation, url);
+				work.getConfirmation(req, res, confirmation, work.UPDATEUSERINFO);
 				return;
 			} else {
 
@@ -104,7 +105,7 @@ public class UserProfileUpdate extends HttpServlet {
 		} catch (Exception e) {
 			//create new error object and push it to the front
 			ErrorHandling errorHandling = new ErrorHandling();
-			errorHandling.createtheerror(req, res, e, errorurl);
+			errorHandling.createtheerror(req, res, e, errorHandling.USERERROR);
 			
 		} finally {
 			try {

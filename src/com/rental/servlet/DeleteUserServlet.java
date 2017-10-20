@@ -18,7 +18,7 @@ import javax.sql.DataSource;
 import com.rental.models.ErrorBean;
 import com.rental.work.DBConnector;
 import com.rental.work.ErrorHandling;
-import com.rental.work.Work;
+import com.rental.work.Confirmation;
 
 /**
  * Servlet implementation class DeleteUserServlet
@@ -51,10 +51,9 @@ public class DeleteUserServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		//creating connection to the work object, and creating strings to do the work.
-		Work work = new Work();
+		Confirmation work = new Confirmation();
 		String confirmation = "You have succsessfully added an user to Admin status";
-		String url ="addAdmin.jsp";
-		String errorurl = work.getAdminerror();
+
 
 		// get information of the car to be deleted and admins password
 		String uname = req.getParameter("User_Name");
@@ -100,13 +99,13 @@ public class DeleteUserServlet extends HttpServlet {
 
 			}
 			conn.commit();
-			work.Confirmation(req, res, confirmation, url);
+			work.getConfirmation(req, res, confirmation, work.ADMINUSER);
 			
 			return;
 		} catch (Exception e) {
 			//creating new error object and pushing it to the front.
 			ErrorHandling errorHandling = new ErrorHandling();
-			errorHandling.createtheerror(req, res, e, errorurl);
+			errorHandling.createtheerror(req, res, e, errorHandling.ADMINERROR);
 			
 			return;
 		} finally {
