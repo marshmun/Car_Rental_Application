@@ -11,7 +11,7 @@ public interface UserDAO {
 	 User findByUserName(String User_Name);
 	 User findByEmailAddress(String Email_Address);
 	 
-	 boolean insertUser (User user);
+	 void insertUser (String fname, String lname, String email, String username, String pword) throws Exception;
 	 void updateUser (int id, User user) throws Exception;
 	 boolean deleteEmployee(User user);
 }

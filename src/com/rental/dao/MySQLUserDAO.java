@@ -1,6 +1,9 @@
 package com.rental.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.List;
 
 import com.rental.models.User;
@@ -34,9 +37,54 @@ public class MySQLUserDAO implements UserDAO {
 	}
 
 	@Override
-	public boolean insertUser(User user) {
-		// TODO Auto-generated method stub
-		return false;
+	public void insertUser(String fname, String lname, String email, String username, String pword) throws Exception {
+		
+		
+		ResultSet rs = null;
+		Connection conn = null;
+		Statement st = null;
+
+		try {
+			//create connection with db
+			conn = DBConnector.createConnection();
+			
+
+			// Prepare the SQL statmenet to insert the values
+			PreparedStatement stmt = conn.prepareStatement("INSERT INTO userdetails(First_Name, Last_Name, Email_Address, Password, User_Name)  VALUES (?,?,?,?,?)");
+			stmt.setString(1, fname);
+			stmt.setString(2, lname);
+			stmt.setString(3, email);
+			stmt.setString(4, pword);
+			stmt.setString(5, username);
+
+			// Execute the insert
+			stmt.executeUpdate();
+			conn.close();
+
+			// Dispatch into success page
+			
+			
+		} catch (Exception e) {
+			throw e;
+			
+			
+		} finally {
+			try {
+				if (st != null)
+					st.close();
+			} catch (java.sql.SQLException e) {
+			}
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (java.sql.SQLException e) {
+			}
+			try {
+				if (rs != null)
+					rs.close();
+			} catch (java.sql.SQLException e) {
+			}
+		}
 	}
 
 	@Override
@@ -44,7 +92,7 @@ public class MySQLUserDAO implements UserDAO {
 		int rs;
 		Connection conn = null;
 		java.sql.PreparedStatement st = null;
-		String nativeSQL = "";
+		
 
 		try {
 			//create a connection with the db
