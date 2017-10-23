@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.rental.work.DBConnector;
 import com.rental.work.ErrorHandling;
+import com.rental.dao.CarDAO;
+import com.rental.dao.MySQLCarDAO;
 import com.rental.work.Confirmation;
 
 /**
@@ -58,54 +60,13 @@ public class NewCarServlet extends HttpServlet {
 		String model = req.getParameter("Model");
 		String color = req.getParameter("Color");
 
-		ResultSet rs = null;
-		Connection conn = null;
-		Statement st = null;
-
+		CarDAO cardao = new MySQLCarDAO();
 		try {
-			//creating connection with DB
-			conn = DBConnector.createConnection();
-			
-
-			// Prepare the SQL statmenet to insert the values
-			PreparedStatement stmt = conn
-					.prepareStatement("INSERT INTO cardetails(Year, Make, Model, Color)  VALUES (?,?,?,?)");
-			stmt.setString(1, year);
-			stmt.setString(2, make);
-			stmt.setString(3, model);
-			stmt.setString(4, color);
-
-			// Execute the insert
-			stmt.executeUpdate();
-			conn.close();
-
-			// Dispatch into success page
-			work.getConfirmation(req, res, confirmation, work.ADMINCARRENTAL);
-			
-
-		} catch (Exception e) {
-			//creating new error and pushing it to the front.
-			
+			cardao.insertCar(year, make, model, color);
+		}catch(Exception e) {
 			ErrorHandling.createtheerror(req, res, e, ErrorHandling.ADMINERROR);
-			
-		} finally {
-			try {
-				if (st != null)
-					st.close();
-			} catch (java.sql.SQLException e) {
-			}
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (java.sql.SQLException e) {
-			}
-			try {
-				if (rs != null)
-					rs.close();
-			} catch (java.sql.SQLException e) {
-			}
-
 		}
+		work.getConfirmation(req, res, confirmation, work.ADMINCARRENTAL);
 	}
 
 }
