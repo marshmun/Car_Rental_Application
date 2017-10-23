@@ -73,8 +73,7 @@ public class AdminaddUserServlet extends HttpServlet {
 			
 
 			// Prepare the SQL statmenet to insert the values
-			PreparedStatement stmt = conn.prepareStatement(
-					"INSERT INTO userdetails(First_Name, Last_Name, Email_Address, Password, User_Name)  VALUES (?,?,?,?,?)");
+			PreparedStatement stmt = conn.prepareStatement("INSERT INTO userdetails(First_Name, Last_Name, Email_Address, Password, User_Name)  VALUES (?,?,?,?,?)");
 			stmt.setString(1, firstName);
 			stmt.setString(2, lastName);
 			stmt.setString(3, email);

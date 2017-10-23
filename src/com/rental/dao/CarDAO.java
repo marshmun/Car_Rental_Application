@@ -4,15 +4,15 @@ import java.util.List;
 
 import com.rental.models.Car;
 
-public interface CarDao {
+public interface CarDAO {
 	
 	List<Car> findAll();
-	List<Car> findById();
+	List<Car> findById(String id);
 	
 	
 	
 	boolean insertCar(Car car);
-	boolean updateCar(Car car);
+	void updateCar(int id, Car car) throws Exception;
 	boolean deleteCar(Car car);
 
 }

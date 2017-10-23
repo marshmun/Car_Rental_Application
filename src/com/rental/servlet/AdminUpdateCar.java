@@ -57,16 +57,7 @@ public class AdminUpdateCar extends HttpServlet {
 		String make = req.getParameter("Make");
 		String model = req.getParameter("Model");
 		String color = req.getParameter("Color");
-		//conditionals if the following events are left null
-		if (id.equals("") || id == null) {
-			String needid;
-			needid = "Please enter a valid id";
-			res.sendRedirect("adminUser.jsp");
-			}
-		if (year.equals("")||year.equals(null)) {}
-		if (make.equals("")||make.equals(null)) {}
-		if (model.equals("")||model.equals(null)) {}
-		if (color.equals("")||color.equals(null)) {}
+		
 
 		int rs;
 		Connection conn = null;

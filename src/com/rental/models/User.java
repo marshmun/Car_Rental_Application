@@ -2,12 +2,14 @@ package com.rental.models;
 
 public class User {
 
+	private int id;
 	private String firstName;
 	private String lastName;
 	private String userName;
 	private String emailAddress;
 	private String type;
 	private String Password;
+	private String carRental;
 
 	public User() {
 		super();
@@ -60,5 +62,26 @@ public class User {
 	public void setPassword(String password) {
 		Password = password;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getCarRental() {
+		return carRental;
+	}
+
+	public void setCarRental(String carRental) {
+		this.carRental = carRental;
+	}
+	
+	
+
+	
+	
 
 }

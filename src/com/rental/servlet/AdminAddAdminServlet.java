@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import com.rental.dao.MySQLUserDAO;
+import com.rental.dao.UserDAO;
 import com.rental.models.ErrorBean;
+import com.rental.models.User;
 import com.rental.work.DBConnector;
 import com.rental.work.ErrorHandling;
 
@@ -55,44 +58,16 @@ public class AdminAddAdminServlet extends HttpServlet {
 		String confirmation = "You have succsessfully added an user to Admin status";
 		
 		String username = req.getParameter("User_Name");
-		
-		int rs;
-		Connection conn = null;
-		java.sql.PreparedStatement st = null;
-		String nativeSQL = "";
-
+		UserDAO userdao = new MySQLUserDAO();
+		User user = userdao.findByUserName(username);
+		user.setType("Admin");
 		try {
-			//create a connection with the db
-			conn = DBConnector.createConnection();
+	    userdao.updateUser(user.getId(), user);
+		}catch(Exception e){
 
-			st = conn.prepareStatement("update userdetails SET User_Type = 'Admin' where User_Name= ?");
-			st.clearParameters();
-			st.setString(1, username);
-			rs = st.executeUpdate();
-			if (rs != 0) {
-				work.getConfirmation(req, res, confirmation, work.ADMINUSER);
-				return;
-			} else {
-
-			}
-		} catch (Exception e) {
-			//create new error object and push it to the front
-			ErrorHandling errorHandling = new ErrorHandling();
-			errorHandling.createtheerror(req, res, e, errorHandling.getADMINERROR());
-			
-			
-		} finally {
-			try {
-				if (st != null)
-					st.close();
-			} catch (java.sql.SQLException e) {
-			}
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (java.sql.SQLException e) {
-			}
-
+			ErrorHandling.createtheerror(req, res, e, ErrorHandling.ADMINERROR);
 		}
+		work.getConfirmation(req, res, confirmation, work.ADMINUSER);
+		return;
 	}
 }

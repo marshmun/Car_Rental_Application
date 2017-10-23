@@ -23,20 +23,11 @@ public class ErrorHandling {
 			
 }
 	
-	public final String ADMINERROR = "adminError.jsp";
-	public final String USERERROR ="usererror.jsp";
-	public final String HOMEERROR="homeError.jsp";
+	public static final String ADMINERROR = "adminError.jsp";
+	public static final String USERERROR ="usererror.jsp";
+	public static final String HOMEERROR="homeError.jsp";
 	
-	public String getADMINERROR() {
-		return ADMINERROR;
-	}
-	public String getUSERERROR() {
-		return USERERROR;
-	}
-	public String getHOMEERROR() {
-		return HOMEERROR;
-	}
-	
+
 	
 
 

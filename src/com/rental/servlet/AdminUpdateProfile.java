@@ -58,6 +58,7 @@ public class AdminUpdateProfile extends HttpServlet {
 		String fname = req.getParameter("First_Name");
 		String lname = req.getParameter("Last_Name");
 		String type = req.getParameter("Type");
+		
 		//conditonal to send you back to provide a user name to update a user
 		if (username.equals("") || username == null) {
 			confirmation ="Please provide a valid user name";
