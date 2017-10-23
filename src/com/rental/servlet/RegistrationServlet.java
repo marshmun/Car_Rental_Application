@@ -1,19 +1,15 @@
 package com.rental.servlet;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.rental.work.DBConnector;
+import com.rental.dao.MySQLUserDAO;
+import com.rental.dao.UserDAO;
 import com.rental.work.ErrorHandling;
 
 
@@ -47,6 +43,7 @@ public class RegistrationServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		
 
 		// Obtain submitted form data
 		String firstName = req.getParameter("First_Name");
@@ -54,54 +51,15 @@ public class RegistrationServlet extends HttpServlet {
 		String username = req.getParameter("User_Name");
 		String email = req.getParameter("Email_Address");
 		String password = req.getParameter("Password");
-		
-		ResultSet rs = null;
-		Connection conn = null;
-		Statement st = null;
-
+		UserDAO userdao = new MySQLUserDAO();
 		try {
-			//creating new connection with the DB
-			conn = DBConnector.createConnection();
-		
-
-			// Prepare the SQL statmenet to insert the values
-			
-			PreparedStatement stmt = conn.prepareStatement("INSERT INTO userdetails(First_Name, Last_Name, Email_Address, Password, User_Name)  VALUES (?,?,?,?,?)");
-			stmt.setString(1, firstName);
-			stmt.setString(2, lastName);
-			stmt.setString(3, email);
-			stmt.setString(4, password);
-			stmt.setString(5, username);
-
-			// Execute the insert
-			stmt.executeUpdate();
-			conn.close();
-
-			// Dispatch into success page
-			RequestDispatcher requestDispatcher = req.getRequestDispatcher("login.jsp");
-			requestDispatcher.forward(req, res);
-		} catch (Exception e) {
-			//creating new error and pushing it to the front
-			
-			ErrorHandling.createtheerror(req, res, e, ErrorHandling.HOMEERROR);
-			
-		} finally {
-			try {
-				if (st != null)
-					st.close();
-			} catch (java.sql.SQLException e) {
-			}
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (java.sql.SQLException e) {
-			}
-			try {
-				if (rs != null)
-					rs.close();
-			} catch (java.sql.SQLException e) {
-			}
+			userdao.insertUser(firstName, lastName, email, username, password);
+		}catch(Exception e) {
+			ErrorHandling.createtheerror(req, res, e,ErrorHandling.ADMINERROR);
 		}
+		
+	
+		
 	}
 
 }
