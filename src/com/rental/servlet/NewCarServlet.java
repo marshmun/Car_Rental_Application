@@ -6,17 +6,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 
-import com.rental.models.ErrorBean;
 import com.rental.work.DBConnector;
 import com.rental.work.ErrorHandling;
 import com.rental.work.Confirmation;
@@ -89,8 +85,8 @@ public class NewCarServlet extends HttpServlet {
 
 		} catch (Exception e) {
 			//creating new error and pushing it to the front.
-			ErrorHandling errorHandling = new ErrorHandling();
-			errorHandling.createtheerror(req, res, e, errorHandling.ADMINERROR);
+			
+			ErrorHandling.createtheerror(req, res, e, ErrorHandling.ADMINERROR);
 			
 		} finally {
 			try {

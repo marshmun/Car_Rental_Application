@@ -2,25 +2,21 @@ package com.rental.servlet;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.sql.DataSource;
 
-import com.rental.models.ErrorBean;
 import com.rental.models.User;
 import com.rental.work.DBConnector;
 import com.rental.work.ErrorHandling;
-import com.rental.work.Confirmation;
+
 
 import java.sql.Statement;
 
@@ -53,7 +49,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		//creating new work object
-		Confirmation work = new Confirmation();
+		
 	
 		
 		// Get the users information
@@ -94,8 +90,8 @@ public class LoginServlet extends HttpServlet {
 			}
 		} catch (Exception e) {
 			//creating new error and pushing it to the front
-			ErrorHandling errorHandling = new ErrorHandling();
-			errorHandling.createtheerror(req, res, e, errorHandling.HOMEERROR);
+			
+			ErrorHandling.createtheerror(req, res, e, ErrorHandling.HOMEERROR);
 		} finally {
 			try {
 				if (st != null)

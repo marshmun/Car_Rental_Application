@@ -5,17 +5,13 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
 
-import com.rental.models.ErrorBean;
 import com.rental.work.DBConnector;
 import com.rental.work.ErrorHandling;
 import com.rental.work.Confirmation;
@@ -63,7 +59,7 @@ public class DeleteUserServlet extends HttpServlet {
 		Connection conn = null;
 		java.sql.PreparedStatement st = null;
 		Statement sp = null;
-		String nativeSQL = "";
+		
 		ResultSet result  =null;
 
 		try {
@@ -104,8 +100,8 @@ public class DeleteUserServlet extends HttpServlet {
 			return;
 		} catch (Exception e) {
 			//creating new error object and pushing it to the front.
-			ErrorHandling errorHandling = new ErrorHandling();
-			errorHandling.createtheerror(req, res, e, errorHandling.ADMINERROR);
+			
+			ErrorHandling.createtheerror(req, res, e, ErrorHandling.ADMINERROR);
 			
 			return;
 		} finally {
