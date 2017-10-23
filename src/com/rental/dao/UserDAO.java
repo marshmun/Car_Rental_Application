@@ -8,7 +8,7 @@ public interface UserDAO {
 
 	 List<User> findAll();
 	 User findById(String id);
-	 User findByUserName(String User_Name);
+	 User findByUserName(Object object);
 	 User findByEmailAddress(String Email_Address);
 	 
 	 void insertUser (String fname, String lname, String email, String username, String pword) throws Exception;

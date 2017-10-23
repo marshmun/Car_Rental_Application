@@ -1,7 +1,7 @@
 package com.rental.servlet;
 
 import java.io.IOException;
-import java.sql.Connection;
+
 
 
 import javax.servlet.ServletException;
@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.rental.work.DBConnector;
+
 import com.rental.work.ErrorHandling;
+import com.rental.dao.CarDAO;
+import com.rental.dao.MySQLCarDAO;
+import com.rental.models.Car;
 import com.rental.work.Confirmation;
 
 /**
@@ -54,49 +57,18 @@ public class AdminUpdateCar extends HttpServlet {
 		String model = req.getParameter("Model");
 		String color = req.getParameter("Color");
 		
-
-		int rs;
-		Connection conn = null;
-		java.sql.PreparedStatement st = null;
-	
-
+		CarDAO cardao = new MySQLCarDAO();
+		Car car = cardao.findById(id);
+		car.setYear(year);
+		car.setMake(make);
+		car.setModel(model);
+		car.setColor(color);
 		try {
-			conn = DBConnector.createConnection();
 			
-		
-
-			st = conn.prepareStatement("update cardetails SET Year = ?, Make = ?, Model = ?, Color= ?  where id = ?");
-			st.clearParameters();
-			st.setString(1, year);
-			st.setString(2, make);
-			st.setString(3, model);
-			st.setString(4, color);
-			st.setString(5, id);
-			
-			
-			rs = st.executeUpdate();
-			if (rs != 0) {
-				work.getConfirmation(req, res, confirmation, work.ADMINCARRENTAL);
-				return;
-			} else {
-
-			}
-		} catch (Exception e) {
-			//create new error object and push to the front.
-			
+		}catch(Exception e) {
 			ErrorHandling.createtheerror(req, res, e, ErrorHandling.ADMINERROR);
-		} finally {
-			try {
-				if (st != null)
-					st.close();
-			} catch (java.sql.SQLException e) {
-			}
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (java.sql.SQLException e) {
-			}
-
+			
 		}
+		work.getConfirmation(req, res, confirmation, work.ADMINCARRENTAL);
 	}
 }

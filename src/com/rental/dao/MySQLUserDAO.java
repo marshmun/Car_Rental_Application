@@ -8,7 +8,7 @@ import java.util.List;
 
 import com.rental.models.User;
 import com.rental.work.DBConnector;
-import com.rental.work.ErrorHandling;
+
 
 public class MySQLUserDAO implements UserDAO {
 
@@ -25,7 +25,7 @@ public class MySQLUserDAO implements UserDAO {
 	}
 
 	@Override
-	public User findByUserName(String User_Name) {
+	public User findByUserName(Object object) {
 		// TODO Auto-generated method stub
 		return null;
 	}
