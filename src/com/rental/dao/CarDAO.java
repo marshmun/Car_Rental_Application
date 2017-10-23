@@ -7,7 +7,7 @@ import com.rental.models.Car;
 public interface CarDAO {
 	
 	List<Car> findAll();
-	List<Car> findById(String id);
+	Car findById(String id);
 	
 	
 	

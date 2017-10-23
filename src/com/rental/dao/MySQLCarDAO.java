@@ -11,6 +11,7 @@ import com.rental.models.Car;
 import com.rental.work.DBConnector;
 
 
+
 public class MySQLCarDAO implements CarDAO{
 
 	@Override
@@ -20,7 +21,7 @@ public class MySQLCarDAO implements CarDAO{
 	}
 
 	@Override
-	public List<Car> findById(String id) {
+	public Car findById(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -77,7 +78,52 @@ public class MySQLCarDAO implements CarDAO{
 
 	@Override
 	public void updateCar(int id, Car car) throws Exception {
-		// TODO Auto-generated method stub
+
+
+		int rs;
+		Connection conn = null;
+		java.sql.PreparedStatement st = null;
+	
+
+		try {
+			conn = DBConnector.createConnection();
+			
+		
+
+			st = conn.prepareStatement("update cardetails SET Year = ?, Make = ?, Model = ?, Color= ?, Availability=?  where id = ?");
+			st.clearParameters();
+			st.setString(1, car.getYear() );
+			st.setString(2, car.getMake() );
+			st.setString(3, car.getModel());
+			st.setString(4, car.getColor());
+			st.setString(5, car.getAvailable());
+			st.setInt(6, id);
+			
+			
+			rs = st.executeUpdate();
+			if (rs != 0) {
+				
+				
+			} else {
+
+			}
+		} catch (Exception e) {
+			//create new error object and push to the front.
+			throw e;
+			
+		} finally {
+			try {
+				if (st != null)
+					st.close();
+			} catch (java.sql.SQLException e) {
+			}
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (java.sql.SQLException e) {
+			}
+
+		}
 		
 	}
 
