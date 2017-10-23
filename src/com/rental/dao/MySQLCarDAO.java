@@ -128,9 +128,9 @@ public class MySQLCarDAO implements CarDAO{
 	}
 
 	@Override
-	public boolean deleteCar(Car car) {
+	public void deleteCar(Car car) {
 		// TODO Auto-generated method stub
-		return false;
+		
 	}
 
 	

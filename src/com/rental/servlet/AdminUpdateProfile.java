@@ -1,8 +1,6 @@
 package com.rental.servlet;
 
 import java.io.IOException;
-import java.sql.Connection;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,8 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.rental.work.DBConnector;
 import com.rental.work.ErrorHandling;
+import com.rental.dao.MySQLUserDAO;
+import com.rental.dao.UserDAO;
+import com.rental.models.User;
 import com.rental.work.Confirmation;
 
 /**
@@ -61,48 +61,17 @@ public class AdminUpdateProfile extends HttpServlet {
 			work.getConfirmation(req, res, confirmation, work.ADMINUSER);
 		}
 
-		int rs;
-		Connection conn = null;
-		java.sql.PreparedStatement st = null;
-		
-
+		UserDAO userdao = new MySQLUserDAO();
+		User user = userdao.findByUserName( req.getParameter("User_Name"));
+		user.setEmailAddress(email);
+		user.setFirstName(fname);
+		user.setLastName(lname);
+		user.setType(type);
 		try {
-			conn = DBConnector.createConnection();
-			
-
-			st = conn.prepareStatement("update userdetails SET Email_Address = ?, First_Name = ?, Last_Name = ?, User_Type= ?  where User_Name = ?");
-			st.clearParameters();
-			st.setString(1, email);
-			st.setString(2, fname);
-			st.setString(3, lname);
-			st.setString(4, type);
-			st.setString(5, username);
-			
-			rs = st.executeUpdate();
-			if (rs != 0) {
-				work.getConfirmation(req, res, confirmation, work.ADMINUSER);
-		
-				return;
-			} else {
-
-			}
-		} catch (Exception e) {
-			//new error object created and sent to the front
-			
+			userdao.updateUser(user.getId(), user);
+		}catch(Exception e) {
 			ErrorHandling.createtheerror(req, res, e, ErrorHandling.ADMINERROR);
-			
-		} finally {
-			try {
-				if (st != null)
-					st.close();
-			} catch (java.sql.SQLException e) {
-			}
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (java.sql.SQLException e) {
-			}
-
 		}
+		work.getConfirmation(req, res, confirmation, work.ADMINUSER);
 	}
 }

@@ -13,6 +13,6 @@ public interface CarDAO {
 	
 	void insertCar(String year, String make, String model, String color) throws Exception;
 	void updateCar(int id, Car car) throws Exception;
-	boolean deleteCar(Car car);
+	void deleteCar(Car car);
 
 }

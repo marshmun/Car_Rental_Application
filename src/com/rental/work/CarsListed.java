@@ -3,7 +3,6 @@ import com.rental.models.Car;
 
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,7 +18,6 @@ public class CarsListed {
 		ResultSet result  =null;
 		Statement sp = null;
 		Connection conn = null;
-		ResultSet rs = null;
 		List <Car> cars = new ArrayList<>();
 		
 		
