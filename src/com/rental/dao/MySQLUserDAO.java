@@ -43,7 +43,7 @@ public class MySQLUserDAO implements UserDAO {
 	}
 
 	@Override
-	public void insertUser(String fname, String lname, String email, String username, String pword) throws Exception {
+	public void insertUser(User user) throws Exception {
 		
 		
 		ResultSet rs = null;
@@ -57,11 +57,11 @@ public class MySQLUserDAO implements UserDAO {
 
 			// Prepare the SQL statmenet to insert the values
 			PreparedStatement stmt = conn.prepareStatement("INSERT INTO userdetails(First_Name, Last_Name, Email_Address, Password, User_Name)  VALUES (?,?,?,?,?)");
-			stmt.setString(1, fname);
-			stmt.setString(2, lname);
-			stmt.setString(3, email);
-			stmt.setString(4, pword);
-			stmt.setString(5, username);
+			stmt.setString(1, user.getFirstName());
+			stmt.setString(2, user.getLastName());
+			stmt.setString(3, user.getEmailAddress());
+			stmt.setString(4, user.getPassword());
+			stmt.setString(5, user.getUserName());
 
 			// Execute the insert
 			stmt.executeUpdate();

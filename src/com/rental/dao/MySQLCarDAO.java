@@ -33,7 +33,7 @@ public class MySQLCarDAO implements CarDAO{
 	}
 	
 	@Override
-	public void insertCar(String year, String make, String model, String color) throws Exception {
+	public void insertCar(Car car) throws Exception {
 		ResultSet rs = null;
 		Connection conn = null;
 		Statement st = null;
@@ -46,10 +46,10 @@ public class MySQLCarDAO implements CarDAO{
 			// Prepare the SQL statmenet to insert the values
 			PreparedStatement stmt = conn
 					.prepareStatement("INSERT INTO cardetails(Year, Make, Model, Color)  VALUES (?,?,?,?)");
-			stmt.setString(1, year);
-			stmt.setString(2, make);
-			stmt.setString(3, model);
-			stmt.setString(4, color);
+			stmt.setString(1, car.getYear());
+			stmt.setString(2, car.getMake());
+			stmt.setString(3, car.getModel());
+			stmt.setString(4, car.getAvailable());
 
 			// Execute the insert
 			stmt.executeUpdate();

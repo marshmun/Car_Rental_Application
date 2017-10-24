@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.rental.work.ErrorHandling;
 import com.rental.dao.CarDAO;
 import com.rental.dao.MySQLCarDAO;
+import com.rental.models.Car;
 import com.rental.work.Confirmation;
 
 /**
@@ -49,17 +50,16 @@ public class NewCarServlet extends HttpServlet {
 		//creating work object and strings to do the work.
 		Confirmation work = new Confirmation();
 		String confirmation = "You have succsessfully created a new vehicle";
-
-
-		// get the required car information from the form
-		String year = req.getParameter("Year");
-		String make = req.getParameter("Make");
-		String model = req.getParameter("Model");
-		String color = req.getParameter("Color");
+		Car car = new Car();
+		car.setYear(req.getParameter("Year"));
+		car.setMake(req.getParameter("Make"));
+		car.setModel(req.getParameter("Model"));
+		car.setColor(req.getParameter("Color"));
+		
 
 		CarDAO cardao = new MySQLCarDAO();
 		try {
-			cardao.insertCar(year, make, model, color);
+			cardao.insertCar(car);
 		}catch(Exception e) {
 			ErrorHandling.createtheerror(req, res, e, ErrorHandling.ADMINERROR);
 		}

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.rental.dao.MySQLUserDAO;
 import com.rental.dao.UserDAO;
+import com.rental.models.User;
 import com.rental.work.ErrorHandling;
 
 
@@ -44,16 +45,16 @@ public class RegistrationServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
-
-		// Obtain submitted form data
-		String firstName = req.getParameter("First_Name");
-		String lastName = req.getParameter("Last_Name");
-		String username = req.getParameter("User_Name");
-		String email = req.getParameter("Email_Address");
-		String password = req.getParameter("Password");
+		User user = new User();
+		user.setFirstName(req.getParameter("First_Name"));
+		user.setLastName(req.getParameter("Last_Name"));
+		user.setUserName(req.getParameter("User_Name"));
+		user.setEmailAddress(req.getParameter("Email_Address"));
+		user.setPassword(req.getParameter("Password"));
+		
 		UserDAO userdao = new MySQLUserDAO();
 		try {
-			userdao.insertUser(firstName, lastName, email, username, password);
+			userdao.insertUser(user);
 		}catch(Exception e) {
 			ErrorHandling.createtheerror(req, res, e,ErrorHandling.ADMINERROR);
 		}
