@@ -19,5 +19,6 @@ public interface UserDAO {
 	 void updateUser (int id, User user) throws Exception;
 	 void updateUser (int id, User user, Connection conn) throws Exception;
 	 void updateUser (String car, User user, Connection conn) throws Exception;
-	 boolean deleteEmployee(User user);
+	 void deleteUser(String id,User user)throws Exception;
+	 void deleteUser(String car,User user, Connection conn)throws Exception;
 }

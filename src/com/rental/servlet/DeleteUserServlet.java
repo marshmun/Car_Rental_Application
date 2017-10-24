@@ -14,6 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.rental.work.DBConnector;
 import com.rental.work.ErrorHandling;
+import com.rental.dao.CarDAO;
+import com.rental.dao.MySQLCarDAO;
+import com.rental.dao.MySQLUserDAO;
+import com.rental.dao.UserDAO;
+import com.rental.models.Car;
+import com.rental.models.User;
 import com.rental.work.Confirmation;
 
 /**
@@ -53,47 +59,29 @@ public class DeleteUserServlet extends HttpServlet {
 
 		// get information of the car to be deleted and admins password
 		String uname = req.getParameter("User_Name");
-		Integer carid = null;
+		String carid = null;
 
-		int rs;
 		Connection conn = null;
-		java.sql.PreparedStatement st = null;
-		Statement sp = null;
-		
-		ResultSet result  =null;
+		ResultSet result = null;
 
 		try {
-			//creating connection with the DB
 			conn = DBConnector.createConnection();
-			sp = conn.createStatement();
-			
 			conn.setAutoCommit(false);
-			result = sp.executeQuery("SELECT * FROM userdetails where User_Name='"+ uname+"'");
+			UserDAO userDao = new MySQLUserDAO();
+			
+			User user = userDao.findByUserName(uname);
 			if(result.next()) {
-				carid= result.getInt("Car_Rental");
+				carid= result.getString("Car_Rental");
 			}
 			if(!carid.equals("User has no car")) {
-				st = conn.prepareStatement("update cardetails SET Availability = 'Available' where id= ?");
-				st.clearParameters();
-				st.setInt(1, carid);
-				
-				rs = st.executeUpdate();
-				if (rs != 0) {
-					System.out.println("car is set back to available");
+				CarDAO carDao = new MySQLCarDAO();
+				Car car = carDao.findById(carid ,conn);
+				car.setAvailable("Available");
+				carDao.updateCar(car.getId(), car, conn);
 			}
-			}
-			st = conn.prepareStatement("delete FROM userdetails where User_Name= ?");
-			st.clearParameters();
-			st.setString(1, uname);
+			userDao.deleteUser(uname, user, conn);
 			
-			rs = st.executeUpdate();
-			if (rs != 0) {
-				
-				
-				
-			} else {
-
-			}
+			
 			conn.commit();
 			work.getConfirmation(req, res, confirmation, work.ADMINUSER);
 			
@@ -105,15 +93,7 @@ public class DeleteUserServlet extends HttpServlet {
 			
 			return;
 		} finally {
-			try {
-				if (st != null)
-					st.close();
-			} catch (java.sql.SQLException e) {
-			}
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (java.sql.SQLException e) {
+				try {if (conn != null)conn.close();} catch (java.sql.SQLException e) {
 			}
 
 		}

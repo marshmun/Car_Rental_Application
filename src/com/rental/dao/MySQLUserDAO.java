@@ -129,11 +129,6 @@ public class MySQLUserDAO implements UserDAO {
 		}
 	}
 
-	@Override
-	public boolean deleteEmployee(User user) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	@Override
 	public User findByCarRental(String carid) {
@@ -164,6 +159,37 @@ public class MySQLUserDAO implements UserDAO {
 	public User findByCarRental(String carid, Connection conn) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void deleteUser(String id,User user) throws Exception {
+	Connection conn = null;
+		
+		try {
+			//create a connection with the db
+			conn = DBConnector.createConnection();
+	
+			deleteUser(id, user, conn);
+										
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			try { if (conn != null)	conn.close(); } catch (java.sql.SQLException e) {}
+		}
+	}
+		
+	
+
+	@Override
+	public void deleteUser(String car, User user, Connection conn) throws Exception {
+		java.sql.PreparedStatement st = null;
+		
+		st = conn.prepareStatement("delete FROM userdetails where User_Name= ?");
+		st.clearParameters();
+		st.setString(1, car);
+		
+		st.executeUpdate();
+		
 	}
 		
 	}
