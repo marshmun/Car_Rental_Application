@@ -2,9 +2,6 @@ package com.rental.servlet;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,10 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-
 import com.rental.work.DBConnector;
 import com.rental.work.ErrorHandling;
+import com.rental.dao.CarDAO;
+import com.rental.dao.MySQLCarDAO;
+import com.rental.dao.MySQLUserDAO;
+import com.rental.dao.UserDAO;
+import com.rental.models.Car;
+import com.rental.models.User;
 import com.rental.work.Confirmation;
 
 /**
@@ -56,69 +57,33 @@ public class AdminReturnCarServlet extends HttpServlet {
 		String uname = req.getParameter("User_Name");
 		String defaulted = "User has no car";
 
-		int rs;
 		Connection conn = null;
-		java.sql.PreparedStatement st = null;
-		Statement sp = null;
-		
-		ResultSet result  =null;
-
 		try {
-			//create connection with DB
 			conn = DBConnector.createConnection();
-			sp = conn.createStatement();
-			
 			conn.setAutoCommit(false);
-			result = sp.executeQuery("SELECT * FROM userdetails where User_Name='"+ uname+"'");
+			UserDAO userDao = new MySQLUserDAO();
 			
-			if(result.next()) {
-				carid= result.getString("Car_Rental");
-				if (carid.equals("User has no  car")) {
-					confirmation = "User has no vehicle to return";
-					work.getConfirmation(req, res, confirmation, work.RETURNCAR);
-				}
+			User user = userDao.findByUserName(uname, conn);
+			user.setCarRental(defaulted);
+			if (carid.equals("User has no  car")) {
+				confirmation = "User has no vehicle to return";
+				work.getConfirmation(req, res, confirmation, work.RETURNCAR);
 			}
-
-			st = conn.prepareStatement("update userdetails SET Car_Rental = ? where User_Name= ?");
-			st.clearParameters();
-			st.setString(1, defaulted);
-			st.setString(2, uname);
-			rs = st.executeUpdate();
-			if (rs !=0) {
-				System.out.println("user is set back to not having a car");
-			}
-
-			st = conn.prepareStatement("update cardetails SET Availability = 'Available' where id= ?");
-			st.clearParameters();
-			st.setString(1, carid);
-			rs = st.executeUpdate();
-			if (rs != 0) {
-				System.out.println("car is set back to available");
-				
-				
-			} else {
-
-			} 
+			userDao.updateUser(user.getUserName(), user, conn);
+			
+			CarDAO carDao = new MySQLCarDAO();
+			Car car = carDao.findById(carid, conn);
+			car.setAvailable("Available");
+			carDao.updateCar(car.getId(), car, conn);
+			
 			conn.commit();
-			work.getConfirmation(req, res, confirmation, work.RETURNCAR);
-			return;
-			
-			
+			work.getConfirmation(req, res, confirmation, work.RETURNCAR);		
 		} catch (Exception e) {
 			try{conn.rollback();}catch(Exception e1){}
-			//generate new error object and push it to the front.
 			ErrorHandling.createtheerror(req, res, e, ErrorHandling.ADMINERROR);
 		
 		} finally {
-			try {
-				if (st != null)
-					st.close();
-			} catch (java.sql.SQLException e) {
-			}
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (java.sql.SQLException e) {
+			try {if (conn != null)conn.close();} catch (java.sql.SQLException e) {
 			}
 
 		}

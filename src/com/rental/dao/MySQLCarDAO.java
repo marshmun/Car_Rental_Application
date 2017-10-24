@@ -120,9 +120,47 @@ public class MySQLCarDAO implements CarDAO{
 	}
 
 	@Override
-	public void deleteCar(Car car) {
+	public void deleteCar(String id,Car car, Connection conn)throws Exception {
+		java.sql.PreparedStatement st = null;
+		
+		st = conn.prepareStatement("delete FROM cardetails where id= ?");
+		st.clearParameters();
+		st.setString(1, id);
+		
+		st.executeUpdate();
+		
+	}
+
+	@Override
+	public void deleteCar(String id, Car car) throws Exception {
+		Connection conn = null;
+		
+		try {
+			conn = DBConnector.createConnection();
+			
+			deleteCar(id, car, conn);
+
+		} catch (Exception e) {
+			throw e;
+			
+		} finally {
+			try { if (conn != null) conn.close();} catch (java.sql.SQLException e) {}
+		}
+		
+	}
+
+	@Override
+	public void deleteCar(int id, Car car) {
 		// TODO Auto-generated method stub
 		
 	}
 
-}
+	@Override
+	public void deleteCar(int id, Car car, Connection conn) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+		
+	}
+
+

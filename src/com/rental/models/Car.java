@@ -62,5 +62,10 @@ public class Car {
 		Id = id;
 	}
 
+	public void setId(String carid) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

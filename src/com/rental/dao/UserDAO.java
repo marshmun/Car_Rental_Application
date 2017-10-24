@@ -12,9 +12,12 @@ public interface UserDAO {
 	 User findByUserName(String username);
 	 User findByUserName(String username, Connection conn);
 	 User findByEmailAddress(String Email_Address);
+	 User findByCarRental(String carid);
+	 User findByCarRental(String carid,Connection conn);
 	 
 	 void insertUser (User user) throws Exception;
 	 void updateUser (int id, User user) throws Exception;
 	 void updateUser (int id, User user, Connection conn) throws Exception;
+	 void updateUser (String car, User user, Connection conn) throws Exception;
 	 boolean deleteEmployee(User user);
 }

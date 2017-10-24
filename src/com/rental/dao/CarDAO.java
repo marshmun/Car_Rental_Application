@@ -16,6 +16,9 @@ public interface CarDAO {
 	void insertCar(Car car) throws Exception;
 	void updateCar(int id, Car car) throws Exception;
 	void updateCar(int id, Car car, Connection conn) throws Exception;
-	void deleteCar(Car car);
+	void deleteCar(int id,Car car)throws Exception;
+	void deleteCar(String id, Car car) throws Exception;
+	void deleteCar(String id,Car car, Connection conn)throws Exception;
+	void deleteCar(int id,Car car, Connection conn)throws Exception;
 
 }
