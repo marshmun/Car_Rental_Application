@@ -56,7 +56,7 @@ public class AdminAddAdminServlet extends HttpServlet {
 		User user = userdao.findByUserName(username);
 		user.setType("Admin");
 		try {
-	    userdao.updateUser(user.getId(), user);
+			userdao.updateUser(user.getId(), user);
 		}catch(Exception e){
 
 			ErrorHandling.createtheerror(req, res, e, ErrorHandling.ADMINERROR);

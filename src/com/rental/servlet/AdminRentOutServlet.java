@@ -13,6 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.rental.work.DBConnector;
 import com.rental.work.ErrorHandling;
+import com.rental.dao.CarDAO;
+import com.rental.dao.MySQLCarDAO;
+import com.rental.dao.MySQLUserDAO;
+import com.rental.dao.UserDAO;
+import com.rental.models.Car;
+import com.rental.models.User;
 import com.rental.work.Confirmation;
 
 /**
@@ -52,50 +58,33 @@ public class AdminRentOutServlet extends HttpServlet {
 		String carid = req.getParameter("id");
 		String username = req.getParameter("User_Name");
 
-		int rs;
 		Connection conn = null;
-		java.sql.PreparedStatement st = null;
-		String nativeSQL = "";
-
 		try {
 			//connect with the DB
 			conn = DBConnector.createConnection();
+			conn.setAutoCommit(false);
+			UserDAO userDao = new MySQLUserDAO();
 			
+			User user = userDao.findByUserName(username, conn); 
+			user.setCarRental(carid);
+			userDao.updateUser(user.getId(), user, conn);
+			
+			CarDAO carDao = new MySQLCarDAO();
+			Car car = carDao.findById(carid, conn);
+			car.setAvailable("Unavailable");
+			carDao.updateCar(car.getId(), car, conn);
 
-			st = conn.prepareCall("update userdetails SET Car_Rental = ? where User_Name= ?");
-			st.clearParameters();
-			st.setString(1, carid);
-			st.setString(2, username);
-			rs = st.executeUpdate();
-
-			st = conn.prepareStatement("update cardetails SET Availability = 'Unavailable' where id=?");
-			st.clearParameters();
-			st.setString(1, carid);
-			rs = st.executeUpdate();
-			if (rs != 0) {
-				work.getConfirmation(req, res, confirmation, work.ADMINCARRENTAL);
-				
-				return;
-			} else {
-
-			}
+			
+			conn.commit();
+			
+			work.getConfirmation(req, res, confirmation, work.ADMINCARRENTAL);
+										
 		} catch (Exception e) {
-			//create error object and push it to the front
-			
+			try {if(conn != null) conn.rollback();} catch(Exception e1) {}
 			ErrorHandling.createtheerror(req, res, e, ErrorHandling.ADMINERROR);
 			
 		} finally {
-			try {
-				if (st != null)
-					st.close();
-			} catch (java.sql.SQLException e) {
-			}
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (java.sql.SQLException e) {
-			}
-
+			try { if (conn != null)	conn.close();} catch (java.sql.SQLException e) {}
 		}
 	}
 }

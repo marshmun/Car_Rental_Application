@@ -51,7 +51,7 @@ public class UserProfileUpdate extends HttpServlet {
 		HttpSession session = req.getSession(true);
 		UserDAO userdao = new MySQLUserDAO();
 		
-		User user = userdao.findByUserName( session.getAttribute("user"));
+		User user = userdao.findByUserName( (String)session.getAttribute("user"));
 		
 		Confirmation work = new Confirmation();
 		String confirmation = "You have succsessfully updated your profile";

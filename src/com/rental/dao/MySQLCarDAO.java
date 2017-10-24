@@ -27,6 +27,12 @@ public class MySQLCarDAO implements CarDAO{
 	}
 
 	@Override
+	public Car findById(String id, Connection conn) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	@Override
 	public void insertCar(String year, String make, String model, String color) throws Exception {
 		ResultSet rs = null;
 		Connection conn = null;
@@ -77,52 +83,38 @@ public class MySQLCarDAO implements CarDAO{
 	}
 
 	@Override
-	public void updateCar(int id, Car car) throws Exception {
-
-
-		int rs;
-		Connection conn = null;
+	public void updateCar(int id, Car car, Connection conn) throws Exception {
 		java.sql.PreparedStatement st = null;
+		
+		st = conn.prepareStatement("update cardetails SET Year = ?, Make = ?, Model = ?, Color= ?, Availability=?  where id = ?");
+		st.clearParameters();
+		st.setString(1, car.getYear() );
+		st.setString(2, car.getMake() );
+		st.setString(3, car.getModel());
+		st.setString(4, car.getColor());
+		st.setString(5, car.getAvailable());
+		st.setInt(6, id);
+		
+		
+		st.executeUpdate();
+		
+	}	
 	
-
+	@Override
+	public void updateCar(int id, Car car) throws Exception {
+		
+		Connection conn = null;
+	
 		try {
 			conn = DBConnector.createConnection();
 			
-		
+			updateCar(id, car, conn);
 
-			st = conn.prepareStatement("update cardetails SET Year = ?, Make = ?, Model = ?, Color= ?, Availability=?  where id = ?");
-			st.clearParameters();
-			st.setString(1, car.getYear() );
-			st.setString(2, car.getMake() );
-			st.setString(3, car.getModel());
-			st.setString(4, car.getColor());
-			st.setString(5, car.getAvailable());
-			st.setInt(6, id);
-			
-			
-			rs = st.executeUpdate();
-			if (rs != 0) {
-				
-				
-			} else {
-
-			}
 		} catch (Exception e) {
-			//create new error object and push to the front.
 			throw e;
 			
 		} finally {
-			try {
-				if (st != null)
-					st.close();
-			} catch (java.sql.SQLException e) {
-			}
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (java.sql.SQLException e) {
-			}
-
+			try { if (conn != null) conn.close();} catch (java.sql.SQLException e) {}
 		}
 		
 	}
@@ -132,7 +124,5 @@ public class MySQLCarDAO implements CarDAO{
 		// TODO Auto-generated method stub
 		
 	}
-
-	
 
 }

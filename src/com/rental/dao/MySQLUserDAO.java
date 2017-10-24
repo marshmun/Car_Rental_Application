@@ -25,11 +25,17 @@ public class MySQLUserDAO implements UserDAO {
 	}
 
 	@Override
-	public User findByUserName(Object object) {
+	public User findByUserName(String username) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
+	@Override
+	public User findByUserName(String username, Connection con) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	@Override
 	public User findByEmailAddress(String Email_Address) {
 		// TODO Auto-generated method stub
@@ -87,48 +93,39 @@ public class MySQLUserDAO implements UserDAO {
 		}
 	}
 
-	@Override
-	public void updateUser(int id, User user) throws Exception {
-		int rs;
-		Connection conn = null;
+	public void updateUser(int id, User user, Connection conn) throws Exception {
 		java.sql.PreparedStatement st = null;
-		
 
+		st = conn.prepareStatement("update userdetails SET ID=?, First_Name =?, Last_Name=?, Email_Address=?,  User_Type = ?, Password = ?, User_Name=?, Car_Retnal=?  where id= ?");
+		st.clearParameters();
+		st.setInt(1, user.getId());
+		st.setString(2, user.getFirstName());
+		st.setString(3, user.getLastName());
+		st.setString(4, user.getEmailAddress());
+		st.setString(5, user.getType());
+		st.setString(6, user.getPassword());
+		st.setString(7, user.getUserName());
+		st.setString(8, user.getCarRental());
+		st.setInt(9, id);
+		st.executeUpdate();
+		
+	}
+	
+	
+	@Override
+	public void updateUser(int id, User user) throws Exception {		
+		Connection conn = null;
+		
 		try {
 			//create a connection with the db
 			conn = DBConnector.createConnection();
-			
-			
-			st = conn.prepareStatement("update userdetails SET ID=?, First_Name =?, Last_Name=?, Email_Address=?,  User_Type = ?, Password = ?, User_Name=?, Car_Retnal=?  where id= ?");
-			st.clearParameters();
-			st.setInt(1, user.getId());
-			st.setString(2, user.getFirstName());
-			st.setString(3, user.getLastName());
-			st.setString(4, user.getEmailAddress());
-			st.setString(5, user.getType());
-			st.setString(6, user.getPassword());
-			st.setString(7, user.getUserName());
-			st.setString(8, user.getCarRental());
-			st.setInt(9, id);
-			rs = st.executeUpdate();
-				
-			
+	
+			updateUser(id, user, conn);
+										
 		} catch (Exception e) {
 			throw e;
-			
-			
 		} finally {
-			try {
-				if (st != null)
-					st.close();
-			} catch (java.sql.SQLException e) {
-			}
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (java.sql.SQLException e) {
-			}
-
+			try { if (conn != null)	conn.close(); } catch (java.sql.SQLException e) {}
 		}
 	}
 
