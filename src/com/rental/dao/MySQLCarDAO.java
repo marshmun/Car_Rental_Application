@@ -49,7 +49,8 @@ public class MySQLCarDAO implements CarDAO{
 			stmt.setString(1, car.getYear());
 			stmt.setString(2, car.getMake());
 			stmt.setString(3, car.getModel());
-			stmt.setString(4, car.getAvailable());
+			stmt.setString(4, car.getColor());
+			
 
 			// Execute the insert
 			stmt.executeUpdate();
