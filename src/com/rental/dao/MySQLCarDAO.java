@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.List;
 
 import com.rental.models.Car;
+import com.rental.models.User;
 import com.rental.work.DBConnector;
 
 
@@ -27,16 +28,37 @@ public class MySQLCarDAO implements CarDAO{
 	}
 
 	@Override
-	public Car findById(String id, Connection conn) {
-		// TODO Auto-generated method stub
-		return null;
+	public Car findById(String id, Connection conn)throws Exception {
+		Statement st =null;
+	    ResultSet rs =null;
+	    Car car = new Car();
+	    try {
+	    	st=conn.createStatement();
+	    	
+	    	rs = st.executeQuery("SELECT * FROM cardetails where id ='"+ id+"'");
+	        if(rs.next()) {
+	        car.setId(rs.getString("id"));
+	        car.setColor(rs.getString("Color"));
+	        car.setMake(rs.getString("Make"));
+	        car.setModel(rs.getString("Model"));
+	        car.setYear(rs.getString("Year"));
+	        car.setAvailable(rs.getString("Availability"));
+	        }
+	        
+	        
+	        return car;
+	    }catch(Exception e) {
+	    	System.out.println(e);
+	        throw e;
+	        
+	    }
 	}
 	
 	@Override
 	public void insertCar(Car car) throws Exception {
 		ResultSet rs = null;
 		Connection conn = null;
-		Statement st = null;
+		Statement st = null;                                                                                                                                                                                                                                                                                                                                                                        
 
 		try {
 			//creating connection with DB

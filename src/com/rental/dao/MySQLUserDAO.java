@@ -3,6 +3,7 @@ package com.rental.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
@@ -31,10 +32,35 @@ public class MySQLUserDAO implements UserDAO {
 	}
 
 	@Override
-	public User findByUserName(String username, Connection con) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public User findByUserName(String username, Connection conn) throws SQLException {
+//		    java.sql.PreparedStatement st = null;
+			Statement st =null;
+		    ResultSet rs =null;
+		    User user = new User();
+		    try {
+		    	st=conn.createStatement();
+		    	
+		    	rs = st.executeQuery("SELECT * FROM userdetails where User_Name ='"+ username+"'");
+//		        st = conn.prepareStatement("SELECT * FROM userdetails where User_Name = ?");
+//		        st.setString(1, username);
+		        if(rs.next()) {
+		        user.setUserName(rs.getString("User_Name"));
+		        user.setFirstName(rs.getString("First_Name"));
+		        user.setLastName(rs.getString("Last_Name"));
+		        user.setEmailAddress(rs.getString("Email_Address"));
+		        user.setPassword(rs.getString("password"));
+		        }
+		        
+		        
+		        return user;
+		    }catch(Exception e) {
+		    	System.out.println(e);
+		        throw e;
+		        
+		    }
+
+
+		}
 	
 	@Override
 	public User findByEmailAddress(String Email_Address) {

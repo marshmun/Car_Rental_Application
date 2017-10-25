@@ -108,11 +108,7 @@
 				<div class="modal-body">
 
 					<form class="form" action="adminupdate" method="POST">
-						<input type="text" name="User_Name" placeholder="User Name"
-							required> <input type="text" name="First_Name"
-							placeholder="First Name"> <input type="text"
-							name="Last_Name" placeholder="Last Name"> <input
-							type="text" name="Email_Address" placeholder="Email Address">
+						<input type="text" name="User_Name" placeholder="User Name" required>
 						<input type="text" name="Type" placeholder="Type"> <input
 							id="submit" type="submit">
 					</form>
