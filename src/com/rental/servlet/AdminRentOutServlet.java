@@ -78,6 +78,7 @@ public class AdminRentOutServlet extends HttpServlet {
 			conn.commit();
 			
 			work.getConfirmation(req, res, confirmation, work.ADMINCARRENTAL);
+			return;
 										
 		} catch (Exception e) {
 			try {if(conn != null) conn.rollback();} catch(Exception e1) {}
