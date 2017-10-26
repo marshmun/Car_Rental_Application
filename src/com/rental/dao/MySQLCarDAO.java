@@ -37,7 +37,7 @@ public class MySQLCarDAO implements CarDAO{
 	    	
 	    	rs = st.executeQuery("SELECT * FROM cardetails where id ='"+ id+"'");
 	        if(rs.next()) {
-	        car.setId(rs.getString("id"));
+	        car.setId(rs.getInt("id"));
 	        car.setColor(rs.getString("Color"));
 	        car.setMake(rs.getString("Make"));
 	        car.setModel(rs.getString("Model"));

@@ -41,9 +41,8 @@ public class MySQLUserDAO implements UserDAO {
 		    	st=conn.createStatement();
 		    	
 		    	rs = st.executeQuery("SELECT * FROM userdetails where User_Name ='"+ username+"'");
-//		        st = conn.prepareStatement("SELECT * FROM userdetails where User_Name = ?");
-//		        st.setString(1, username);
 		        if(rs.next()) {
+		        user.setId(rs.getInt("ID"));
 		        user.setUserName(rs.getString("User_Name"));
 		        user.setFirstName(rs.getString("First_Name"));
 		        user.setLastName(rs.getString("Last_Name"));
