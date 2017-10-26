@@ -66,15 +66,19 @@ public class DeleteCarServlet extends HttpServlet {
 			conn.setAutoCommit(false);
 			UserDAO userDao = new MySQLUserDAO();
 			
-			User user = userDao.findByCarRental(carid,conn);
-			user.setCarRental(nocar);
-			userDao.updateUser(user.getCarRental(), user, conn);
+			
+				User user = userDao.findByCarRental(carid,conn);
+			if(user != null) {
+				user.setCarRental(nocar);
+				userDao.updateUser(user.getId(), user, conn);
+			}
+			
 			
 			CarDAO carDao = new MySQLCarDAO();
 			Car car =carDao.findById(carid, conn);
 			car.setId(carid);
 			carDao.deleteCar(car.getId(), car);
-//			
+		
 			
 			conn.commit();
 			work.getConfirmation(req, res, confirmation, work.ADMINCARRENTAL);

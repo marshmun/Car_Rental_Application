@@ -33,7 +33,7 @@ public class MySQLUserDAO implements UserDAO {
 
 	@Override
 	public User findByUserName(String username, Connection conn) throws SQLException {
-//		    java.sql.PreparedStatement st = null;
+
 			Statement st =null;
 		    ResultSet rs =null;
 		    User user = new User();
@@ -165,7 +165,7 @@ public class MySQLUserDAO implements UserDAO {
 	public void updateUser(String car, User user, Connection conn) throws Exception {
 		java.sql.PreparedStatement st = null;
 
-		st = conn.prepareStatement("update userdetails SET ID=?, First_Name =?, Last_Name=?, Email_Address=?,  User_Type = ?, Password = ?, User_Name=?, Car_Rental=?  where Car_Rental= ?");
+		st = conn.prepareStatement("update userdetails SET ID =?, First_Name =?, Last_Name=?, Email_Address=?,  User_Type = ?, Password = ?, User_Name=?, Car_Rental=?  where Car_Rental= ?");
 		st.clearParameters();
 		st.setInt(1, user.getId());
 		st.setString(2, user.getFirstName());
@@ -181,9 +181,31 @@ public class MySQLUserDAO implements UserDAO {
 	}
 
 	@Override
-	public User findByCarRental(String carid, Connection conn) {
-		// TODO Auto-generated method stub
-		return null;
+	public User findByCarRental(String carid, Connection conn)throws Exception {
+		Statement st =null;
+	    ResultSet rs =null;
+	    User user = new User();
+	    try {
+	    	st=conn.createStatement();
+	    	
+	    	rs = st.executeQuery("SELECT * FROM userdetails where Car_Rental ='"+ carid+"'");
+	        if(rs.next()) {
+	        user.setId(rs.getInt("ID"));
+	        user.setUserName(rs.getString("User_Name"));
+	        user.setFirstName(rs.getString("First_Name"));
+	        user.setLastName(rs.getString("Last_Name"));
+	        user.setEmailAddress(rs.getString("Email_Address"));
+	        user.setPassword(rs.getString("password"));
+	        }else {user=null;}
+	        
+	        
+	        return user;
+	    }catch(Exception e) {
+	    	System.out.println(e);
+	        throw e;
+	        
+	    }
+
 	}
 
 	@Override

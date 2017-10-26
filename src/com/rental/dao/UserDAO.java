@@ -14,7 +14,7 @@ public interface UserDAO {
 	 User findByUserName(String username, Connection conn)throws SQLException;
 	 User findByEmailAddress(String Email_Address);
 	 User findByCarRental(String carid);
-	 User findByCarRental(String carid,Connection conn)throws SQLException;
+	 User findByCarRental(String carid,Connection conn)throws Exception;
 	 
 	 void insertUser (User user) throws Exception;
 	 void updateUser (int id, User user) throws Exception;
