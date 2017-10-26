@@ -1,8 +1,7 @@
 package com.rental.servlet;
 
 import java.io.IOException;
-
-
+import java.sql.Connection;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +15,7 @@ import com.rental.dao.CarDAO;
 import com.rental.dao.MySQLCarDAO;
 import com.rental.models.Car;
 import com.rental.work.Confirmation;
+import com.rental.work.DBConnector;
 
 /**
  * Servlet implementation class AdminUpdateCar
@@ -48,6 +48,7 @@ public class AdminUpdateCar extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		//create connection to work object and create strings to do the work
+		
 		Confirmation work = new Confirmation();
 		String confirmation = "You have succsessfully updated vehicle";
 		
@@ -57,13 +58,17 @@ public class AdminUpdateCar extends HttpServlet {
 		String model = req.getParameter("Model");
 		String color = req.getParameter("Color");
 		
-		CarDAO cardao = new MySQLCarDAO();
-		Car car = cardao.findById(id);
-		car.setYear(year);
-		car.setMake(make);
-		car.setModel(model);
-		car.setColor(color);
+		Connection conn = null;
 		try {
+			conn = DBConnector.createConnection();
+			
+			CarDAO cardao = new MySQLCarDAO();
+			Car car = cardao.findById(id, conn);
+			car.setYear(year);
+			car.setMake(make);
+			car.setModel(model);
+			car.setColor(color);
+			cardao.updateCar(car.getId(), car, conn);
 			
 		}catch(Exception e) {
 			ErrorHandling.createtheerror(req, res, e, ErrorHandling.ADMINERROR);
