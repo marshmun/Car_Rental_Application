@@ -64,12 +64,15 @@ public class AdminReturnCarServlet extends HttpServlet {
 			UserDAO userDao = new MySQLUserDAO();
 			
 			User user = userDao.findByUserName(uname, conn);
-			user.setCarRental(defaulted);
-			if (carid.equals("User has no  car")) {
+			carid = user.getCarRental();
+			if(user.getCarRental().equals("User has no car")) {
 				confirmation = "User has no vehicle to return";
 				work.getConfirmation(req, res, confirmation, work.RETURNCAR);
+			}else {
+				user.setCarRental(defaulted);
 			}
-			userDao.updateUser(user.getUserName(), user, conn);
+			
+			userDao.updateUser(user.getId(), user, conn);
 			
 			CarDAO carDao = new MySQLCarDAO();
 			Car car = carDao.findById(carid, conn);
