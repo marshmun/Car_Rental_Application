@@ -70,6 +70,7 @@ public class LoginServlet extends HttpServlet {
 			rs = st.executeQuery("SELECT * FROM userdetails where User_Name='" + user.getUserName()+ "' and password='" + user.getPassword() + "'");
 			if (rs.next()) {
 				HttpSession session = req.getSession();
+				user.setId(rs.getInt("ID"));
 				user.setFirstName(rs.getString("First_Name"));
 				user.setLastName(rs.getString("Last_Name"));
 				user.setEmailAddress(rs.getString("Email_Address"));

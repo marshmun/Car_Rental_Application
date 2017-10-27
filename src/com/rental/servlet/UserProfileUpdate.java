@@ -1,8 +1,7 @@
 package com.rental.servlet;
 
 import java.io.IOException;
-
-
+import java.sql.Connection;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +15,7 @@ import com.rental.dao.UserDAO;
 import com.rental.models.User;
 import com.rental.work.ErrorHandling;
 import com.rental.work.Confirmation;
+import com.rental.work.DBConnector;
 
 /**
  * Servlet implementation class UserProfileUpdate
@@ -48,10 +48,13 @@ public class UserProfileUpdate extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		//get the session and pull out user information
+		
 		HttpSession session = req.getSession(true);
 		UserDAO userdao = new MySQLUserDAO();
+		User user1 = new User();
+		user1 = ((User)session.getAttribute("user"));
+				
 		
-		User user = userdao.findByUserName( (String)session.getAttribute("user"));
 		
 		Confirmation work = new Confirmation();
 		String confirmation = "You have succsessfully updated your profile";
@@ -62,23 +65,32 @@ public class UserProfileUpdate extends HttpServlet {
 		
 		//conditonals if nothing is put in the for the following params
 		if (email.equals("") || email == null) {
-			email = user.getEmailAddress();
+			email = user1.getEmailAddress();
 		}
 		if (fname.equals("") || fname == null) {
-			fname = user.getFirstName();
+			fname = user1.getFirstName();
 		}
 		if (lname.equals("") || lname == null) {
-			lname = user.getLastName();
+			lname = user1.getLastName();
 		}
-		user.setEmailAddress(email);
-		user.setFirstName(fname);
-		user.setLastName(lname);
+		
+		
+		Connection conn = null;
 		try {
-			userdao.updateUser(user.getId(), user);
+			conn = DBConnector.createConnection();
+			conn.setAutoCommit(false);
+			
+			User user = userdao.findByUserName(user1.getUserName(), conn);
+			user.setEmailAddress(email);
+			user.setFirstName(fname);
+			user.setLastName(lname);
+			userdao.updateUser(user.getId(), user, conn);
+			
+			conn.commit();
 		}catch(Exception e) {
-			ErrorHandling.createtheerror(req, res, e, ErrorHandling.ADMINERROR);
+			ErrorHandling.createtheerror(req, res, e, ErrorHandling.USERERROR);
 		}
-		work.getConfirmation(req, res, confirmation, work.ADMINUSER);
+		work.getConfirmation(req, res, confirmation, work.UPDATEUSERINFO);
 		
 	}
 }

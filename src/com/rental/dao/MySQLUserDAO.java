@@ -123,17 +123,17 @@ public class MySQLUserDAO implements UserDAO {
 	public void updateUser(int id, User user, Connection conn) throws Exception {
 		java.sql.PreparedStatement st = null;
 
-		st = conn.prepareStatement("update userdetails SET ID=?, First_Name =?, Last_Name=?, Email_Address=?,  User_Type = ?, Password = ?, User_Name=?, Car_Rental=?  where id= ?");
+		st = conn.prepareStatement("update userdetails SET First_Name =?, Last_Name=?, Email_Address=?,  User_Type = ?, Password = ?, User_Name=?, Car_Rental=?  where id= ?");
 		st.clearParameters();
-		st.setInt(1, user.getId());
-		st.setString(2, user.getFirstName());
-		st.setString(3, user.getLastName());
-		st.setString(4, user.getEmailAddress());
-		st.setString(5, user.getType());
-		st.setString(6, user.getPassword());
-		st.setString(7, user.getUserName());
-		st.setString(8, user.getCarRental());
-		st.setInt(9, id);
+		//st.setInt(1, user.getId());
+		st.setString(1, user.getFirstName());
+		st.setString(2, user.getLastName());
+		st.setString(3, user.getEmailAddress());
+		st.setString(4, user.getType());
+		st.setString(5, user.getPassword());
+		st.setString(6, user.getUserName());
+		st.setString(7, user.getCarRental());
+		st.setInt(8, id);
 		st.executeUpdate();
 		
 	}
