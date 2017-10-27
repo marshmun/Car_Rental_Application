@@ -59,6 +59,7 @@ public class UserCarRentalServlet extends HttpServlet {
 		
 		HttpSession session = req.getSession(true);
 		User user1 = new User();
+		user1 = (User) session.getAttribute("user");
 		String carid = req.getParameter("id");
 		
 		Connection conn = null;
