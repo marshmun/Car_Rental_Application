@@ -109,8 +109,11 @@
 
 					<form class="form" action="adminupdate" method="POST">
 						<input type="text" name="User_Name" placeholder="User Name" required>
-						<input type="text" name="Type" placeholder="Type"> <input
-							id="submit" type="submit">
+						<input type="text" name="First_Name"placeholder="First Name" required>
+						 <input type="text" name="Last_Name" placeholder="Last Name" required>
+						  <input type="email" name="Email_Address" placeholder="Email Address" required> 
+						  <input type="text" name="User_Type" placeholder="User Type" required>
+						   <input id="submit" type="submit">
 					</form>
 
 				</div>

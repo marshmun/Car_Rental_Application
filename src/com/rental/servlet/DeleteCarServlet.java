@@ -49,11 +49,11 @@ public class DeleteCarServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		//create connection with work object and creating strings to do the work.
+		
 		Confirmation work = new Confirmation();
 		String confirmation = "You have succsessfully deleted the vehicle";
 		
-		// get information of the car to be deleted and admins password
+	
 		
 		
 		String carid = req.getParameter("id");

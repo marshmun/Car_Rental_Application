@@ -1,6 +1,7 @@
 package com.rental.servlet;
 
 import java.io.IOException;
+import java.sql.Connection;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,7 @@ import com.rental.dao.MySQLUserDAO;
 import com.rental.dao.UserDAO;
 import com.rental.models.User;
 import com.rental.work.Confirmation;
+import com.rental.work.DBConnector;
 
 /**
  * Servlet implementation class AdminUpdateProfile
@@ -50,10 +52,6 @@ public class AdminUpdateProfile extends HttpServlet {
 		String confirmation = "You have succsessfully added an user to Admin status";
 		
 		String username = req.getParameter("User_Name");
-		String email = req.getParameter("Email_Address");
-		String fname = req.getParameter("First_Name");
-		String lname = req.getParameter("Last_Name");
-		String type = req.getParameter("Type");
 		
 		//conditonal to send you back to provide a user name to update a user
 		if (username.equals("") || username == null) {
@@ -61,13 +59,19 @@ public class AdminUpdateProfile extends HttpServlet {
 			work.getConfirmation(req, res, confirmation, work.ADMINUSER);
 		}
 
-		UserDAO userdao = new MySQLUserDAO();
-		User user = userdao.findByUserName( req.getParameter("User_Name"));
-		user.setEmailAddress(email);
-		user.setFirstName(fname);
-		user.setLastName(lname);
-		user.setType(type);
+		Connection conn = null;
 		try {
+			conn = DBConnector.createConnection();
+			conn.setAutoCommit(false);
+			UserDAO userdao = new MySQLUserDAO();
+			
+			
+			User user = userdao.findByUserName(  username, conn);
+			user.setEmailAddress(req.getParameter("Email_Address"));
+			user.setFirstName( req.getParameter("First_Name"));
+			user.setLastName( req.getParameter("Last_Name"));
+			user.setType(req.getParameter("User_Type"));
+			
 			userdao.updateUser(user.getId(), user);
 		}catch(Exception e) {
 			ErrorHandling.createtheerror(req, res, e, ErrorHandling.ADMINERROR);
