@@ -69,11 +69,9 @@ public class DeleteUserServlet extends HttpServlet {
 			conn.setAutoCommit(false);
 			UserDAO userDao = new MySQLUserDAO();
 			
-			User user = userDao.findByUserName(uname);
-			if(result.next()) {
-				carid= result.getString("Car_Rental");
-			}
-			if(!carid.equals("User has no car")) {
+			User user = userDao.findByUserName(uname, conn);
+			if (!user.getCarRental().equals("User has no car")) {
+				carid= user.getCarRental();
 				CarDAO carDao = new MySQLCarDAO();
 				Car car = carDao.findById(carid ,conn);
 				car.setAvailable("Available");

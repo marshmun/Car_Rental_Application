@@ -48,6 +48,7 @@ public class MySQLUserDAO implements UserDAO {
 		        user.setLastName(rs.getString("Last_Name"));
 		        user.setEmailAddress(rs.getString("Email_Address"));
 		        user.setPassword(rs.getString("password"));
+		        user.setCarRental(rs.getString("Car_Rental"));
 		        }
 		        
 		        
