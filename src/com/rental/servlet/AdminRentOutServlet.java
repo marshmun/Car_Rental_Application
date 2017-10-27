@@ -51,7 +51,6 @@ public class AdminRentOutServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		//create connection with work object and make strings to do the work
 		Confirmation work = new Confirmation();
 		String confirmation = "You have succsessfully rented out the vehicle";
 		
@@ -60,7 +59,7 @@ public class AdminRentOutServlet extends HttpServlet {
 
 		Connection conn = null;
 		try {
-			//connect with the DB
+			
 			conn = DBConnector.createConnection();
 			conn.setAutoCommit(false);
 			UserDAO userDao = new MySQLUserDAO();

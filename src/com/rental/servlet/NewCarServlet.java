@@ -47,7 +47,6 @@ public class NewCarServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		//creating work object and strings to do the work.
 		Confirmation work = new Confirmation();
 		String confirmation = "You have succsessfully created a new vehicle";
 		Car car = new Car();

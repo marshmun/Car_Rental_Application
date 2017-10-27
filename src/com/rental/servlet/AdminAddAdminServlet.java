@@ -46,7 +46,7 @@ public class AdminAddAdminServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		//create connection with work object and create strings to do the work
+		
 		Confirmation work = new Confirmation();
 		
 		String confirmation = "You have succsessfully added an user to Admin status";

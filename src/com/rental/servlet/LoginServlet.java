@@ -48,22 +48,17 @@ public class LoginServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		//creating new work object
-		
-	
-		
-		// Get the users information
+
 		User user = new User();
 		user.setUserName(req.getParameter("User_Name"));
 		user.setPassword(req.getParameter("password"));
 
-		// Make connection with the DB to authenticate against it
 		ResultSet rs = null;
 		Connection conn = null;
 		Statement st = null;
 
 		try {
-			//creating new connetion to DB
+			
 			conn = DBConnector.createConnection();
 			st = conn.createStatement();
 
@@ -90,8 +85,6 @@ public class LoginServlet extends HttpServlet {
 				res.sendRedirect("index.jsp");
 			}
 		} catch (Exception e) {
-			//creating new error and pushing it to the front
-			
 			ErrorHandling.createtheerror(req, res, e, ErrorHandling.HOMEERROR);
 		} finally {
 			try {

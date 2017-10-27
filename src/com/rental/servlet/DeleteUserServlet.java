@@ -52,12 +52,10 @@ public class DeleteUserServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		//creating connection to the work object, and creating strings to do the work.
 		Confirmation work = new Confirmation();
 		String confirmation = "You have succsessfully added an user to Admin status";
 
 
-		// get information of the car to be deleted and admins password
 		String uname = req.getParameter("User_Name");
 		String carid = null;
 
@@ -85,8 +83,6 @@ public class DeleteUserServlet extends HttpServlet {
 			
 			return;
 		} catch (Exception e) {
-			//creating new error object and pushing it to the front.
-			
 			ErrorHandling.createtheerror(req, res, e, ErrorHandling.ADMINERROR);
 			
 			return;

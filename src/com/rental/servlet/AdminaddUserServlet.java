@@ -47,7 +47,6 @@ public class AdminaddUserServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		//create new work object and strings to do the work
 		Confirmation work = new Confirmation();
 		String confirmation = "You have succsessfully added a user";
 		User user = new User();
@@ -65,10 +64,7 @@ public class AdminaddUserServlet extends HttpServlet {
 		}
 		work.getConfirmation(req, res, confirmation, work.ADMINUSER);
 		
-		// Obtain submitted form data
-		
-
-		
+				
 	}
 
 }

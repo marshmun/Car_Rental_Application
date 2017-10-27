@@ -144,7 +144,6 @@ public class MySQLUserDAO implements UserDAO {
 		Connection conn = null;
 		
 		try {
-			//create a connection with the db
 			conn = DBConnector.createConnection();
 	
 			updateUser(id, user, conn);
@@ -159,7 +158,6 @@ public class MySQLUserDAO implements UserDAO {
 
 	@Override
 	public User findByCarRental(String carid) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

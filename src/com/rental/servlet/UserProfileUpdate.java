@@ -47,8 +47,7 @@ public class UserProfileUpdate extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		//get the session and pull out user information
-		
+			
 		HttpSession session = req.getSession(true);
 		UserDAO userdao = new MySQLUserDAO();
 		User user1 = new User();

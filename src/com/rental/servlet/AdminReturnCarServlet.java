@@ -49,7 +49,6 @@ public class AdminReturnCarServlet extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		//create connection with work object and make strings to do the work
 		Confirmation work = new Confirmation();
 		String confirmation = "You have succsessfully returned the vehicle";
 		

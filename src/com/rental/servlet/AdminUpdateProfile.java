@@ -46,14 +46,12 @@ public class AdminUpdateProfile extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		//creates new connection to work object and strings created to do work.
 		Confirmation work = new Confirmation();
 		
 		String confirmation = "You have succsessfully added an user to Admin status";
 		
 		String username = req.getParameter("User_Name");
-		
-		//conditonal to send you back to provide a user name to update a user
+
 		if (username.equals("") || username == null) {
 			confirmation ="Please provide a valid user name";
 			work.getConfirmation(req, res, confirmation, work.ADMINUSER);
