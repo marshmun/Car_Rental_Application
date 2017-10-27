@@ -77,7 +77,7 @@ public class DeleteCarServlet extends HttpServlet {
 			CarDAO carDao = new MySQLCarDAO();
 			Car car =carDao.findById(carid, conn);
 			car.setId(carid);
-			carDao.deleteCar(car.getId(), car);
+			carDao.deleteCar(car.getId(), car, conn);
 		
 			
 			conn.commit();

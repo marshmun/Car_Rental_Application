@@ -180,7 +180,13 @@ public class MySQLCarDAO implements CarDAO{
 
 	@Override
 	public void deleteCar(int id, Car car, Connection conn) throws Exception {
-		// TODO Auto-generated method stub
+	java.sql.PreparedStatement st = null;
+		
+		st = conn.prepareStatement("delete FROM cardetails where id= ?");
+		st.clearParameters();
+		st.setInt(1, id);
+		
+		st.executeUpdate();
 		
 	}
 		
