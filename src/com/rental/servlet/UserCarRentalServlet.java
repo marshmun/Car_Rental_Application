@@ -51,7 +51,6 @@ public class UserCarRentalServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	@SuppressWarnings("resource")
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		Confirmation work = new Confirmation();
 		String confirmation = "You have succsessfully rented out the vehicle";

@@ -174,8 +174,6 @@
 			}
 		%>
 	</table>
-
-		</form>
 		<hr>
 		<footer>
 			<a href="userhome.jsp"><button class="btn btn-outline-success">Home</button></a>

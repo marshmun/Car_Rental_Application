@@ -23,7 +23,7 @@
 			<form action="login" class="form-inline" method="POST">
 				<div class="form-group">
 					<label for="User_Name">User Name:</label>
-					<input type="User_Name" class="form-control" name="User_Name" id="User_Name" placeholder="Enter User Name">
+					<input type="text" class="form-control" name="User_Name" id="User_Name" placeholder="Enter User Name">
 				</div>
 				<div class="form-group">
 					<label for="password">Password:</label>
@@ -51,7 +51,7 @@
 			</div>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-				<input id="Email_Address" type="Email_Address" class="form-control" name="Email_Address" placeholder="Email Address">
+				<input id="Email_Address" type="email" class="form-control" name="Email_Address" placeholder="Email Address">
 			</div>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
