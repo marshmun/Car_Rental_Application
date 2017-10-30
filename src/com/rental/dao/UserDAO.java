@@ -3,6 +3,9 @@ package com.rental.dao;
 import java.sql.Connection;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.rental.models.User;
 
 public interface UserDAO {
@@ -15,6 +18,7 @@ public interface UserDAO {
 	 User findByCarRental(String carid);
 	 User findByCarRental(String carid,Connection conn)throws Exception;
 	 
+	 User login(HttpServletRequest req,  HttpServletResponse res, User user ) throws Exception;
 	 void insertUser (User user) throws Exception;
 	 void updateUser (int id, User user) throws Exception;
 	 void updateUser (int id, User user, Connection conn) throws Exception;

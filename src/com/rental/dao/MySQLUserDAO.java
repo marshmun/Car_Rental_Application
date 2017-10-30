@@ -6,6 +6,10 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.rental.models.User;
 import com.rental.work.DBConnector;
 
@@ -234,7 +238,48 @@ public class MySQLUserDAO implements UserDAO {
 		st.executeUpdate();
 		
 	}
+
+	@Override
+	public User login(HttpServletRequest req,  HttpServletResponse res, User user) throws Exception {
+		ResultSet rs = null;
+		Connection conn = null;
+		Statement st = null;
+
+		try {
+			
+			conn = DBConnector.createConnection();
+			st = conn.createStatement();
+
+			rs = st.executeQuery("SELECT * FROM userdetails where User_Name='" + user.getUserName()+ "' and password='" + user.getPassword() + "'");
+			if (rs.next()) {
+				user.setId(rs.getInt("ID"));
+				user.setFirstName(rs.getString("First_Name"));
+				user.setLastName(rs.getString("Last_Name"));
+				user.setEmailAddress(rs.getString("Email_Address"));
+				user.setType(rs.getString("User_Type"));
+				HttpSession session = req.getSession();
+				session.setAttribute("user", user);
+				if ("Admin".equalsIgnoreCase(user.getType())) {
+					res.sendRedirect("admin/adminHome.jsp");
+					conn.close();
+					return user;
+				} else {
+					res.sendRedirect("user/userhome.jsp");
+					conn.close();
+					return user;
+				}
+			} else {
+				System.out.println("Invalid password, please try again");
+				res.sendRedirect("index.jsp");
+			}
+			
 		
+		}catch (Exception e) {
+			throw e;
+		} finally {try {if (conn != null)conn.close();} catch (java.sql.SQLException e) {}
+		}
+		return user;
+		}
 	}
 
 

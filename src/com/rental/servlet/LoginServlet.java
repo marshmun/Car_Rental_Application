@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.rental.dao.MySQLUserDAO;
+import com.rental.dao.UserDAO;
 import com.rental.models.User;
 import com.rental.work.DBConnector;
 import com.rental.work.ErrorHandling;
@@ -49,45 +51,19 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-		User user = new User();
-		user.setUserName(req.getParameter("User_Name"));
-		user.setPassword(req.getParameter("password"));
-
-		ResultSet rs = null;
-		Connection conn = null;
-		Statement st = null;
+		UserDAO userdao = new MySQLUserDAO();
+		User user1 = new User();
+		user1.setUserName(req.getParameter("User_Name"));
+		user1.setPassword(req.getParameter("password"));
 
 		try {
+			User user = userdao.login(req, res, user1);
 			
-			conn = DBConnector.createConnection();
-			st = conn.createStatement();
-
-			rs = st.executeQuery("SELECT * FROM userdetails where User_Name='" + user.getUserName()+ "' and password='" + user.getPassword() + "'");
-			if (rs.next()) {
-				HttpSession session = req.getSession();
-				user.setId(rs.getInt("ID"));
-				user.setFirstName(rs.getString("First_Name"));
-				user.setLastName(rs.getString("Last_Name"));
-				user.setEmailAddress(rs.getString("Email_Address"));
-				user.setType(rs.getString("User_Type"));
-				session.setAttribute("user", user);
-
-				if ("Admin".equalsIgnoreCase(user.getType())) {
-					res.sendRedirect("admin/adminHome.jsp");
-					conn.close();
-				} else {
-					res.sendRedirect("user/userhome.jsp");
-					conn.close();
-					return;
-				}
-			} else {
-				System.out.println("Invalid password, please try again");
-				res.sendRedirect("index.jsp");
-			}
+			
 		} catch (Exception e) {
 			ErrorHandling.createtheerror(req, res, e, ErrorHandling.HOMEERROR);
-		} finally {	try {if (conn != null)conn.close();} catch (java.sql.SQLException e) {}
-		}
+		} 
+		
 	}
 
 }
