@@ -3,7 +3,6 @@ package com.rental.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
@@ -26,14 +25,26 @@ public class MySQLUserDAO implements UserDAO {
 	}
 
 	@Override
-	public User findByUserName(String username) {
-		// TODO Auto-generated method stub
-		return null;
+	public User findByUserName(String username) throws Exception {
+		Connection conn = null;
+		
+		try {
+			conn = DBConnector.createConnection();
+			
+			return findByUserName(username, conn);
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			try { if (conn != null)	conn.close(); } catch (java.sql.SQLException e) {}
+		}
+		
 	}
 
 	@Override
-	public User findByUserName(String username, Connection conn) throws SQLException {
+	public User findByUserName(String username, Connection conn) throws Exception {
 
+
+			
 			Statement st =null;
 		    ResultSet rs =null;
 		    User user = new User();

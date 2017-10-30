@@ -53,9 +53,9 @@ public class AdminAddAdminServlet extends HttpServlet {
 		
 		String username = req.getParameter("User_Name");
 		UserDAO userdao = new MySQLUserDAO();
-		User user = userdao.findByUserName(username);
-		user.setType("Admin");
 		try {
+			User user = userdao.findByUserName(username);
+			user.setType("Admin");			
 			userdao.updateUser(user.getId(), user);
 		}catch(Exception e){
 

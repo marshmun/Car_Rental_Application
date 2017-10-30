@@ -74,18 +74,13 @@ public class UserProfileUpdate extends HttpServlet {
 		}
 		
 		
-		Connection conn = null;
 		try {
-			conn = DBConnector.createConnection();
-			conn.setAutoCommit(false);
-			
-			User user = userdao.findByUserName(user1.getUserName(), conn);
+			User user = userdao.findByUserName(user1.getUserName());
 			user.setEmailAddress(email);
 			user.setFirstName(fname);
 			user.setLastName(lname);
-			userdao.updateUser(user.getId(), user, conn);
+			userdao.updateUser(user.getId(), user);
 			
-			conn.commit();
 		}catch(Exception e) {
 			ErrorHandling.createtheerror(req, res, e, ErrorHandling.USERERROR);
 		}
