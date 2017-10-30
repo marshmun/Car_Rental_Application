@@ -41,12 +41,10 @@ public class MySQLUserDAO implements UserDAO {
 		} finally {
 			try { if (conn != null)	conn.close(); } catch (java.sql.SQLException e) {}
 		}
-		
 	}
 
 	@Override
 	public User findByUserName(String username, Connection conn) throws Exception {
-
 
 			
 			Statement st =null;
@@ -72,10 +70,7 @@ public class MySQLUserDAO implements UserDAO {
 		    }catch(Exception e) {
 		    	System.out.println(e);
 		        throw e;
-		        
 		    }
-
-
 		}
 	
 	@Override
@@ -86,7 +81,6 @@ public class MySQLUserDAO implements UserDAO {
 
 	@Override
 	public void insertUser(User user) throws Exception {
-		
 		
 		ResultSet rs = null;
 		Connection conn = null;
@@ -113,9 +107,7 @@ public class MySQLUserDAO implements UserDAO {
 			
 			
 		} catch (Exception e) {
-			throw e;
-			
-			
+			throw e;			
 		} finally {	try {if (conn != null)conn.close();} catch (java.sql.SQLException e) {}
 		}
 	}
@@ -135,7 +127,6 @@ public class MySQLUserDAO implements UserDAO {
 		st.setString(7, user.getCarRental());
 		st.setInt(8, id);
 		st.executeUpdate();
-		
 	}
 	
 	
@@ -177,7 +168,6 @@ public class MySQLUserDAO implements UserDAO {
 		st.setString(8, user.getCarRental());
 		st.setString(9, car);
 		st.executeUpdate();
-		
 	}
 
 	@Override
@@ -197,7 +187,6 @@ public class MySQLUserDAO implements UserDAO {
 	        user.setEmailAddress(rs.getString("Email_Address"));
 	        user.setPassword(rs.getString("password"));
 	        }else {user=null;}
-	        
 	        
 	        return user;
 	    }catch(Exception e) {
