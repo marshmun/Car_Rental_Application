@@ -55,7 +55,6 @@ public class NewCarServlet extends HttpServlet {
 		car.setModel(req.getParameter("Model"));
 		car.setColor(req.getParameter("Color"));
 		
-
 		CarDAO cardao = new MySQLCarDAO();
 		try {
 			cardao.insertCar(car);
