@@ -8,8 +8,8 @@ import com.rental.models.Car;
 public interface CarDAO {
 	
 	List<Car> findAll();
-	Car findById(String id);
-	Car findById(String id, Connection conn)throws Exception;
+	Car findById(String id) throws Exception;
+	Car findById(String id, Connection conn) throws Exception;
 	
 	
 	

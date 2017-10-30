@@ -22,19 +22,28 @@ public class MySQLCarDAO implements CarDAO{
 	}
 
 	@Override
-	public Car findById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Car findById(String id) throws Exception {
+		Connection conn =null;
+		Statement st =null;
+	    ResultSet rs =null;
+	   
+	    try {
+	    	st=conn.createStatement();
+	    	  return findById(id, conn);
+	    }catch(Exception e) {
+	    	System.out.println(e);
+	        throw e;
+	        
+	    }
 	}
 
 	@Override
 	public Car findById(String id, Connection conn)throws Exception {
-		Statement st =null;
-	    ResultSet rs =null;
+	    ResultSet rs = null;
 	    Car car = new Car();
-	    try {
-	    	st=conn.createStatement();
-	    	
+		Statement st = null;
+		
+	    	try {
 	    	rs = st.executeQuery("SELECT * FROM cardetails where id ='"+ id+"'");
 	        if(rs.next()) {
 	        car.setId(rs.getInt("id"));
@@ -44,14 +53,13 @@ public class MySQLCarDAO implements CarDAO{
 	        car.setYear(rs.getString("Year"));
 	        car.setAvailable(rs.getString("Availability"));
 	        }
-	        
-	        
 	        return car;
-	    }catch(Exception e) {
-	    	System.out.println(e);
-	        throw e;
-	        
-	    }
+	    	 }catch(Exception e) {
+			    	System.out.println(e);
+			        throw e;
+			        
+			    }
+	   
 	}
 	
 	@Override
