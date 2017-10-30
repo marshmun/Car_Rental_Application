@@ -45,7 +45,6 @@ public class AdminUpdateProfile extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		Confirmation work = new Confirmation();
-		
 		String confirmation = "You have succsessfully added an user to Admin status";
 		
 		String username = req.getParameter("User_Name");

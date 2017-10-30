@@ -49,6 +49,7 @@ public class AdminaddUserServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		Confirmation work = new Confirmation();
 		String confirmation = "You have succsessfully added a user";
+		
 		User user = new User();
 		user.setFirstName(req.getParameter("First_Name"));
 		user.setLastName(req.getParameter("Last_Name"));

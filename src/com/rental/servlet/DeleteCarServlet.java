@@ -53,9 +53,6 @@ public class DeleteCarServlet extends HttpServlet {
 		Confirmation work = new Confirmation();
 		String confirmation = "You have succsessfully deleted the vehicle";
 		
-	
-		
-		
 		String carid = req.getParameter("id");
 		String nocar = "User has no car";
 
@@ -67,23 +64,20 @@ public class DeleteCarServlet extends HttpServlet {
 			UserDAO userDao = new MySQLUserDAO();
 			
 			
-				User user = userDao.findByCarRental(carid,conn);
+			User user = userDao.findByCarRental(carid,conn);
 			if(user != null) {
 				user.setCarRental(nocar);
 				userDao.updateUser(user.getId(), user, conn);
 			}
-			
 			
 			CarDAO carDao = new MySQLCarDAO();
 			Car car =carDao.findById(carid, conn);
 			car.setId(carid);
 			carDao.deleteCar(car.getId(), car, conn);
 		
-			
 			conn.commit();
 			work.getConfirmation(req, res, confirmation, work.ADMINCARRENTAL);
 		} catch (Exception e) {
-			//creating a new error object and pushing it to the front
 			try {if(conn !=null) conn.rollback();}catch(Exception e1) {}
 			ErrorHandling.createtheerror(req, res, e, ErrorHandling.ADMINERROR);
 			

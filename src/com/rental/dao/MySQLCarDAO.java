@@ -24,7 +24,6 @@ public class MySQLCarDAO implements CarDAO{
 	public Car findById(String id) throws Exception {
 		Connection conn = null;
 		Statement st = null;
-	    ResultSet rs = null;
 	   
 	    try {
 	    	st = conn.createStatement();
@@ -64,25 +63,17 @@ public class MySQLCarDAO implements CarDAO{
 	
 	@Override
 	public void insertCar(Car car) throws Exception {
-		ResultSet rs = null;
-		Connection conn = null;
-		Statement st = null;                                                                                                                                                                                                                                                                                                                                                                        
+		Connection conn = null;                                                                                                                                                                                                                                                                                                                                                      
 
 		try {
-			//creating connection with DB
 			conn = DBConnector.createConnection();
 			
-
-			// Prepare the SQL statmenet to insert the values
-			PreparedStatement stmt = conn
-					.prepareStatement("INSERT INTO cardetails(Year, Make, Model, Color)  VALUES (?,?,?,?)");
+			PreparedStatement stmt = conn.prepareStatement("INSERT INTO cardetails(Year, Make, Model, Color)  VALUES (?,?,?,?)");
 			stmt.setString(1, car.getYear());
 			stmt.setString(2, car.getMake());
 			stmt.setString(3, car.getModel());
 			stmt.setString(4, car.getColor());
 			
-
-			// Execute the insert
 			stmt.executeUpdate();
 			conn.close();
 			

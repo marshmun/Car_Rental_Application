@@ -62,8 +62,7 @@ public class LoginServlet extends HttpServlet {
 				
 			} else {
 				res.sendRedirect("user/userhome.jsp");
-				
-			}
+							}
 		} catch (Exception e) {
 			ErrorHandling.createtheerror(req, res, e, ErrorHandling.HOMEERROR);
 		} 

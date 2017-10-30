@@ -52,7 +52,6 @@ public class DeleteUserServlet extends HttpServlet {
 		Confirmation work = new Confirmation();
 		String confirmation = "You have succsessfully added an user to Admin status";
 
-
 		String uname = req.getParameter("User_Name");
 		String carid = null;
 
@@ -71,7 +70,6 @@ public class DeleteUserServlet extends HttpServlet {
 				carDao.updateCar(car.getId(), car, conn);
 			}
 			userDao.deleteUser(uname, user, conn);
-			
 			
 			conn.commit();
 			work.getConfirmation(req, res, confirmation, work.ADMINUSER);

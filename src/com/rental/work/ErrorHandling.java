@@ -26,9 +26,4 @@ public class ErrorHandling {
 	public static final String ADMINERROR = "adminError.jsp";
 	public static final String USERERROR ="usererror.jsp";
 	public static final String HOMEERROR="homeError.jsp";
-	
-
-	
-
-
 }

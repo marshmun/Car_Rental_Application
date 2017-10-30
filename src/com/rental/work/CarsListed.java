@@ -20,7 +20,6 @@ public class CarsListed {
 		Connection conn = null;
 		List <Car> cars = new ArrayList<>();
 		
-		
 		try {
  			conn = DBConnector.createConnection();
 			sp = conn.createStatement();
@@ -41,18 +40,7 @@ public class CarsListed {
 			
 		}catch(Exception e) {
 			
-		}finally{
-			try {
-				if (sp != null)
-					sp.close();
-			} catch (java.sql.SQLException e) {
-			}
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (java.sql.SQLException e) {
-			}
-			
+		}finally{try {if (conn != null)	conn.close();} catch (java.sql.SQLException e) {}			
 		}
 		return cars;
 

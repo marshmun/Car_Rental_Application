@@ -6,9 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
 
 import com.rental.models.User;
 import com.rental.work.DBConnector;
@@ -82,9 +80,8 @@ public class MySQLUserDAO implements UserDAO {
 	@Override
 	public void insertUser(User user) throws Exception {
 		
-		ResultSet rs = null;
 		Connection conn = null;
-		Statement st = null;
+		
 
 		try {
 			//create connection with db
