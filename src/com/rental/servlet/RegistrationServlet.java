@@ -60,9 +60,6 @@ public class RegistrationServlet extends HttpServlet {
 		}catch(Exception e) {
 			ErrorHandling.createtheerror(req, res, e,ErrorHandling.HOMEERROR);
 		}
-		
-	
-		
 	}
 
 }

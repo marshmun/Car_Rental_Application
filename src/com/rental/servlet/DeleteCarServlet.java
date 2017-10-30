@@ -89,8 +89,7 @@ public class DeleteCarServlet extends HttpServlet {
 			
 			
 		} finally {
-			try {if (conn != null)conn.close();} catch (java.sql.SQLException e) {
-			}
+			try {if (conn != null)conn.close();} catch (java.sql.SQLException e) {}
 
 		}
 	}

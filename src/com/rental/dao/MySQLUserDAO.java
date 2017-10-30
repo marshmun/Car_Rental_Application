@@ -112,22 +112,7 @@ public class MySQLUserDAO implements UserDAO {
 			throw e;
 			
 			
-		} finally {
-			try {
-				if (st != null)
-					st.close();
-			} catch (java.sql.SQLException e) {
-			}
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (java.sql.SQLException e) {
-			}
-			try {
-				if (rs != null)
-					rs.close();
-			} catch (java.sql.SQLException e) {
-			}
+		} finally {	try {if (conn != null)conn.close();} catch (java.sql.SQLException e) {}
 		}
 	}
 

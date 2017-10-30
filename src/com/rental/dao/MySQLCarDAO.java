@@ -32,8 +32,9 @@ public class MySQLCarDAO implements CarDAO{
 	    }catch(Exception e) {
 	    	System.out.println(e);
 	        throw e;
-	        
-	    }
+	     }finally {
+				try { if (conn != null)	conn.close(); } catch (java.sql.SQLException e) {}
+	     }
 	}
 
 	@Override
@@ -91,24 +92,8 @@ public class MySQLCarDAO implements CarDAO{
 		throw e;
 			
 			
-		} finally {
-			try {
-				if (st != null)
-					st.close();
-			} catch (java.sql.SQLException e) {
+		} finally {	try {if (conn != null)conn.close();} catch (java.sql.SQLException e) {}
 			}
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (java.sql.SQLException e) {
-			}
-			try {
-				if (rs != null)
-					rs.close();
-			} catch (java.sql.SQLException e) {
-			}
-
-		}
 		
 	}
 

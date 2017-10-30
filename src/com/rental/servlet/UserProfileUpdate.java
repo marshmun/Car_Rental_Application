@@ -51,8 +51,6 @@ public class UserProfileUpdate extends HttpServlet {
 		User user1 = new User();
 		user1 = ((User)session.getAttribute("user"));
 				
-		
-		
 		Confirmation work = new Confirmation();
 		String confirmation = "You have succsessfully updated your profile";
 
@@ -70,7 +68,6 @@ public class UserProfileUpdate extends HttpServlet {
 		if (lname.equals("") || lname == null) {
 			lname = user1.getLastName();
 		}
-		
 		
 		try {
 			User user = userdao.findByUserName(user1.getUserName());
