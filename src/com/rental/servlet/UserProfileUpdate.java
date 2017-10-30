@@ -1,7 +1,6 @@
 package com.rental.servlet;
 
 import java.io.IOException;
-import java.sql.Connection;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +14,6 @@ import com.rental.dao.UserDAO;
 import com.rental.models.User;
 import com.rental.work.ErrorHandling;
 import com.rental.work.Confirmation;
-import com.rental.work.DBConnector;
 
 /**
  * Servlet implementation class UserProfileUpdate

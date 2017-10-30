@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.List;
 
 import com.rental.models.Car;
-import com.rental.models.User;
 import com.rental.work.DBConnector;
 
 
@@ -23,12 +22,12 @@ public class MySQLCarDAO implements CarDAO{
 
 	@Override
 	public Car findById(String id) throws Exception {
-		Connection conn =null;
-		Statement st =null;
-	    ResultSet rs =null;
+		Connection conn = null;
+		Statement st = null;
+	    ResultSet rs = null;
 	   
 	    try {
-	    	st=conn.createStatement();
+	    	st = conn.createStatement();
 	    	  return findById(id, conn);
 	    }catch(Exception e) {
 	    	System.out.println(e);

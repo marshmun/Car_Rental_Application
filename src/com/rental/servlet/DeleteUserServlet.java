@@ -2,9 +2,6 @@ package com.rental.servlet;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -60,8 +57,6 @@ public class DeleteUserServlet extends HttpServlet {
 		String carid = null;
 
 		Connection conn = null;
-		ResultSet result = null;
-
 		try {
 			conn = DBConnector.createConnection();
 			conn.setAutoCommit(false);
