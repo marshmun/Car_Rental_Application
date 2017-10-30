@@ -18,7 +18,7 @@ public interface UserDAO {
 	 User findByCarRental(String carid);
 	 User findByCarRental(String carid,Connection conn)throws Exception;
 	 
-	 User login(HttpServletRequest req,  HttpServletResponse res, User user ) throws Exception;
+	 User login(User user ) throws Exception;
 	 void insertUser (User user) throws Exception;
 	 void updateUser (int id, User user) throws Exception;
 	 void updateUser (int id, User user, Connection conn) throws Exception;

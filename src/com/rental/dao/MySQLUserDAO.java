@@ -229,7 +229,7 @@ public class MySQLUserDAO implements UserDAO {
 	}
 
 	@Override
-	public User login(HttpServletRequest req,  HttpServletResponse res, User user) throws Exception {
+	public User login( User user) throws Exception {
 		ResultSet rs = null;
 		Connection conn = null;
 		Statement st = null;
@@ -246,20 +246,10 @@ public class MySQLUserDAO implements UserDAO {
 				user.setLastName(rs.getString("Last_Name"));
 				user.setEmailAddress(rs.getString("Email_Address"));
 				user.setType(rs.getString("User_Type"));
-				HttpSession session = req.getSession();
-				session.setAttribute("user", user);
-				if ("Admin".equalsIgnoreCase(user.getType())) {
-					res.sendRedirect("admin/adminHome.jsp");
-					conn.close();
-					return user;
-				} else {
-					res.sendRedirect("user/userhome.jsp");
-					conn.close();
-					return user;
+				return user;
 				}
-			} else {
-				System.out.println("Invalid password, please try again");
-				res.sendRedirect("index.jsp");
+			 else {
+				return null;
 			}
 			
 		
@@ -267,7 +257,6 @@ public class MySQLUserDAO implements UserDAO {
 			throw e;
 		} finally {try {if (conn != null)conn.close();} catch (java.sql.SQLException e) {}
 		}
-		return user;
 		}
 	}
 

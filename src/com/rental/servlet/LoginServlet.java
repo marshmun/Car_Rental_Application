@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.rental.dao.MySQLUserDAO;
 import com.rental.dao.UserDAO;
@@ -48,9 +49,21 @@ public class LoginServlet extends HttpServlet {
 		user1.setPassword(req.getParameter("password"));
 
 		try {
-			User user = userdao.login(req, res, user1);
-			
-			
+			User user = userdao.login( user1);
+			if(user == null) {
+				System.out.println("Invalid password, please try again");
+				res.sendRedirect("index.jsp");
+				return;
+			}
+			HttpSession session = req.getSession();
+			session.setAttribute("user", user);
+			if ("Admin".equalsIgnoreCase(user.getType())) {
+				res.sendRedirect("admin/adminHome.jsp");
+				
+			} else {
+				res.sendRedirect("user/userhome.jsp");
+				
+			}
 		} catch (Exception e) {
 			ErrorHandling.createtheerror(req, res, e, ErrorHandling.HOMEERROR);
 		} 
